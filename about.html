@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Meet the Wilsonic Boom robotics team - passionate engineers, programmers, and designers.">
+    <title>Our Team | Wilsonic Boom</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+            margin: var(--space-16) 0;
+        }
+
+        .team-section-title {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .team-section-title h2 {
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .team-section-title p {
+            color: var(--color-gray);
+            font-size: var(--text-base);
+        }
+
+        .leads-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .programming-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-6);
+            max-width: 1100px;
+            margin: 0 auto;
+            justify-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .leads-grid,
+            .programming-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .leads-grid,
+            .programming-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .programming-section {
+            background: var(--color-bg-elevated);
+            padding: var(--space-16) 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wilsonic <span>Boom</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">Team</a></li>
+                <li><a href="robot.html" class="nav-link">Robot</a></li>
+                <li><a href="sponsors.html" class="nav-link">Sponsors</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero hero-mini">
+        <div class="hero-bg">
+            <img src="images/team/team-working.jpg" alt="Team Working">
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">The People Behind the Bot</span>
+            <h1 class="hero-title">Meet Our <span class="text-gradient">Team</span></h1>
+            <p class="hero-subtitle">Passionate engineers, creative problem-solvers, and dedicated competitors united by
+                one goal.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 1: LEADS (Top Row - 4 members)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="container">
+            <div class="team-section-title reveal">
+                <h2><span class="text-gold">Team</span> Leads</h2>
+                <p>The leadership driving our success</p>
+            </div>
+            <div class="leads-grid">
+                <div class="team-card card reveal">
+                    <img src="images/team/sudersen.jpg" alt="Sudersen">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Sudersen</h3>
+                        <span class="team-card-role">Project Manager</span>
+                    </div>
+                </div>
+                <div class="team-card card reveal">
+                    <img src="images/team/liang.jpg" alt="Liang">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Liang</h3>
+                        <span class="team-card-role">Design Manager</span>
+                    </div>
+                </div>
+                <div class="team-card card reveal">
+                    <img src="images/team/vatsal.jpg" alt="Vatsal">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Vatsal</h3>
+                        <span class="team-card-role">Outreach Manager</span>
+                    </div>
+                </div>
+                <div class="team-card card reveal">
+                    <img src="images/team/razi.jpg" alt="Razi">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Razi</h3>
+                        <span class="team-card-role">Programming Manager</span>
+                    </div>
+                </div>
+                <div class="team-card card reveal">
+                    <img src="images/team/anvesh.jpg" alt="Anvesh">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Anvesh</h3>
+                        <span class="team-card-role">Design Manager</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-divider"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 2: DESIGN TEAM (Middle - 12 cards)
+         Includes: Liang (again), Anvesh, Siddarth, Savith, 
+         + all others NOT in Programming: Adrij, Akshat, Avyukth, Jonathan, Shratul, Sudersen, Vatsal, Zachary
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="team-section-title reveal">
+                <h2><span class="text-gold">Design</span> Team</h2>
+                <p>Engineering excellence through thoughtful design</p>
+            </div>
+            <div class="team-grid">
+                <!-- Liang (Design Lead - listed again) -->
+                <div class="team-card card reveal">
+                    <img src="images/team/liang.jpg" alt="Liang">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Liang</h3>
+                        <span class="team-card-role">Design Manager</span>
+                    </div>
+                </div>
+                <!-- Anvesh (Inventory Manager) -->
+                <div class="team-card card reveal">
+                    <img src="images/team/anvesh.jpg" alt="Anvesh">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Anvesh</h3>
+                        <span class="team-card-role">Design Manager</span>
+                    </div>
+                </div>
+                <!-- Siddarth -->
+                <div class="team-card card reveal">
+                    <img src="images/team/siddarth.jpg" alt="Siddarth">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Siddarth</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Savith -->
+                <div class="team-card card reveal">
+                    <img src="images/team/savith.jpg" alt="Savith">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Savith</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Sudersen (Team Lead) -->
+                <div class="team-card card reveal">
+                    <img src="images/team/sudersen.jpg" alt="Sudersen">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Sudersen</h3>
+                        <span class="team-card-role">Project Manager</span>
+                    </div>
+                </div>
+                <!-- Srihan -->
+                <div class="team-card card reveal">
+                    <div style="width: 100%; aspect-ratio: 3/4; background: var(--color-bg-surface); display: flex; align-items: center; justify-content: center; font-size: var(--text-4xl); color: var(--color-gold); font-family: var(--font-display);">S</div>
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Srihan</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Adrij -->
+                <div class="team-card card reveal">
+                    <img src="images/team/adrij.jpg" alt="Adrij">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Adrij</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Akshat -->
+                <div class="team-card card reveal">
+                    <img src="images/team/akshat.jpg" alt="Akshat">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Akshat</h3>
+                        <span class="team-card-role">Portfolio Manager</span>
+                    </div>
+                </div>
+                <!-- Avyukth -->
+                <div class="team-card card reveal">
+                    <img src="images/team/avyukth.jpg" alt="Avyukth">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Avyukth</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Jonathan -->
+                <div class="team-card card reveal">
+                    <img src="images/team/jonathan.jpg" alt="Jonathan">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Jonathan</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Shratul -->
+                <div class="team-card card reveal">
+                    <img src="images/team/shratul.jpg" alt="Shratul">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Shratul</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Zachary -->
+                <div class="team-card card reveal">
+                    <img src="images/team/zachary.jpg" alt="Zachary">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Zachary</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-divider"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 3: PROGRAMMING TEAM (Bottom - 4 members, visually separated)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section class="programming-section">
+        <div class="container">
+            <div class="team-section-title reveal">
+                <h2><span class="text-gold">Programming</span> Team</h2>
+                <p>The code behind the competition</p>
+            </div>
+            <div class="programming-grid">
+                <!-- Razi (Programming Lead - listed again) -->
+                <div class="team-card card reveal">
+                    <img src="images/team/razi.jpg" alt="Razi">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Razi</h3>
+                        <span class="team-card-role">Programming Manager</span>
+                    </div>
+                </div>
+                <!-- Dhir -->
+                <div class="team-card card reveal">
+                    <img src="images/team/dhir.jpg" alt="Dhir">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Dhir</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Sriram -->
+                <div class="team-card card reveal">
+                    <img src="images/team/sriram.jpg" alt="Sriram">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Sriram</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+                <!-- Thajan -->
+                <div class="team-card card reveal">
+                    <img src="images/team/thajan.jpg" alt="Thajan">
+                    <div class="team-card-overlay">
+                        <h3 class="team-card-name">Thajan</h3>
+                        <span class="team-card-role">Team Member</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">Wilsonic <span>Boom</span></div>
+                    <p class="footer-desc">An FTC robotics team dedicated to engineering excellence, innovation, and
+                        inspiring future generations.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/wilsonicboom.ftc/" target="_blank" class="footer-social"
+                            aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/wilsonic-boom-ftc-608863396/" target="_blank"
+                            class="footer-social" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://www.firstinspires.org/programs/ftc/" target="_blank" class="footer-social"
+                            aria-label="FIRST Tech Challenge">
+                            <img src="images/FIRST-logo.png" alt="FIRST" width="20" height="20"
+                                style="object-fit: contain;">
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigate</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">Team</a></li>
+                        <li><a href="robot.html" class="footer-link">Robot</a></li>
+                        <li><a href="sponsors.html" class="footer-link">Sponsors</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:admin@wilsonicboom.com" class="footer-link">admin@wilsonicboom.com</a></li>
+                        <li><span class="footer-link">Wilson's School, Wallington, England</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.firstinspires.org/robotics/ftc" class="footer-link"
+                                target="_blank">FIRST Tech Challenge</a></li>
+                        <li><a href="https://www.veracit.co.uk/" class="footer-link" target="_blank">VeracIT</a></li>
+                        <li><a href="https://eastloopcomponents.com/" class="footer-link" target="_blank">East Loop
+                                Components</a></li>
+                        <li><a href="https://www.gwr-fasteners.co.uk/" class="footer-link" target="_blank">GWR
+                                Fasteners</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Wilsonic Boom. All rights reserved.</p>
+                <p>Built with passion for robotics</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

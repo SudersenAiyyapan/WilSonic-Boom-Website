@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore the Wilsonic Boom robot - drivetrain, intake, shooter, and sorter subsystems engineered for competition.">
+    <title>Our Robot | Wilsonic Boom</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wilsonic <span>Boom</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">Team</a></li>
+                <li><a href="robot.html" class="nav-link active">Robot</a></li>
+                <li><a href="sponsors.html" class="nav-link">Sponsors</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero hero-mini">
+        <div class="hero-bg">
+            <img src="images/robot/robot-hero.jpg" alt="Robot">
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">Precision Engineering</span>
+            <h1 class="hero-title">The <span class="text-gradient">Machine</span></h1>
+            <p class="hero-subtitle">A competition-ready robot designed for speed, accuracy, and reliability.</p>
+        </div>
+    </section>
+
+    <!-- Subsystems -->
+    <section class="section" id="subsystems">
+        <div class="container">
+            <!-- Version Toggle -->
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-8);">
+                <div class="version-toggle" id="version-toggle" data-active="v2">
+                    <button class="version-btn" data-version="v1">V1</button>
+                    <button class="version-btn active" data-version="v2">V2</button>
+                    <div class="version-slider"></div>
+                </div>
+                <div style="flex: 1;"></div>
+            </div>
+
+            <div class="text-center mb-12 reveal">
+                <h2>Robot <span class="text-gold">Subsystems</span></h2>
+                <p style="color: var(--color-gray); margin-top: var(--space-4);">Each component engineered for peak
+                    performance</p>
+            </div>
+
+            <!-- V1 Content -->
+            <div id="v1-content" style="display: none;">
+                <!-- Drivetrain -->
+                <div id="drivetrain" class="mb-12">
+                    <h3 class="text-center mb-8 reveal">Drivetrain</h3>
+                    <div class="robot-subsystems reveal">
+                        <div class="subsystem-card card" data-subsystem="chassis">
+                            <img src="images/robot/drivetrain/IMG20251211173137.jpg" alt="Drivetrain">
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Chassis</h4>
+                                <p class="subsystem-desc">Robust frame for stability and speed</p>
+                            </div>
+                        </div>
+                        <div class="subsystem-card card" data-subsystem="wheels">
+                            <img src="images/robot/drivetrain/EE878754-14B1-4C37-84C2-419F8FEE469A_1_105_c.jpeg"
+                                alt="Drivetrain Wheels" style="object-position: center 85%; transform: scale(2.2);">
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Wheels</h4>
+                                <p class="subsystem-desc">Mecanum wheels for omnidirectional movement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intake -->
+                <div id="intake" class="mb-12">
+                    <h3 class="text-center mb-8 reveal">Intake System</h3>
+                    <div class="robot-subsystems reveal" style="max-width: 500px; margin: 0 auto;">
+                        <div class="subsystem-card card" data-subsystem="collection">
+                            <img src="images/robot/intake/IMG20251211173150.jpg" alt="Intake">
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Collection</h4>
+                                <p class="subsystem-desc">Efficient game element pickup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shooter -->
+                <div id="shooter" class="mb-12">
+                    <h3 class="text-center mb-8 reveal">Shooter</h3>
+                    <div class="robot-subsystems reveal">
+                        <div class="subsystem-card card" data-subsystem="launch">
+                            <img src="images/robot/shooter/IMG20251211173120.jpg" alt="Shooter">
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Launch System</h4>
+                                <p class="subsystem-desc">Accurate and powerful scoring</p>
+                            </div>
+                        </div>
+                        <div class="subsystem-card card" data-subsystem="aiming">
+                            <img src="images/robot/shooter/IMG20251211174322.jpg" alt="Shooter Detail">
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Aiming</h4>
+                                <p class="subsystem-desc">Adjustable angle for precision</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sorter -->
+                <div id="sorter">
+                    <h3 class="text-center mb-8 reveal">Sorter</h3>
+                    <div class="robot-subsystems reveal" style="max-width: 500px; margin: 0 auto;">
+                        <div class="subsystem-card card" data-subsystem="sorter">
+                            <img src="images/robot/sorter/IMG20251211174346.jpg" alt="Sorter">
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Sorting Mechanism</h4>
+                                <p class="subsystem-desc">Intelligent game piece handling</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container for dynamically added parts -->
+                <div id="dynamic-parts-container"></div>
+            </div>
+
+            <!-- V2 Content (hidden by default) -->
+            <div id="v2-content">
+                <!-- Drivetrain -->
+                <div class="mb-12">
+                    <h3 class="text-center mb-8 reveal">Drivetrain</h3>
+                    <div class="robot-subsystems reveal">
+                        <div class="subsystem-card card" data-subsystem="v2-chassis" style="background: var(--color-bg-surface);">
+                            <div class="photo-placeholder">Photo Coming Soon</div>
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Chassis</h4>
+                                <p class="subsystem-desc">Custom drivetrain for optimised subsystem integration</p>
+                            </div>
+                        </div>
+                        <div class="subsystem-card card" data-subsystem="v2-plates" style="background: var(--color-bg-surface);">
+                            <div class="photo-placeholder">Photo Coming Soon</div>
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Parallel Plates</h4>
+                                <p class="subsystem-desc">Polycarbonate framework connecting transfer and shooter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intake -->
+                <div class="mb-12">
+                    <h3 class="text-center mb-8 reveal">Intake System</h3>
+                    <div class="robot-subsystems reveal" style="max-width: 500px; margin: 0 auto;">
+                        <div class="subsystem-card card" data-subsystem="v2-collection" style="background: var(--color-bg-surface);">
+                            <div class="photo-placeholder">Photo Coming Soon</div>
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Collection</h4>
+                                <p class="subsystem-desc">Surgical tubing intake for maximum collection range</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shooter -->
+                <div class="mb-12">
+                    <h3 class="text-center mb-8 reveal">Shooter</h3>
+                    <div class="robot-subsystems reveal">
+                        <div class="subsystem-card card" data-subsystem="v2-launch" style="background: var(--color-bg-surface);">
+                            <div class="photo-placeholder">Photo Coming Soon</div>
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Launch System</h4>
+                                <p class="subsystem-desc">Single flywheel hooded shooter for powerful scoring</p>
+                            </div>
+                        </div>
+                        <div class="subsystem-card card" data-subsystem="v2-aiming" style="background: var(--color-bg-surface);">
+                            <div class="photo-placeholder">Photo Coming Soon</div>
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Aiming</h4>
+                                <p class="subsystem-desc">Adjustable hood for precise trajectory control</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transfer -->
+                <div>
+                    <h3 class="text-center mb-8 reveal">Transfer</h3>
+                    <div class="robot-subsystems reveal" style="max-width: 500px; margin: 0 auto;">
+                        <div class="subsystem-card card" data-subsystem="v2-transfer" style="background: var(--color-bg-surface);">
+                            <div class="photo-placeholder">Photo Coming Soon</div>
+                            <div class="subsystem-card-content">
+                                <h4 class="subsystem-title">Transfer Mechanism</h4>
+                                <p class="subsystem-desc">Controlled game piece flow from intake to shooter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs -->
+    <section class="section" style="background: var(--color-bg-elevated);">
+        <div class="container">
+            <div class="text-center mb-12 reveal">
+                <h2>Technical <span class="text-gold">Specs</span></h2>
+            </div>
+            <div class="stats-grid reveal">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Subsystems</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Motors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Sensors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">18"</div>
+                    <div class="stat-label">Cube Size</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subsystem Detail Modal -->
+    <div class="modal-overlay" id="subsystem-modal">
+        <div class="modal" style="max-width: 900px;">
+            <button class="modal-close" id="subsystem-modal-close">✕</button>
+            <img src="" alt="Subsystem Image" class="modal-image" id="subsystem-modal-img">
+            <div class="modal-content">
+                <h3 class="modal-title" id="subsystem-modal-title"></h3>
+
+                <!-- Description Section -->
+                <div class="modal-body" id="subsystem-modal-description">
+                    <p style="color: var(--color-gray); font-style: italic;">Description coming soon...</p>
+                </div>
+
+                <!-- Media Slideshow Section -->
+                <div id="subsystem-modal-media" style="margin-top: var(--space-8);">
+                    <!-- Media slideshow will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">Wilsonic <span>Boom</span></div>
+                    <p class="footer-desc">An FTC robotics team dedicated to engineering excellence and innovation.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/wilsonicboom.ftc/" target="_blank" class="footer-social"
+                            aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/wilsonic-boom-ftc-608863396/" target="_blank"
+                            class="footer-social" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://www.firstinspires.org/programs/ftc/" target="_blank" class="footer-social"
+                            aria-label="FIRST Tech Challenge">
+                            <img src="images/FIRST-logo.png" alt="FIRST" width="20" height="20"
+                                style="object-fit: contain;">
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigate</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">Team</a></li>
+                        <li><a href="robot.html" class="footer-link">Robot</a></li>
+                        <li><a href="sponsors.html" class="footer-link">Sponsors</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:admin@wilsonicboom.com" class="footer-link">admin@wilsonicboom.com</a></li>
+                        <li><span class="footer-link">Wilson's School, Wallington, England</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.firstinspires.org/robotics/ftc" class="footer-link"
+                                target="_blank">FIRST Tech Challenge</a></li>
+                        <li><a href="https://www.veracit.co.uk/" class="footer-link" target="_blank">VeracIT</a></li>
+                        <li><a href="https://eastloopcomponents.com/" class="footer-link" target="_blank">East Loop
+                                Components</a></li>
+                        <li><a href="https://www.gwr-fasteners.co.uk/" class="footer-link" target="_blank">GWR
+                                Fasteners</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Wilsonic Boom. All rights reserved.</p>
+                <p>Built with passion for robotics</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/robot.js"></script>
+    <script>
+        // Version toggle
+        const toggle = document.getElementById('version-toggle');
+        const v1Content = document.getElementById('v1-content');
+        const v2Content = document.getElementById('v2-content');
+        if (toggle) {
+            toggle.querySelectorAll('.version-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    toggle.querySelectorAll('.version-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    toggle.setAttribute('data-active', btn.dataset.version);
+                    if (btn.dataset.version === 'v1') {
+                        v1Content.style.display = '';
+                        v2Content.style.display = 'none';
+                    } else {
+                        v1Content.style.display = 'none';
+                        v2Content.style.display = '';
+                    }
+                });
+            });
+        }
+    </script>
+
+    <style>
+        /* Slideshow specific styles */
+        .slideshow-container {
+            position: relative;
+        }
+
+        .slideshow-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .slideshow-img.active {
+            opacity: 0.5;
+        }
+
+        /* Version Toggle Switch */
+        .version-toggle {
+            position: relative;
+            display: inline-flex;
+            background: var(--color-bg-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            padding: 4px;
+            gap: 0;
+        }
+
+        .version-btn {
+            position: relative;
+            z-index: 2;
+            padding: 8px 24px;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-gray);
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .version-btn.active {
+            color: var(--color-bg-primary);
+        }
+
+        .version-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            height: calc(100% - 8px);
+            background: var(--color-gold);
+            border-radius: var(--radius-full);
+            transition: transform var(--transition-base);
+            z-index: 1;
+        }
+
+        .version-toggle[data-active="v2"] .version-slider {
+            transform: translateX(100%);
+        }
+
+        /* Photo placeholder for cards without images */
+        .photo-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+            color: var(--color-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            opacity: 0.5;
+        }
+    </style>
+</body>
+
+</html>

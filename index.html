@@ -2,248 +2,157 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Wilsonic Boom - FTC Robotics Team competing at the highest level. Innovation, engineering excellence, and teamwork.">
-    <title>Wilsonic Boom | FTC Robotics Team</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wilsonic Boom · FTC 33001</title>
+  <meta name="description"
+    content="Wilsonic Boom, FTC team 33001 at Wilson's School. Think Award winners, finalist alliance at regionals, and UK Championship qualifiers in our first season.">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/design-system.css">
-    <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/site.css">
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                Wilsonic <span>Boom</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="about.html" class="nav-link">Team</a></li>
-                <li><a href="robot.html" class="nav-link">Robot</a></li>
-                <li><a href="sponsors.html" class="nav-link">Sponsors</a></li>
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+  <header id="site-nav"></header>
 
-    <!-- Hero Section -->
+  <main id="main">
+
+    <!-- ── Hero ─────────────────────────────────────────────────────── -->
     <section class="hero">
-        <div class="hero-bg">
-            <img src="images/team/team-photo.jpg" alt="Wilsonic Boom Team">
+      <div class="hero-media">
+        <img src="images/robot/robot-hero.jpg" alt="" fetchpriority="high">
+      </div>
+      <div class="hero-lines speedlines" aria-hidden="true"></div>
+
+      <div class="hero-inner container">
+        <span class="eyebrow">FTC 33001 · Wilson's School</span>
+        <h1>Think <span class="hl">fast</span>.</h1>
+        <p class="lede">
+          We're Wilsonic Boom, an FTC robotics team in Wallington. In our first
+          season we won the Think Award, reached the regional final as a
+          finalist alliance, and qualified for the UK Championships.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="season.html">See the season</a>
+          <a class="btn btn-ghost" href="team.html">Meet the team</a>
         </div>
-        <div class="hero-content">
-            <span class="hero-badge">FTC Robotics</span>
-            <h1 class="hero-title">
-                Engineering the <span class="text-gradient">Future</span>
-            </h1>
-            <p class="hero-subtitle">
-                We are Wilsonic Boom — a passionate FTC robotics team pushing the boundaries of innovation, design, and
-                competitive excellence.
+
+        <div class="stats" id="home-stats"></div>
+      </div>
+    </section>
+
+    <!-- ── Awards ───────────────────────────────────────────────────── -->
+    <section class="section section-band">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">DECODE · 2025–26</span>
+          <h2>What our <span class="hl">first season</span> proved</h2>
+          <p>
+            Two awards. One is for how we think, the other for building something
+            that lasts — which is the part we're now putting to the test.
+          </p>
+        </div>
+
+        <div class="grid-2 reveal stagger" id="home-awards"></div>
+
+        <p style="margin-top: var(--space-8)">
+          <a class="btn btn-ghost" href="season.html">Full season results</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Robot ────────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="head-row reveal">
+          <div class="head">
+            <span class="eyebrow">The machine</span>
+            <h2>Built in <span class="hl">two versions</span></h2>
+            <p>
+              V1 taught us what breaks under pressure. V2 was the answer —
+              a custom drivetrain, a surgical tubing intake, and a single
+              flywheel hooded shooter.
             </p>
-            <div class="hero-actions">
-                <a href="robot.html" class="btn btn-primary">Explore Our Robot</a>
-                <a href="about.html" class="btn btn-outline">Meet the Team</a>
-            </div>
+          </div>
+          <a class="btn btn-ghost" href="robot.html">Explore the robot</a>
         </div>
+
+        <div class="grid-3 reveal stagger">
+          <a class="card media-card" href="robot.html#drivetrain">
+            <div class="frame">
+              <img src="images/robot/drivetrain/IMG20251211173137.jpg" alt="The drivetrain" loading="lazy">
+            </div>
+            <div class="body">
+              <h3>Drivetrain</h3>
+              <p>Mecanum wheels for omnidirectional movement on a custom chassis.</p>
+            </div>
+          </a>
+
+          <a class="card media-card" href="robot.html#intake">
+            <div class="frame">
+              <img src="images/robot/intake/IMG20251211173150.jpg" alt="The intake" loading="lazy">
+            </div>
+            <div class="body">
+              <h3>Intake</h3>
+              <p>Rebuilt after it failed at our first scrimmage. The most useful failure we had.</p>
+            </div>
+          </a>
+
+          <a class="card media-card" href="robot.html#shooter">
+            <div class="frame">
+              <img src="images/robot/shooter/IMG20251211173120.jpg" alt="The shooter" loading="lazy">
+            </div>
+            <div class="body">
+              <h3>Shooter</h3>
+              <p>Single flywheel with an adjustable hood for trajectory control.</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Mission Section -->
-    <section class="section">
-        <div class="container">
-            <div class="card card-glass"
-                style="max-width: 800px; margin: 0 auto; padding: var(--space-10); text-align: center;">
-                <h2 class="mb-4">Our <span class="text-gold">Mission</span></h2>
-                <p style="font-size: var(--text-lg); color: var(--color-gray-light); line-height: 1.8;">
-                    To inspire the next generation of engineers through hands-on robotics competition. We believe in
-                    learning by doing, failing forward, and celebrating every breakthrough — big or small.
-                </p>
-            </div>
+    <!-- ── Latest posts ─────────────────────────────────────────────── -->
+    <section class="section section-band">
+      <div class="container">
+        <div class="head-row reveal">
+          <div class="head">
+            <span class="eyebrow">Updates</span>
+            <h2>What we've been <span class="hl">working on</span></h2>
+          </div>
+          <a class="btn btn-ghost" href="blog.html">All posts</a>
         </div>
+
+        <div class="grid-3 reveal stagger" id="home-posts"></div>
+      </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="section" style="background: var(--color-bg-elevated);">
-        <div class="container">
-            <div class="stats-grid reveal">
-                <div class="stat-item">
-                    <div class="stat-number" data-target="17">0</div>
-                    <div class="stat-label">Team Members</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="6">0</div>
-                    <div class="stat-label">Sponsors</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="4">0</div>
-                    <div class="stat-label">Robot Subsystems</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="1">0</div>
-                    <div class="stat-label">Season</div>
-                </div>
-            </div>
-        </div>
+    <!-- ── Sponsors ─────────────────────────────────────────────────── -->
+    <section class="sponsor-strip">
+      <div class="container">
+        <p class="eyebrow eyebrow-muted" style="text-align:center; margin-bottom: var(--space-8)">
+          Supported by
+        </p>
+        <div class="sponsor-row" id="home-sponsors"></div>
+        <p style="text-align:center; margin-top: var(--space-10)">
+          <a class="btn btn-primary" href="sponsors.html">Become a sponsor</a>
+        </p>
+      </div>
     </section>
 
-    <!-- Robot Preview -->
-    <section class="section">
-        <div class="container">
-            <div class="text-center mb-12 reveal">
-                <h2>Meet Our <span class="text-gold">Robot</span></h2>
-                <p style="color: var(--color-gray); margin-top: var(--space-4);">Precision engineered for competition
-                </p>
-            </div>
-            <div class="robot-subsystems reveal">
-                <a href="robot.html#intake" class="subsystem-card card">
-                    <img src="images/robot/intake/IMG20251211173150.jpg" alt="Intake">
-                    <div class="subsystem-card-content">
-                        <h3 class="subsystem-title">Intake</h3>
-                        <p class="subsystem-desc">Efficient game piece collection</p>
-                    </div>
-                </a>
-                <a href="robot.html#drivetrain" class="subsystem-card card">
-                    <img src="images/robot/drivetrain/IMG20251211173137.jpg" alt="Drivetrain">
-                    <div class="subsystem-card-content">
-                        <h3 class="subsystem-title">Drivetrain</h3>
-                        <p class="subsystem-desc">Power and precision mobility</p>
-                    </div>
-                </a>
-                <a href="robot.html#shooter" class="subsystem-card card">
-                    <img src="images/robot/shooter/IMG20251211173120.jpg" alt="Shooter">
-                    <div class="subsystem-card-content">
-                        <h3 class="subsystem-title">Shooter</h3>
-                        <p class="subsystem-desc">Accurate scoring mechanism</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
+  </main>
 
-    <!-- Sponsors Bar -->
-    <section class="sponsor-bar">
-        <div class="sponsor-bar-inner">
-            <a href="https://www.gwr-fasteners.co.uk/" target="_blank"><img src="images/sponsors/GWR-fasteners.png"
-                    alt="GWR Fasteners" style="height: 70px;"></a>
-            <a href="https://eastloopcomponents.com/" target="_blank"><img
-                    src="images/sponsors/east-loop-components.png" alt="East Loop Components" style="height: 70px;"></a>
-            <a href="https://www.veracit.co.uk/" target="_blank"><img src="images/sponsors/veracit.png"
-                    alt="Veracit" style="height: 55px;"></a>
-            <a href="https://accu.co.uk/" target="_blank"><img src="images/sponsors/Accu-logo.png" alt="Accu"></a>
-            <a href="https://printmykit.co.uk/" target="_blank"><img src="images/sponsors/pmk.png"
-                    alt="Print My Kit"></a>
-            <a href="https://cices.org" target="_blank"><img src="images/sponsors/cices.png" alt="CICES"
-                    style="height: 70px;"></a>
-            <!-- Duplicate for seamless scroll -->
-            <a href="https://www.gwr-fasteners.co.uk/" target="_blank"><img src="images/sponsors/GWR-fasteners.png"
-                    alt="GWR Fasteners" style="height: 70px;"></a>
-            <a href="https://eastloopcomponents.com/" target="_blank"><img
-                    src="images/sponsors/east-loop-components.png" alt="East Loop Components" style="height: 70px;"></a>
-            <a href="https://www.veracit.co.uk/" target="_blank"><img src="images/sponsors/veracit.png"
-                    alt="Veracit" style="height: 55px;"></a>
-            <a href="https://accu.co.uk/" target="_blank"><img src="images/sponsors/Accu-logo.png" alt="Accu"></a>
-            <a href="https://printmykit.co.uk/" target="_blank"><img src="images/sponsors/pmk.png"
-                    alt="Print My Kit"></a>
-            <a href="https://cices.org" target="_blank"><img src="images/sponsors/cices.png" alt="CICES"
-                    style="height: 70px;"></a>
-        </div>
-    </section>
+  <div id="site-footer"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">Wilsonic <span>Boom</span></div>
-                    <p class="footer-desc">
-                        An FTC robotics team dedicated to engineering excellence, innovation, and inspiring future
-                        generations of problem solvers.
-                    </p>
-                    <div class="footer-socials">
-                        <a href="https://www.instagram.com/wilsonicboom.ftc/" target="_blank" class="footer-social"
-                            aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/wilsonic-boom-ftc-608863396/" target="_blank"
-                            class="footer-social" aria-label="LinkedIn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                </path>
-                                <rect x="2" y="9" width="4" height="12"></rect>
-                                <circle cx="4" cy="4" r="2"></circle>
-                            </svg>
-                        </a>
-                        <a href="https://www.firstinspires.org/programs/ftc/" target="_blank" class="footer-social"
-                            aria-label="FIRST Tech Challenge">
-                            <img src="images/FIRST-logo.png" alt="FIRST" width="20" height="20"
-                                style="object-fit: contain;">
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Navigate</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html" class="footer-link">Home</a></li>
-                        <li><a href="about.html" class="footer-link">Team</a></li>
-                        <li><a href="robot.html" class="footer-link">Robot</a></li>
-                        <li><a href="sponsors.html" class="footer-link">Sponsors</a></li>
-                        <li><a href="blog.html" class="footer-link">Blog</a></li>
-
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:admin@wilsonicboom.com" class="footer-link">admin@wilsonicboom.com</a>
-                        </li>
-                        <li><span class="footer-link">Wilson's School, Wallington, England</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://www.firstinspires.org/robotics/ftc" class="footer-link"
-                                target="_blank">FIRST Tech Challenge</a></li>
-                        <li><a href="https://www.veracit.co.uk/" class="footer-link" target="_blank">VeracIT</a></li>
-                        <li><a href="https://eastloopcomponents.com/" class="footer-link" target="_blank">East Loop
-                                Components</a></li>
-                        <li><a href="https://www.gwr-fasteners.co.uk/" class="footer-link" target="_blank">GWR
-                                Fasteners</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 Wilsonic Boom. All rights reserved.</p>
-                <p>Built with passion for robotics</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
+  <script src="data/seasons.js"></script>
+  <script src="data/sponsors.js"></script>
+  <script src="data/posts.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/home.js"></script>
 </body>
 
 </html>

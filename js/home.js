@@ -64,7 +64,28 @@ function fillSponsors() {
     </a>`).join('');
 }
 
+/* Scrolling fact strip. Content is duplicated so the loop is seamless — the
+   keyframe translates exactly -50%, landing back on the first copy. */
+function fillTicker() {
+  const el = document.getElementById('ticker');
+  const season = SEASONS[0];
+  if (!el || !season) return;
+
+  const facts = [
+    `${season.game} ${season.years}`,
+    ...season.awards.map(a => a.name),
+    ...season.events.filter(e => e.result).map(e => `${e.name} — ${e.result}`),
+    'Finalist alliance with Wilsobotics',
+    'Copper Box Arena',
+    'FTC 33001',
+  ];
+
+  const once = facts.map(f => `<span class="ticker-item">${f}</span>`).join('');
+  el.innerHTML = once + once;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  fillTicker();
   fillStats();
   fillAwards();
   fillPosts();

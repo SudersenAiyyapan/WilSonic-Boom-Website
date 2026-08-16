@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wilsonic Boom · FTC 33001</title>
   <meta name="description"
-    content="Wilsonic Boom, FTC team 33001 at Wilson's School. Think Award winners, finalist alliance at regionals, and UK Championship qualifiers in our first season.">
+    content="Wilsonic Boom, FTC team 33001 at Wilson's School. Reach and Sustain Award winners, a finalist alliance at regionals, and UK Championship qualifiers in our first season.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,73 +23,84 @@
   <main id="main">
 
     <!-- ── Hero ─────────────────────────────────────────────────────── -->
-    <section class="hero">
-      <div class="hero-media">
-        <img src="images/robot/robot-hero.jpg" alt="" fetchpriority="high">
-      </div>
-      <div class="hero-lines speedlines" aria-hidden="true"></div>
-
-      <div class="hero-inner container">
-        <span class="eyebrow">FTC 33001 · Wilson's School</span>
-        <h1>Think <span class="hl">fast</span>.</h1>
-        <p class="lede">
-          We're Wilsonic Boom, an FTC robotics team in Wallington. In our first
-          season we won the Think Award, reached the regional final as a
-          finalist alliance, and qualified for the UK Championships.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="season.html">See the season</a>
-          <a class="btn btn-ghost" href="team.html">Meet the team</a>
+    <section class="hero-split">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">FTC 33001 · Wilson's School</span>
+          <h1>Think <span class="hl">fast</span>.</h1>
+          <p class="lede">
+            An FTC robotics team in Wallington. In our first season we won two
+            awards, reached the regional final as a finalist alliance, and
+            qualified for the UK Championships.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="season.html">See the season</a>
+            <a class="btn btn-ghost" href="team.html">Meet the team</a>
+          </div>
         </div>
 
-        <div class="stats" id="home-stats"></div>
+        <img class="hero-jet" src="images/logo/jet.png"
+             alt="The Wilsonic Boom jet emblem" width="669" height="387" fetchpriority="high">
+      </div>
+    </section>
+
+    <!-- ── Ticker ───────────────────────────────────────────────────── -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track" id="ticker"></div>
+    </div>
+
+    <!-- ── Numbers ──────────────────────────────────────────────────── -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="statband reveal stagger" id="home-stats"></div>
       </div>
     </section>
 
     <!-- ── Awards ───────────────────────────────────────────────────── -->
-    <section class="section section-band">
+    <section class="section">
       <div class="container">
         <div class="head reveal">
           <span class="eyebrow">DECODE · 2025–26</span>
-          <h2>What our <span class="hl">first season</span> proved</h2>
+          <h2>Two awards in our <span class="hl">first season</span></h2>
           <p>
-            Two awards. One is for how we think, the other for building something
-            that lasts — which is the part we're now putting to the test.
+            One for growing the programme, one for building a team that lasts.
+            The second is the part we're now putting to the test.
           </p>
         </div>
 
         <div class="grid-2 reveal stagger" id="home-awards"></div>
 
-        <p style="margin-top: var(--space-8)">
+        <p style="margin-top: var(--space-10)">
           <a class="btn btn-ghost" href="season.html">Full season results</a>
         </p>
       </div>
     </section>
 
     <!-- ── Robot ────────────────────────────────────────────────────── -->
-    <section class="section">
+    <section class="section section-band">
       <div class="container">
         <div class="head-row reveal">
           <div class="head">
             <span class="eyebrow">The machine</span>
             <h2>Built in <span class="hl">two versions</span></h2>
             <p>
-              V1 taught us what breaks under pressure. V2 was the answer —
-              a custom drivetrain, a surgical tubing intake, and a single
-              flywheel hooded shooter.
+              V1 taught us what breaks under pressure. V2 was the answer — a
+              custom drivetrain, a surgical tubing intake, and a single flywheel
+              hooded shooter.
             </p>
           </div>
           <a class="btn btn-ghost" href="robot.html">Explore the robot</a>
         </div>
 
-        <div class="grid-3 reveal stagger">
+        <div class="feature reveal stagger">
           <a class="card media-card" href="robot.html#drivetrain">
             <div class="frame">
               <img src="images/robot/drivetrain/IMG20251211173137.jpg" alt="The drivetrain" loading="lazy">
             </div>
             <div class="body">
               <h3>Drivetrain</h3>
-              <p>Mecanum wheels for omnidirectional movement on a custom chassis.</p>
+              <p>Mecanum wheels for omnidirectional movement, on a chassis we designed
+                 around the subsystems rather than the other way round.</p>
             </div>
           </a>
 
@@ -99,7 +110,7 @@
             </div>
             <div class="body">
               <h3>Intake</h3>
-              <p>Rebuilt after it failed at our first scrimmage. The most useful failure we had.</p>
+              <p>Rebuilt after it failed at our first scrimmage.</p>
             </div>
           </a>
 
@@ -109,7 +120,7 @@
             </div>
             <div class="body">
               <h3>Shooter</h3>
-              <p>Single flywheel with an adjustable hood for trajectory control.</p>
+              <p>Single flywheel, adjustable hood.</p>
             </div>
           </a>
         </div>
@@ -117,7 +128,7 @@
     </section>
 
     <!-- ── Latest posts ─────────────────────────────────────────────── -->
-    <section class="section section-band">
+    <section class="section">
       <div class="container">
         <div class="head-row reveal">
           <div class="head">

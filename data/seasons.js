@@ -15,7 +15,7 @@ const SEASONS = [
     status: 'complete',           // 'complete' | 'current' | 'upcoming'
     summary:
       'Our first season. Fourth of fifteen at regionals, a finalist alliance ' +
-      'with Wilsobotics, and two awards — including Think, for design process.',
+      'with Wilsobotics, and two awards — Reach and Sustain.',
 
     // Headline numbers shown on the home page. Keep to three.
     headline: [
@@ -26,9 +26,9 @@ const SEASONS = [
 
     awards: [
       {
-        name: 'Think Award',
+        name: 'Reach Award',
         event: 'Langley Park Regional',
-        note: 'For design process and engineering reasoning.',
+        note: 'For growing the programme and bringing new people into FIRST.',
       },
       {
         name: 'Sustain Award',
@@ -48,7 +48,7 @@ const SEASONS = [
         name: 'Regional Championship',
         venue: 'Langley Park School',
         result: '4th of 15',
-        note: 'Finalist alliance with Wilsobotics. Won the Think Award. Qualified for the UK Championships.',
+        note: 'Finalist alliance with Wilsobotics. Won the Reach Award. Qualified for the UK Championships.',
       },
       {
         name: 'UK Championships',

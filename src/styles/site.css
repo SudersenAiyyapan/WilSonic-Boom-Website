@@ -1242,7 +1242,12 @@ a.inline:hover { border-bottom-color: var(--gold-hi); }
   transition: color .28s var(--ease);
 }
 .rail__tick--major .rail__lbl { font-size: 0.86rem; color: var(--ink-2); font-weight: 500; }
-.rail__tick:hover .rail__lbl, .rail__tick:hover::before { color: var(--ink); background: var(--ink); }
+/* hover: the label brightens, the mark brightens. Two rules — a shared one
+   gave the label a white background as well, hiding the text behind it. */
+.rail__tick:hover .rail__lbl { color: var(--ink); }
+.rail__tick:hover::before { background: var(--ink); }
+.rail__tick[aria-pressed="true"]:hover .rail__lbl { color: var(--gold-hi); }
+.rail__tick[aria-pressed="true"]:hover::before { background: var(--gold); }
 .rail__tick[aria-pressed="true"] .rail__lbl { color: var(--gold-hi); }
 .rail__tick[aria-pressed="true"]::before { background: var(--gold); }
 .rail__tick:focus-visible { outline-offset: -2px; }
@@ -1387,3 +1392,16 @@ a.inline:hover { border-bottom-color: var(--gold-hi); }
   .rail__carriage { transition: none; }
   .ver.is-arriving .ver__hd, .ver.is-arriving .ver__swipe { animation: none; }
 }
+
+/* Controls are not text. Rapid clicks on the rail, or a mouse-drag swipe
+   across the photograph, were selecting the version labels and painting them
+   with the gold selection colour. The rail, its arrows and the photograph are
+   unselectable; the written content around them stays selectable. The phone
+   tap-flash is removed too — every control here has its own pressed state. */
+.railbox, .rail, .rail__tick, .rail__nav, .seg__opt, .mk,
+.assembly__stage, .ver__stage, .stage__tag {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.key, .menu-btn, .btn, .more { -webkit-tap-highlight-color: transparent; }

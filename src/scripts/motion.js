@@ -353,7 +353,12 @@
         if (x0 === null) return;
         var dx = e.clientX - x0, dy = e.clientY - y0;
         x0 = null;
-        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) select(index + (dx < 0 ? 1 : -1), true);
+        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          /* a mouse drag that became a swipe must not leave text selected */
+          var sel = window.getSelection && window.getSelection();
+          if (sel && sel.removeAllRanges) sel.removeAllRanges();
+          select(index + (dx < 0 ? 1 : -1), true);
+        }
       });
       area.addEventListener('pointercancel', function () { x0 = null; });
     });

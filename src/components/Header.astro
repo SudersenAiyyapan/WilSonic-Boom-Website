@@ -1,5 +1,5 @@
 ---
-import { NAV, type NavKey } from './nav';
+import { NAV, SPONSOR_CTA, type NavKey } from './nav';
 import { url } from './url';
 interface Props { current: NavKey }
 const { current } = Astro.props;
@@ -21,7 +21,7 @@ const { current } = Astro.props;
       ))}
     </nav>
 
-    <a class="btn btn--sm btn--gold topbar__cta" href={url('/sponsors/')}>Sponsor the team</a>
+    <a class="btn btn--sm btn--gold topbar__cta" href={url(SPONSOR_CTA.href)} aria-current={current === 'sponsor' ? 'page' : undefined}>{SPONSOR_CTA.label}</a>
 
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn>
       <span class="vh">Menu</span>
@@ -34,6 +34,6 @@ const { current } = Astro.props;
     {NAV.map((item) => (
       <a href={url(item.href)} aria-current={current === item.key ? 'page' : undefined}>{item.label}</a>
     ))}
-    <a class="btn btn--gold" href={url('/sponsors/')}>Sponsor the team</a>
+    <a class="btn btn--gold" href={url(SPONSOR_CTA.href)} aria-current={current === 'sponsor' ? 'page' : undefined}>{SPONSOR_CTA.label}</a>
   </nav>
 </header>

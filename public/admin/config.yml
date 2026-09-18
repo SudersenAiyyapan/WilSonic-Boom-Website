@@ -199,7 +199,11 @@ collections:
               - { name: logo, label: Logo, widget: image, required: false, hint: "SVG, or PNG with a transparent background." }
               - { name: level, label: Tier, widget: select, default: 2,
                   options: [ { label: "Top tier — larger logo, listed first", value: 1 }, { label: "Standard", value: 2 } ] }
-              - { name: gave, label: What they gave, widget: string }
+              - { name: since, label: Sponsor since, widget: string, required: false, hint: "e.g. 2025–26" }
+              - { name: about, label: About the company, widget: string, hint: "One sentence: what they do." }
+              - { name: gave, label: What they gave, widget: string, hint: "Money, parts, machining, services…" }
+              - { name: wentInto, label: What it went into, widget: string, required: false,
+                  hint: "Where their support actually ended up — sponsors like to see this." }
           - name: tiers
             label: Tiers
             widget: list

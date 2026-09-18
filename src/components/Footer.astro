@@ -1,6 +1,6 @@
 ---
 import site from '../data/site.json';
-import { NAV } from './nav';
+import { NAV, SPONSOR_CTA } from './nav';
 import { url } from './url';
 import SponsorStrip from './SponsorStrip.astro';
 ---
@@ -15,10 +15,17 @@ import SponsorStrip from './SponsorStrip.astro';
     </div>
     <nav class="foot__nav" aria-label="Pages">
       {NAV.map((item) => <a href={url(item.href)}>{item.label}</a>)}
+      <a href={url(SPONSOR_CTA.href)}>{SPONSOR_CTA.label}</a>
     </nav>
     <nav class="foot__nav" aria-label="Elsewhere">
       {site.social.map((s) => <a href={s.url}>{s.label}</a>)}
       <a href={`mailto:${site.email}`}>Email</a>
     </nav>
+  </div>
+  <!-- The admin. Harmless to show: it does nothing without a GitHub account
+       that has write access to the repository. -->
+  <div class="wrap foot__base">
+    <p>© {new Date().getFullYear()} {site.name} · FIRST® Tech Challenge team {site.teamNumber}</p>
+    <a class="foot__admin" href={url('/admin/index.html')} rel="nofollow">Team login</a>
   </div>
 </footer>

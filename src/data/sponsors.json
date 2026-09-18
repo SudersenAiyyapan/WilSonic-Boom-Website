@@ -4,43 +4,61 @@
       "name": "[[SPONSOR NAME]]",
       "url": "[[SPONSOR URL]]",
       "logo": null,
+      "level": 1,
+      "since": "[[SEASON THEY STARTED]]",
+      "about": "[[One sentence: what the company does.]]",
       "gave": "[[What they gave: money, parts, machining, services.]]",
-      "level": 1
+      "wentInto": "[[What their support actually went into: a subsystem, a trip, a season's parts.]]"
     },
     {
       "name": "[[SPONSOR NAME]]",
       "url": "[[SPONSOR URL]]",
       "logo": null,
+      "level": 1,
+      "since": "[[SEASON THEY STARTED]]",
+      "about": "[[One sentence: what the company does.]]",
       "gave": "[[What they gave.]]",
-      "level": 1
+      "wentInto": "[[What their support actually went into: a subsystem, a trip, a season's parts.]]"
     },
     {
       "name": "[[SPONSOR NAME]]",
       "url": "[[SPONSOR URL]]",
       "logo": null,
+      "level": 2,
+      "since": "[[SEASON THEY STARTED]]",
+      "about": "[[One sentence: what the company does.]]",
       "gave": "[[What they gave.]]",
-      "level": 2
+      "wentInto": "[[What their support actually went into: a subsystem, a trip, a season's parts.]]"
     },
     {
       "name": "[[SPONSOR NAME]]",
       "url": "[[SPONSOR URL]]",
       "logo": null,
+      "level": 2,
+      "since": "[[SEASON THEY STARTED]]",
+      "about": "[[One sentence: what the company does.]]",
       "gave": "[[What they gave.]]",
-      "level": 2
+      "wentInto": "[[What their support actually went into: a subsystem, a trip, a season's parts.]]"
     },
     {
       "name": "[[SPONSOR NAME]]",
       "url": "[[SPONSOR URL]]",
       "logo": null,
+      "level": 2,
+      "since": "[[SEASON THEY STARTED]]",
+      "about": "[[One sentence: what the company does.]]",
       "gave": "[[What they gave.]]",
-      "level": 2
+      "wentInto": "[[What their support actually went into: a subsystem, a trip, a season's parts.]]"
     },
     {
       "name": "[[SPONSOR NAME]]",
       "url": "[[SPONSOR URL]]",
       "logo": null,
+      "level": 2,
+      "since": "[[SEASON THEY STARTED]]",
+      "about": "[[One sentence: what the company does.]]",
       "gave": "[[What they gave.]]",
-      "level": 2
+      "wentInto": "[[What their support actually went into: a subsystem, a trip, a season's parts.]]"
     }
   ],
   "tiers": [

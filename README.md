@@ -2,7 +2,7 @@
 
 FIRST Tech Challenge team 33001, Wilson's School, Wallington.
 
-Six pages, built with [Astro](https://astro.build). The output is plain static HTML, so it
+Seven pages, built with [Astro](https://astro.build). The output is plain static HTML, so it
 can be hosted anywhere, including GitHub Pages.
 
 ## Run it
@@ -17,7 +17,7 @@ npm run build      # writes the finished site to dist/
 
 ## Changing what the site says — use the admin
 
-Go to **`/admin`** on the live site (locally: `http://localhost:4188/admin/index.html`).
+Use **Team login** at the bottom of any page, or go to **`/admin`** on the live site (locally: `http://localhost:4188/admin/index.html`).
 Every piece of content has a form: seasons, robot versions, sponsors, team, outreach,
 contact details. Photos and logos upload by drag-and-drop. Saving commits the change to
 GitHub, and the site rebuilds itself within a couple of minutes.

@@ -9,7 +9,7 @@ const { compact = false, label = 'Supported by' } = Astro.props;
 const list = [...sponsors.sponsors].sort((a, b) => Number(a.level ?? 2) - Number(b.level ?? 2));
 ---
 <div class:list={['sstrip', { 'sstrip--compact': compact }]}>
-  <p class="sstrip__k">{label}</p>
+  <a class="sstrip__k" href={url('/sponsors/')}>{label}</a>
   <ul class="sstrip__list">
     {list.map((s) => (
       <li class:list={['sstrip__i', { 'sstrip__i--top': Number(s.level ?? 2) === 1 }]}>
@@ -19,5 +19,5 @@ const list = [...sponsors.sponsors].sort((a, b) => Number(a.level ?? 2) - Number
       </li>
     ))}
   </ul>
-  <a class="sstrip__join" href={url('/sponsors/')}>Join them</a>
+  <a class="sstrip__join" href={url('/sponsor-the-team/')}>Join them</a>
 </div>

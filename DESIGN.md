@@ -9,7 +9,7 @@ describes only the world that ships.
 ## Contracts
 
 - **Palette:** amber/gold, grey, black, white. Pinned by the user.
-- **Structure:** six pages, each with one job and one main reader.
+- **Structure:** seven pages, each with one job and one main reader.
 
   | Page | Job | Main reader |
   |---|---|---|
@@ -18,7 +18,11 @@ describes only the world that ships.
   | `/season/` | Record plate, event log, awards, archive of earlier seasons | Anyone checking credibility |
   | `/team/` | Sub-teams, leads, roster, mentors, how to join | Recruits, parents |
   | `/outreach/` | Reach numbers, logo placements, activity log | Judges, sponsors |
-  | `/sponsors/` | The case, tiers, current sponsors, next steps, contact | Sponsors ready to act |
+  | `/sponsors/` | **Current** sponsors in detail: what they do, what they gave, what it went into. A thank-you, and proof that support is visible | Current and prospective sponsors |
+  | `/sponsor-the-team/` | The pitch to a **new** sponsor: the case, budget, tiers, in-kind, what happens next | Sponsors ready to act |
+
+  The nav's **Sponsors** link and the gold **Sponsor the team** button must never lead to the
+  same place: one is who already supports us, the other is how to become one.
 
   Home keeps summaries and points to depth with one link style (`MoreLink`). Every page ends
   on the same conversion plate (`Close`).
@@ -26,7 +30,7 @@ describes only the world that ships.
   every footer. Top-tier sponsors (`level: 1`) are listed first with larger logos — tier has
   to be *visible* to be worth paying for.
 - **Content editing:** Sveltia CMS at `/admin` (`public/admin/config.yml`), Git-based, GitHub
-  sign-in. Every JSON key must have a form field, or the editor deletes it on save.
+  sign-in. Reached from the quiet **Team login** link at the foot of every page. Every JSON key must have a form field, or the editor deletes it on save.
 - **Conversion:** `mailto:` primary, sponsorship-pack download secondary. Both appear in the
   first viewport and again at the close.
 - **Stack:** Astro, static output. Layout, header and footer are written once

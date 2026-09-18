@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Slot from '../components/Slot.astro';
+import Close from '../components/Close.astro';
+import team from '../data/team.json';
+import site from '../data/site.json';
+
+const leads = team.people.filter((p) => p.lead);
+const bySub = team.subteams.map((st) => ({
+  ...st,
+  people: team.people.filter((p) => p.subteam === st.key && !p.lead),
+  count: team.people.filter((p) => p.subteam === st.key).length,
+}));
+---
+<Base title="Team" current="team" description="Who runs Wilsonic Boom: the sub-teams, the people in them, and how the team hands over from one year to the next.">
+
+  <PageHead lines={['Who runs it.']}>
+    <p class="lede">
+      The team is student-led and organised into sub-teams with named responsibilities.
+      Handover is deliberate: every role has a student learning it a year behind, which is why
+      the programme survives a leaving cohort.
+    </p>
+  </PageHead>
+
+  <!-- ═══ STRUCTURE ═══ -->
+  <section class="band band--tight" id="structure">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>How it is<br>organised.</h2></div>
+      <div class="split__r">
+        <ul class="reach">
+          {bySub.map((st) => (
+            <li class="reach__i reach__i--3">
+              <span class="reach__k">{st.name}</span>
+              <span class="reach__v">{st.job}</span>
+              <span class="reach__n num">{st.count}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LEADS ═══ -->
+  <section class="band band--alt" id="leads">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>Leads</h2>
+      <ul class="roster roster--leads">
+        {leads.map((p) => (
+          <li class="roster__p" data-cut>
+            <figure class="roster__media"><Slot small spec="1:1 · 800 px" ratio="1 / 1" src={p.photo} alt={p.name} /></figure>
+            <p class="roster__name">{p.name}</p>
+            <p class="roster__role">{p.role}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ SUB-TEAMS ═══ -->
+  {bySub.filter((st) => st.people.length).map((st, i) => (
+    <section class:list={['band', 'band--tight', { 'band--alt': i % 2 === 1 }]}>
+      <div class="wrap">
+        <h2 class="h3 subteam__h">{st.name}</h2>
+        <ul class="roster">
+          {st.people.map((p) => (
+            <li class="roster__p" data-cut>
+              <figure class="roster__media"><Slot small spec="1:1 · 800 px" ratio="1 / 1" src={p.photo} alt={p.name} /></figure>
+              <p class="roster__name">{p.name}</p>
+              <p class="roster__role">{p.role}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <!-- ═══ MENTORS + JOINING ═══ -->
+  <section class="band" id="join">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>Joining<br>the team.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          [[Who can join, when applications open, and what the first term looks like. Two or three sentences for a Year 9 or 10 student deciding whether to apply.]]
+        </p>
+        <p class="body">
+          Ask any of us, or email <a class="inline" href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+        <dl class="specs">
+          {team.mentors.map((m) => (
+            <div class="specs__row"><dt>{m.role}</dt><dd>{m.name}</dd></div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <Close />
+</Base>

@@ -1,0 +1,210 @@
+{
+  "years": "2024–25",
+  "game": "[[GAME NAME]]",
+  "draft": true,
+  "summary": "[[DRAFT EXAMPLE — delete this file, or fill it in and untick Draft, if you have a previous season.]]",
+  "record": [
+    {
+      "k": "Awards won",
+      "v": "[[NN]]"
+    },
+    {
+      "k": "Best regional finish",
+      "v": "[[Nth of NN]]"
+    },
+    {
+      "k": "Matches played",
+      "v": "[[NN]]"
+    },
+    {
+      "k": "Seasons competed",
+      "v": "[[N]]"
+    },
+    {
+      "k": "Highest award",
+      "v": "[[AWARD]]"
+    }
+  ],
+  "awards": [
+    {
+      "name": "[[AWARD NAME]]",
+      "event": "[[EVENT]]",
+      "note": "[[What it was awarded for, one sentence.]]"
+    }
+  ],
+  "events": [
+    {
+      "date": "[[DATE]]",
+      "name": "[[EVENT NAME]]",
+      "venue": "[[VENUE]]",
+      "result": "[[RESULT]]",
+      "note": "[[What happened, one sentence. Optional.]]"
+    },
+    {
+      "date": "[[DATE]]",
+      "name": "[[EVENT NAME]]",
+      "venue": "[[VENUE]]",
+      "result": "[[RESULT]]",
+      "note": ""
+    },
+    {
+      "date": "[[DATE]]",
+      "name": "[[EVENT NAME]]",
+      "venue": "[[VENUE]]",
+      "result": "[[RESULT]]",
+      "note": ""
+    }
+  ],
+  "robot": {
+    "software": "[[A short paragraph: what the robot does on its own in autonomous, and how.]]",
+    "versions": [
+      {
+        "id": "V1",
+        "date": "[[DATE]]",
+        "title": "[[The first competition build]]",
+        "summary": "[[One or two sentences: what V1 set out to do.]]",
+        "photo": null,
+        "specs": [
+          {
+            "k": "Motors",
+            "v": "[[N]]"
+          },
+          {
+            "k": "Drivetrain",
+            "v": "[[TYPE]]"
+          },
+          {
+            "k": "Weight",
+            "v": "[[KG]]"
+          },
+          {
+            "k": "Cycle time",
+            "v": "[[SECONDS]]"
+          },
+          {
+            "k": "CAD",
+            "v": "[[CAD TOOL]]"
+          },
+          {
+            "k": "Language",
+            "v": "[[LANGUAGE]]"
+          }
+        ],
+        "subsystems": [
+          {
+            "n": "1",
+            "name": "[[SUBSYSTEM 1]]",
+            "shot": "Drivetrain, close",
+            "marker": {
+              "x": "26%",
+              "y": "68%"
+            },
+            "photo": null,
+            "body": "[[What it does, and the one decision you would defend in a judging session.]]",
+            "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
+            "specs": [
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              },
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              }
+            ]
+          },
+          {
+            "n": "2",
+            "name": "[[SUBSYSTEM 2]]",
+            "shot": "Intake, close",
+            "marker": {
+              "x": "48%",
+              "y": "40%"
+            },
+            "photo": null,
+            "body": "[[What it does, and the one decision you would defend in a judging session.]]",
+            "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
+            "specs": [
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              },
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              }
+            ]
+          },
+          {
+            "n": "3",
+            "name": "[[SUBSYSTEM 3]]",
+            "shot": "Scoring mechanism, close",
+            "marker": {
+              "x": "70%",
+              "y": "30%"
+            },
+            "photo": null,
+            "body": "[[What it does, and the one decision you would defend in a judging session.]]",
+            "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
+            "specs": [
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              },
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              }
+            ]
+          },
+          {
+            "n": "4",
+            "name": "[[SUBSYSTEM 4]]",
+            "shot": "Control & software",
+            "marker": {
+              "x": "60%",
+              "y": "76%"
+            },
+            "photo": null,
+            "body": "[[What it does, and the one decision you would defend in a judging session.]]",
+            "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
+            "specs": [
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              },
+              {
+                "k": "[[SPEC]]",
+                "v": "[[VALUE]]"
+              }
+            ]
+          }
+        ],
+        "changes": [],
+        "subversions": [
+          {
+            "id": "V1.1",
+            "date": "[[DATE]]",
+            "title": "[[What V1.1 changed, in five words]]",
+            "summary": "[[One or two sentences: why this revision was needed.]]",
+            "photo": null,
+            "specs": [
+              {
+                "k": "Cycle time",
+                "v": "[[SECONDS]]"
+              }
+            ],
+            "changes": [
+              {
+                "before": "[[What the previous version did, and how it failed.]]",
+                "after": "[[What replaced it, and why that specific solution.]]",
+                "delta": "[[VALUE]]",
+                "deltaLabel": "[[what improved]]"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

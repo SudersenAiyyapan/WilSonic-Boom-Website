@@ -1,0 +1,51 @@
+---
+// THE EXPLODED ASSEMBLY — the site's signature interaction.
+// One 16:10 stage, four callouts, one key list. The stage is pinned beside the
+// list and swaps to whichever subsystem is being read. All five views share
+// the stage's box, so real photographs drop in with no layout change.
+// Rules it must keep are in DESIGN.md.
+import Slot from './Slot.astro';
+import Specs from './Specs.astro';
+interface Sub {
+  n: string; name: string; shot: string; marker: { x: string; y: string };
+  body: string; detail?: string; specs: { k: string; v: string }[];
+  photo?: string | null;
+}
+interface Props { subsystems: Sub[]; assemblyPhoto?: string | null; showDetail?: boolean; }
+const { subsystems, assemblyPhoto = null, showDetail = false } = Astro.props;
+---
+<div class="assembly" data-assembly>
+  <figure class="assembly__stage" data-cut>
+    <div class="stage" style="--ratio: 16 / 10">
+      <div class="stage__view is-on" data-view="0">
+        <Slot name="Robot, full assembly" spec="16:10 · 2800 px · plain dark background · all four subsystems visible" ratio="16 / 10" src={assemblyPhoto} alt="The competition robot, full assembly" />
+      </div>
+      {subsystems.map((s) => (
+        <div class="stage__view" data-view={s.n} aria-hidden="true">
+          <Slot name={s.shot} spec="16:10 · 2000 px" ratio="16 / 10" src={s.photo} alt={s.shot} />
+        </div>
+      ))}
+      {subsystems.map((s) => (
+        <button class="mk" type="button" data-mk={s.n} style={`--x: ${s.marker.x}; --y: ${s.marker.y}`} aria-pressed="false">
+          <span class="mk__n">{s.n}</span>
+          <span class="vh">Show {s.shot.toLowerCase()}</span>
+        </button>
+      ))}
+      <p class="stage__tag num" data-stage-tag>Full assembly</p>
+    </div>
+  </figure>
+
+  <ol class="keys">
+    {subsystems.map((s, i) => (
+      <li class:list={['key', { 'is-on': i === 0 }]} data-key={s.n}>
+        <span class="key__n num">{s.n}</span>
+        <div class="key__b">
+          <h3 class="h3">{s.name}</h3>
+          <p class="body">{s.body}</p>
+          {showDetail && s.detail && <p class="body key__detail">{s.detail}</p>}
+          <Specs rows={s.specs} tight />
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>

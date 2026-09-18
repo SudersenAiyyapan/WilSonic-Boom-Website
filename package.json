@@ -1,0 +1,14 @@
+{
+  "name": "wilsonic-boom",
+  "description": "Wilsonic Boom — FIRST Tech Challenge team 33001, Wilson's School, Wallington.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.3.3"
+  }
+}

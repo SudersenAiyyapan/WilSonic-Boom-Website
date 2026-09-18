@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import SeasonSwitch from '../components/SeasonSwitch.astro';
+import VersionRail from '../components/VersionRail.astro';
+import Close from '../components/Close.astro';
+import { seasons } from '../lib/seasons';
+---
+<Base title="Robot" current="robot" description="The Wilsonic Boom competition robot, version by version: every build, every revision, and what each one changed.">
+
+  <PageHead lines={['The machine.']}>
+    <p class="lede">
+      Every version we have built, and every revision in between. Move along the rule to see
+      what each one looked like, what it measured, and what we changed.
+    </p>
+  </PageHead>
+
+  <section class="band band--tight" id="versions">
+    <div class="wrap">
+      <SeasonSwitch seasons={seasons} />
+      {seasons.map((s, i) => (
+        <div class="season-panel" data-season-panel={s.slug} data-season-default={i === 0 ? '' : undefined}>
+          <div class="season-panel__hd">
+            <h2 class="h2 etch" data-etch>{s.game}</h2>
+            <p class="h4">{s.years}</p>
+          </div>
+          <VersionRail season={s} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="band band--alt" id="software">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>Software</h2></div>
+      <div class="split__r">
+        {seasons.map((s, i) => (
+          <p class="body" data-season-panel={s.slug} data-season-default={i === 0 ? '' : undefined}>{s.robot.software}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Close heading={['Put a part', 'on this robot.']}>
+    If you make components, fasteners, materials or tools, tell us what they are. We will tell
+    you exactly which subsystem they would go into, and show you when they do.
+  </Close>
+</Base>

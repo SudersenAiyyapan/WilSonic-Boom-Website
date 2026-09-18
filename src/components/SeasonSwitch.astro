@@ -1,0 +1,20 @@
+---
+// Segmented season control. Renders nothing when there is only one season.
+// Drives every [data-season-panel] on the page; the choice is kept in the URL
+// (#season=2025-26) so a specific season can be linked to.
+import type { SeasonView } from '../lib/seasons';
+interface Props { seasons: SeasonView[]; label?: string }
+const { seasons, label = 'Season' } = Astro.props;
+---
+{seasons.length > 1 && (
+  <div class="seg" role="group" aria-label={label} data-season-switch>
+    <span class="seg__k">{label}</span>
+    <div class="seg__opts">
+      {seasons.map((s, i) => (
+        <button type="button" class="seg__opt num" data-season={s.slug} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {s.years}{s.draft && <span class="seg__draft"> · draft</span>}
+        </button>
+      ))}
+    </div>
+  </div>
+)}

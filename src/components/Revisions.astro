@@ -1,0 +1,20 @@
+---
+// One change per full-width row: what failed, what replaced it, and the
+// measurement that proves the replacement was worth building.
+interface Rev { rev: string; before: string; after: string; delta: string; deltaLabel: string; }
+interface Props { revisions: Rev[]; }
+const { revisions } = Astro.props;
+---
+<div class="changes">
+  {revisions.map((r) => (
+    <article class="change">
+      <div class="change__n num" aria-hidden="true">REV&nbsp;{r.rev}</div>
+      <div class="change__from"><h3 class="h4">Before</h3><p class="body">{r.before}</p></div>
+      <div class="change__arrow" aria-hidden="true">
+        <svg viewBox="0 0 80 16" preserveAspectRatio="none" focusable="false"><path class="change__arrowline" d="M0 8 H70" /><path d="M64 3 L70 8 L64 13" /></svg>
+      </div>
+      <div class="change__to"><h3 class="h4">After</h3><p class="body">{r.after}</p></div>
+      <div class="change__delta"><span class="change__deltav num">{r.delta}</span><span class="change__deltak">{r.deltaLabel}</span></div>
+    </article>
+  ))}
+</div>

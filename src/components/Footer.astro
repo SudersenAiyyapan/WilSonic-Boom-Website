@@ -1,0 +1,24 @@
+---
+import site from '../data/site.json';
+import { NAV } from './nav';
+import { url } from './url';
+import SponsorStrip from './SponsorStrip.astro';
+---
+<footer class="foot">
+  <div class="wrap foot__sponsors">
+    <SponsorStrip compact />
+  </div>
+  <div class="wrap foot__in">
+    <div class="foot__id">
+      <p><span class="num">FTC {site.teamNumber}</span> · {site.name}</p>
+      <p>{site.address}</p>
+    </div>
+    <nav class="foot__nav" aria-label="Pages">
+      {NAV.map((item) => <a href={url(item.href)}>{item.label}</a>)}
+    </nav>
+    <nav class="foot__nav" aria-label="Elsewhere">
+      {site.social.map((s) => <a href={s.url}>{s.label}</a>)}
+      <a href={`mailto:${site.email}`}>Email</a>
+    </nav>
+  </div>
+</footer>

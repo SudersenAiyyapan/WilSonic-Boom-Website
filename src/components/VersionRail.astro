@@ -1,0 +1,88 @@
+---
+// THE VERSION RAIL — one season's robot history on a machinist's rule.
+// Long ticks are major versions (V1, V2), short ticks their sub-versions
+// (V2.1, V2.2). A gold carriage travels to the selected step.
+//
+// A major version opens on the exploded assembly; a sub-version shows its own
+// photograph. Every step shows its specs and what changed. Without script,
+// every step renders in order as a readable history and the rail is hidden.
+import type { SeasonView } from '../lib/seasons';
+import Slot from './Slot.astro';
+import DataPlate from './DataPlate.astro';
+import Assembly from './Assembly.astro';
+import Revisions from './Revisions.astro';
+interface Props { season: SeasonView }
+const { season } = Astro.props;
+const steps = season.steps;
+const n = steps.length;
+const versions = season.robot?.versions ?? [];
+const defaultMajor = versions.length ? versions[versions.length - 1].id : undefined;
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const pos = (i: number) => (n > 1 ? (i / (n - 1)) * 100 : 50);
+---
+{n === 0 ? (
+  <p class="body">[[Add a version to this season in the admin.]]</p>
+) : (
+<div class="versions" data-versions data-default={defaultMajor}>
+
+  <div class="railbox" data-railbox>
+    <button type="button" class="rail__nav" data-rail-prev aria-label="Previous version">
+      <svg viewBox="0 0 24 12" aria-hidden="true" focusable="false"><path d="M24 6 H3" /><path d="M8 1 L3 6 L8 11" /></svg>
+    </button>
+
+    <div class="rail" role="group" aria-label={`Robot versions, ${season.years}`} data-rail>
+      <span class="rail__line" aria-hidden="true"></span>
+      <span class="rail__carriage" aria-hidden="true" data-carriage></span>
+      {steps.map((st, i) => (
+        <button type="button"
+          class:list={['rail__tick', st.isSub ? 'rail__tick--sub' : 'rail__tick--major']}
+          style={`--pos: ${pos(i)}%`}
+          data-step={st.id} data-major={st.major} data-pos={pos(i)}
+          aria-pressed="false"
+          aria-label={`${st.id}${st.title ? ', ' + st.title : ''}`}>
+          <span class="rail__lbl num">{st.isSub ? st.id.replace(st.major, '') : st.id}</span>
+        </button>
+      ))}
+    </div>
+
+    <button type="button" class="rail__nav" data-rail-next aria-label="Next version">
+      <svg viewBox="0 0 24 12" aria-hidden="true" focusable="false"><path d="M0 6 H21" /><path d="M16 1 L21 6 L16 11" /></svg>
+    </button>
+  </div>
+  <p class="rail__hint">Use the arrows, click a tick, or swipe the photograph.</p>
+
+  {steps.map((st) => {
+    const major = versions.find((v) => v.id === st.major);
+    return (
+      <article class="ver" data-ver={st.id} data-default-panel={st.id === defaultMajor ? '' : undefined} id={`v-${season.slug}-${st.id.toLowerCase().replace(/\./g, '-')}`}>
+        <header class="ver__hd">
+          <p class="ver__id num" aria-hidden="true">{st.id}</p>
+          <div class="ver__txt">
+            <p class="ver__date num">{st.isSub ? `Revision of ${st.major}` : 'Major version'} · {st.date}</p>
+            <h2 class="ver__title"><span class="vh">{st.id}: </span>{st.title}</h2>
+            <p class="body">{st.summary}</p>
+          </div>
+          <DataPlate title={`Specification · ${st.id}`} serial="33001" rows={st.specs} />
+        </header>
+
+        <div class="ver__swipe" data-swipe>
+          {!st.isSub && major ? (
+            <Assembly subsystems={major.subsystems} assemblyPhoto={major.photo ?? null} showDetail />
+          ) : (
+            <figure class="ver__stage" data-cut>
+              <Slot name={`Robot at ${st.id}`} spec="16:10 · 2400 px · same angle as the full assembly" ratio="16 / 10" src={st.photo} alt={`The robot at ${st.id}`} />
+            </figure>
+          )}
+        </div>
+
+        {st.changes.length > 0 && (
+          <div class="ver__changes">
+            <h3 class="h4 ver__chh">What changed{st.isSub ? ` in ${st.id}` : ` from the version before`}</h3>
+            <Revisions revisions={st.changes.map((c, i) => ({ ...c, rev: letters[i] ?? String(i + 1) }))} />
+          </div>
+        )}
+      </article>
+    );
+  })}
+</div>
+)}

@@ -1,0 +1,61 @@
+{
+  "numbers": [
+    {
+      "k": "Events attended per season",
+      "v": "[[N]]"
+    },
+    {
+      "k": "Teams and visitors at those events",
+      "v": "[[NNN]]"
+    },
+    {
+      "k": "Students reached through outreach",
+      "v": "[[NNN]]"
+    },
+    {
+      "k": "Outreach sessions run",
+      "v": "[[NN]]"
+    }
+  ],
+  "placements": [
+    {
+      "k": "On the robot",
+      "v": "[[Where and at what size]]"
+    },
+    {
+      "k": "Pit banner and team kit",
+      "v": "[[Where and at what size]]"
+    },
+    {
+      "k": "Engineering portfolio",
+      "v": "[[Submitted to judges at every event]]"
+    },
+    {
+      "k": "This site and our socials",
+      "v": "[[Logo, link and an announcement post]]"
+    }
+  ],
+  "activities": [
+    {
+      "date": "[[DATE]]",
+      "title": "[[ACTIVITY]]",
+      "where": "[[WHERE]]",
+      "who": "[[Who it reached, and how many]]",
+      "body": "[[Two sentences: what you did and what came of it.]]"
+    },
+    {
+      "date": "[[DATE]]",
+      "title": "[[ACTIVITY]]",
+      "where": "[[WHERE]]",
+      "who": "[[Who it reached, and how many]]",
+      "body": "[[Two sentences.]]"
+    },
+    {
+      "date": "[[DATE]]",
+      "title": "[[ACTIVITY]]",
+      "where": "[[WHERE]]",
+      "who": "[[Who it reached, and how many]]",
+      "body": "[[Two sentences.]]"
+    }
+  ]
+}

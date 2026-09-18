@@ -1,0 +1,286 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Wilsonic Boom — admin (Sveltia CMS)
+#
+# Every edit here is saved as a commit to the GitHub repo below. The host then
+# rebuilds the site, usually within a couple of minutes.
+#
+# Signing in: see the "Admin" section of README.md.
+# Anything written [[LIKE THIS]] on the site is a placeholder — replace it with
+# the real fact, never with a guess.
+# ─────────────────────────────────────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: Vatsal-parwani/WilSonic-Boom-Website
+  branch: main            # the branch the live site is built from
+
+media_folder: public/images
+public_folder: /images
+
+# Once the site has a live address, add it here so the admin can link to it:
+# site_url: https://…
+# display_url: https://…
+
+collections:
+
+  # ── SEASONS — one entry per FTC season; robot versions live inside ─────────
+  - name: seasons
+    label: Seasons & robot versions
+    label_singular: Season
+    description: >
+      One entry per FTC season. The newest season is the one the home page shows.
+      Robot versions (V1, V2 …) and their revisions (V2.1, V2.2 …) are inside each season.
+    folder: src/data/seasons
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: years
+    slug: "{{years}}"
+    summary: "{{years}} — {{game}}{{draft | ternary(' (draft)', '')}}"
+    sortable_fields: [years]
+    fields:
+      - { name: years, label: Season, widget: string, hint: "e.g. 2025–26. Newer seasons sort first." }
+      - { name: game, label: Game name, widget: string, hint: "The FTC game for this season." }
+      - { name: draft, label: Draft, widget: boolean, default: false, required: false,
+          hint: "A draft shows in the local preview only — never on the live site." }
+      - { name: summary, label: Summary, widget: text, hint: "One or two sentences on how the season went." }
+      - name: record
+        label: Record (data plate)
+        widget: list
+        summary: "{{fields.k}}: {{fields.v}}"
+        hint: "The rows on the riveted record plate, and in the season-by-season table."
+        fields:
+          - { name: k, label: Label, widget: string }
+          - { name: v, label: Value, widget: string }
+      - name: awards
+        label: Awards
+        widget: list
+        required: false
+        summary: "{{fields.name}} — {{fields.event}}"
+        fields:
+          - { name: name, label: Award, widget: string }
+          - { name: event, label: Event, widget: string }
+          - { name: note, label: What it was for, widget: text }
+      - name: events
+        label: Events
+        widget: list
+        required: false
+        summary: "{{fields.date}} · {{fields.name}} · {{fields.result}}"
+        fields:
+          - { name: date, label: Date, widget: string }
+          - { name: name, label: Event, widget: string }
+          - { name: venue, label: Venue, widget: string }
+          - { name: result, label: Result, widget: string, hint: "e.g. 4th of 15" }
+          - { name: note, label: Note, widget: string, required: false }
+      - name: robot
+        label: Robot
+        widget: object
+        fields:
+          - { name: software, label: Software paragraph, widget: text }
+          - name: versions
+            label: Versions
+            label_singular: Version
+            widget: list
+            summary: "{{fields.id}} — {{fields.title}}"
+            hint: "Major versions in order: V1, V2 … Each one can have revisions (V2.1, V2.2)."
+            fields:
+              - { name: id, label: Version, widget: string, hint: "e.g. V2" }
+              - { name: date, label: Date, widget: string }
+              - { name: title, label: Title, widget: string, hint: "Five words or so." }
+              - { name: summary, label: Summary, widget: text }
+              - { name: photo, label: "Photo — full assembly (16:10)", widget: image, required: false,
+                  hint: "16:10, about 2800 px wide, plain dark background, all subsystems visible." }
+              - name: specs
+                label: Specification
+                widget: list
+                summary: "{{fields.k}}: {{fields.v}}"
+                fields:
+                  - { name: k, label: Label, widget: string }
+                  - { name: v, label: Value, widget: string }
+              - name: subsystems
+                label: Subsystems (exploded assembly)
+                widget: list
+                summary: "{{fields.n}} · {{fields.name}}"
+                fields:
+                  - { name: n, label: Callout number, widget: string }
+                  - { name: name, label: Name, widget: string }
+                  - { name: shot, label: Photo description, widget: string, hint: "What the close-up shows, e.g. Intake, close" }
+                  - { name: photo, label: "Close-up photo (16:10)", widget: image, required: false }
+                  - name: marker
+                    label: Callout position on the assembly photo
+                    widget: object
+                    hint: "Percent from the left and from the top, e.g. 48% and 40%."
+                    fields:
+                      - { name: x, label: From left, widget: string }
+                      - { name: y, label: From top, widget: string }
+                  - { name: body, label: What it does, widget: text }
+                  - { name: detail, label: More detail, widget: text, required: false }
+                  - name: specs
+                    label: Key figures
+                    widget: list
+                    summary: "{{fields.k}}: {{fields.v}}"
+                    fields:
+                      - { name: k, label: Label, widget: string }
+                      - { name: v, label: Value, widget: string }
+              - &changes
+                name: changes
+                label: What changed from the version before
+                widget: list
+                required: false
+                summary: "{{fields.delta}} {{fields.deltaLabel}}"
+                fields:
+                  - { name: before, label: Before, widget: text }
+                  - { name: after, label: After, widget: text }
+                  - { name: delta, label: Measured improvement, widget: string, hint: "The number, e.g. −1.8 s" }
+                  - { name: deltaLabel, label: What improved, widget: string, hint: "e.g. cycle time" }
+              - name: subversions
+                label: Revisions of this version
+                label_singular: Revision
+                widget: list
+                required: false
+                summary: "{{fields.id}} — {{fields.title}}"
+                hint: "e.g. V2.1, V2.2. Anything you leave empty is taken from the main version."
+                fields:
+                  - { name: id, label: Revision, widget: string, hint: "e.g. V2.1" }
+                  - { name: date, label: Date, widget: string }
+                  - { name: title, label: Title, widget: string }
+                  - { name: summary, label: Summary, widget: text }
+                  - { name: photo, label: "Photo (16:10)", widget: image, required: false }
+                  - name: specs
+                    label: Changed specification values
+                    widget: list
+                    required: false
+                    hint: "Only the rows that changed. Everything else is taken from the main version."
+                    summary: "{{fields.k}}: {{fields.v}}"
+                    fields:
+                      - { name: k, label: Label, widget: string }
+                      - { name: v, label: Value, widget: string }
+                  - *changes
+
+  # ── SITE-WIDE CONTENT — one form per data file ─────────────────────────────
+  - name: content
+    label: Site content
+    files:
+
+      - name: site
+        label: Contact & links
+        file: src/data/site.json
+        format: json
+        fields:
+          - { name: name, label: Team name, widget: string }
+          - { name: teamNumber, label: Team number, widget: string }
+          - { name: school, label: School, widget: string }
+          - { name: town, label: Town, widget: string }
+          - { name: address, label: Address, widget: string }
+          - { name: email, label: Team email, widget: string, hint: "Every 'Email the team' button uses this." }
+          - { name: sponsorshipPack, label: Sponsorship pack (PDF), widget: file, hint: "Upload the PDF, or paste a link to it." }
+          - name: social
+            label: Social links
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: label, label: Name, widget: string }
+              - { name: url, label: Link, widget: string }
+
+      - name: sponsors
+        label: Sponsors & tiers
+        file: src/data/sponsors.json
+        format: json
+        fields:
+          - name: sponsors
+            label: Current sponsors
+            widget: list
+            summary: "{{fields.name}} (tier {{fields.level}})"
+            hint: "Top-tier sponsors are listed first, with larger logos, on every page."
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: url, label: Website, widget: string }
+              - { name: logo, label: Logo, widget: image, required: false, hint: "SVG, or PNG with a transparent background." }
+              - { name: level, label: Tier, widget: select, default: 2,
+                  options: [ { label: "Top tier — larger logo, listed first", value: 1 }, { label: "Standard", value: 2 } ] }
+              - { name: gave, label: What they gave, widget: string }
+          - name: tiers
+            label: Tiers
+            widget: list
+            summary: "{{fields.name}} — {{fields.from}}"
+            fields:
+              - { name: name, label: Tier name, widget: string }
+              - { name: from, label: From, widget: string, hint: "e.g. £500" }
+              - { name: lead, label: Highlight this tier, widget: boolean, default: false, required: false }
+              - { name: gets, label: What the sponsor receives, widget: list, field: { name: item, label: Item, widget: string },
+                  hint: "Only list what you will actually deliver." }
+          - { name: inKind, label: In-kind support, widget: string }
+          - name: budget
+            label: Season budget
+            widget: list
+            summary: "{{fields.k}}: {{fields.v}}"
+            fields:
+              - { name: k, label: Label, widget: string }
+              - { name: v, label: Value, widget: string }
+          - { name: responseTime, label: We reply within, widget: string, hint: "e.g. 3 working days" }
+          - { name: meeting, label: What we offer after the first email, widget: string }
+          - { name: invoicing, label: Invoicing runs through, widget: string }
+
+      - name: team
+        label: Team
+        file: src/data/team.json
+        format: json
+        fields:
+          - name: subteams
+            label: Sub-teams
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: key, label: Short key, widget: string, hint: "One lowercase word, e.g. design. People are assigned by this." }
+              - { name: name, label: Name, widget: string }
+              - { name: job, label: What it is responsible for, widget: string }
+          - name: people
+            label: People
+            widget: list
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: subteam, label: Sub-team key, widget: string, hint: "Must match a sub-team's short key." }
+              - { name: lead, label: Lead, widget: boolean, default: false, required: false }
+              - { name: photo, label: "Portrait (square)", widget: image, required: false }
+          - name: mentors
+            label: Mentors
+            widget: list
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+
+      - name: outreach
+        label: Outreach
+        file: src/data/outreach.json
+        format: json
+        fields:
+          - name: numbers
+            label: Reach numbers
+            widget: list
+            summary: "{{fields.k}}: {{fields.v}}"
+            fields:
+              - { name: k, label: Label, widget: string }
+              - { name: v, label: Value, widget: string }
+          - name: placements
+            label: Where a sponsor's logo appears
+            widget: list
+            summary: "{{fields.k}}"
+            hint: "Only what you will actually deliver — sponsors check."
+            fields:
+              - { name: k, label: Placement, widget: string }
+              - { name: v, label: Detail, widget: string }
+          - name: activities
+            label: Activities (newest first)
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            fields:
+              - { name: date, label: Date, widget: string }
+              - { name: title, label: Activity, widget: string }
+              - { name: where, label: Where, widget: string }
+              - { name: who, label: Who it reached, widget: string }
+              - { name: body, label: What happened, widget: text }

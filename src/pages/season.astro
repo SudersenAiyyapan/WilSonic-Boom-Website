@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import SeasonSwitch from '../components/SeasonSwitch.astro';
+import DataPlate from '../components/DataPlate.astro';
+import Close from '../components/Close.astro';
+import { seasons } from '../lib/seasons';
+
+// Season-by-season comparison: every record label that appears in any season,
+// one column per season. A season missing a figure shows a dash, not a guess.
+const labels = [...new Set(seasons.flatMap((s) => s.record.map((r) => r.k)))];
+const cell = (s: (typeof seasons)[number], k: string) => s.record.find((r) => r.k === k)?.v ?? '—';
+---
+<Base title="Season" current="season" description="Wilsonic Boom's competition record: every event, result and award, season by season.">
+
+  <PageHead lines={['Record.']}>
+    <p class="lede">
+      Every figure here is a matter of public competition result. Switch seasons to see how
+      the team has moved from one year to the next.
+    </p>
+  </PageHead>
+
+  <section class="band band--tight" id="seasons">
+    <div class="wrap">
+      <SeasonSwitch seasons={seasons} />
+
+      {seasons.map((s, i) => (
+        <div class="season-panel" data-season-panel={s.slug} data-season-default={i === 0 ? '' : undefined}>
+          <div class="season-panel__hd">
+            <h2 class="h2 etch" data-etch>{s.game}</h2>
+            <p class="h4">{s.years}</p>
+          </div>
+          <p class="body body--wide">{s.summary}</p>
+
+          <div class="record">
+            <DataPlate title="Season record" serial="33001" rows={s.record} foot={['FIRST® Tech Challenge', s.years]} />
+            <div class="record__log">
+              <p class="h4 record__lbl">Event log</p>
+              <ol class="log">
+                {s.events.map((e) => (
+                  <li class="log__row">
+                    <span class="log__date num">{e.date}</span>
+                    <span class="log__event">{e.name}</span>
+                    <span class="log__venue">{e.venue}</span>
+                    <span class="log__result num">{e.result}</span>
+                    {e.note && <span class="log__note">{e.note}</span>}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          {s.awards.length > 0 && (
+            <div class="season-awards">
+              <p class="h4 record__lbl">Awards</p>
+              <ul class="awards awards--row">
+                {s.awards.map((a) => (
+                  <li class="award" data-cut>
+                    <p class="award__name">{a.name}</p>
+                    <p class="award__event">{a.event}</p>
+                    <p class="body">{a.note}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {seasons.length > 1 && (
+    <section class="band band--alt" id="compare">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Season by season</h2>
+        <div class="compare-wrap">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th scope="col"><span class="vh">Measure</span></th>
+                {seasons.map((s) => <th scope="col" class="num">{s.years}{s.draft && ' (draft)'}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {labels.map((k) => (
+                <tr>
+                  <th scope="row">{k}</th>
+                  {seasons.map((s) => <td class="num">{cell(s, k)}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Close />
+</Base>

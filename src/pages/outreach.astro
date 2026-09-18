@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import DataPlate from '../components/DataPlate.astro';
+import Close from '../components/Close.astro';
+import outreach from '../data/outreach.json';
+---
+<Base title="Outreach" current="outreach" description="What Wilsonic Boom does beyond the robot: outreach, events, and who it reaches.">
+
+  <PageHead lines={['Beyond', 'the robot.']}>
+    <p class="lede">
+      FIRST judges a team on what it does for other people as much as on its machine. This is
+      that record — and it is what a sponsor's name is attached to.
+    </p>
+  </PageHead>
+
+  <!-- ═══ REACH ═══ -->
+  <section class="band band--tight" id="reach">
+    <div class="wrap">
+      <div class="record">
+        <DataPlate title="Reach" serial="33001" rows={outreach.numbers} />
+        <div class="record__side">
+          <p class="h4 record__lbl">Where a sponsor's mark appears</p>
+          <ul class="reach reach--flush">
+            {outreach.placements.map((p) => (
+              <li class="reach__i"><span class="reach__k">{p.k}</span><span class="reach__v">{p.v}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ACTIVITIES — one per full-width row, newest first ═══ -->
+  <section class="band band--alt" id="activities">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>What we have done</h2>
+      <p class="body body--wide">
+        Newest first. Each entry says who it reached and how many — an outreach log without
+        numbers is a list of intentions.
+      </p>
+    </div>
+    <ol class="acts">
+      {outreach.activities.map((a) => (
+        <li class="act">
+          <span class="act__date num">{a.date}</span>
+          <div class="act__main">
+            <h3 class="h3">{a.title}</h3>
+            <p class="act__where">{a.where}</p>
+          </div>
+          <p class="body act__body">{a.body}</p>
+          <p class="act__who">{a.who}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <Close heading={['Help us', 'reach further.']}>
+    Outreach costs transport, kit and time. If you would rather fund that than the robot,
+    tell us — it is a sponsorship like any other, and we will report back on where it went.
+  </Close>
+</Base>

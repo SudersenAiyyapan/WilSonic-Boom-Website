@@ -1,0 +1,35 @@
+---
+// A reserved media box. The aspect ratio is fixed, so replacing the empty
+// state with <img src="…" alt="…"> (or passing `src`) causes no layout change.
+interface Props {
+  name?: string;      // what the photograph should be of
+  spec: string;       // ratio · size · background
+  ratio?: string;     // e.g. "4 / 3"
+  src?: string | null;
+  alt?: string;
+  small?: boolean;
+  logo?: boolean;
+}
+import { url } from './url';
+const { name, spec, ratio = '4 / 3', src, alt = '', small = false, logo = false } = Astro.props;
+// Images uploaded through the admin are stored as "/images/…"; resolve them
+// against the site base so they still load if the site lives under a sub-path.
+const resolved = src && src.startsWith('/') ? url(src) : src;
+---
+<div class:list={['slot', { 'slot--logo': logo }]} style={logo ? undefined : `--ratio: ${ratio}`}>
+  {resolved ? (
+    <img src={resolved} alt={alt} loading="lazy" decoding="async" />
+  ) : (
+    <div class:list={['slot__empty', { 'slot__empty--sm': small }]}>
+      {!small && (
+        <svg class="slot__reticle" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <path d="M2 2 H18 M2 2 V18 M62 2 H46 M62 2 V18 M2 62 H18 M2 62 V46 M62 62 H46 M62 62 V46" />
+          <circle cx="32" cy="32" r="9" />
+          <path d="M32 17 V24 M32 40 V47 M17 32 H24 M40 32 H47" />
+        </svg>
+      )}
+      {name && <p class="slot__name">{name}</p>}
+      <p class="slot__spec">{spec}</p>
+    </div>
+  )}
+</div>

@@ -1,0 +1,101 @@
+{
+  "sponsors": [
+    {
+      "name": "[[SPONSOR NAME]]",
+      "url": "[[SPONSOR URL]]",
+      "logo": null,
+      "gave": "[[What they gave: money, parts, machining, services.]]",
+      "level": 1
+    },
+    {
+      "name": "[[SPONSOR NAME]]",
+      "url": "[[SPONSOR URL]]",
+      "logo": null,
+      "gave": "[[What they gave.]]",
+      "level": 1
+    },
+    {
+      "name": "[[SPONSOR NAME]]",
+      "url": "[[SPONSOR URL]]",
+      "logo": null,
+      "gave": "[[What they gave.]]",
+      "level": 2
+    },
+    {
+      "name": "[[SPONSOR NAME]]",
+      "url": "[[SPONSOR URL]]",
+      "logo": null,
+      "gave": "[[What they gave.]]",
+      "level": 2
+    },
+    {
+      "name": "[[SPONSOR NAME]]",
+      "url": "[[SPONSOR URL]]",
+      "logo": null,
+      "gave": "[[What they gave.]]",
+      "level": 2
+    },
+    {
+      "name": "[[SPONSOR NAME]]",
+      "url": "[[SPONSOR URL]]",
+      "logo": null,
+      "gave": "[[What they gave.]]",
+      "level": 2
+    }
+  ],
+  "tiers": [
+    {
+      "name": "[[TIER NAME]]",
+      "from": "[[£ FROM]]",
+      "lead": false,
+      "gets": [
+        "[[What they get]]",
+        "[[What they get]]",
+        "[[What they get]]"
+      ]
+    },
+    {
+      "name": "[[TIER NAME]]",
+      "from": "[[£ FROM]]",
+      "lead": true,
+      "gets": [
+        "[[What they get]]",
+        "[[What they get]]",
+        "[[What they get]]",
+        "[[What they get]]"
+      ]
+    },
+    {
+      "name": "[[TIER NAME]]",
+      "from": "[[£ FROM]]",
+      "lead": false,
+      "gets": [
+        "[[What they get]]",
+        "[[What they get]]",
+        "[[What they get]]"
+      ]
+    }
+  ],
+  "inKind": "[[One sentence: which parts, services or machining you would accept instead of money.]]",
+  "budget": [
+    {
+      "k": "Season cost",
+      "v": "[[£ FIGURE]]"
+    },
+    {
+      "k": "Currently raised",
+      "v": "[[£ FIGURE]]"
+    },
+    {
+      "k": "Students on the programme",
+      "v": "[[NN]]"
+    },
+    {
+      "k": "Seasons competed",
+      "v": "[[N]]"
+    }
+  ],
+  "responseTime": "[[N working days]]",
+  "meeting": "[[a call or a visit to the workshop]]",
+  "invoicing": "[[the school finance office]]"
+}

@@ -1,0 +1,39 @@
+---
+import { NAV, type NavKey } from './nav';
+import { url } from './url';
+interface Props { current: NavKey }
+const { current } = Astro.props;
+---
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="mark" href={url('/')} aria-label="Wilsonic Boom, home" aria-current={current === 'home' ? 'page' : undefined}>
+      <svg class="mark__glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M2 17.5 L12 3.5 L22 17.5" />
+        <path d="M6.5 17.5 L12 9.2 L17.5 17.5" />
+        <path d="M1.5 21 L22.5 21" />
+      </svg>
+      <span class="mark__text">Wilsonic&nbsp;Boom</span>
+    </a>
+
+    <nav class="topnav" aria-label="Main">
+      {NAV.map((item) => (
+        <a href={url(item.href)} aria-current={current === item.key ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+
+    <a class="btn btn--sm btn--gold topbar__cta" href={url('/sponsors/')}>Sponsor the team</a>
+
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn>
+      <span class="vh">Menu</span>
+      <svg viewBox="0 0 20 14" aria-hidden="true" focusable="false"><path d="M0 1 H20 M0 7 H20 M0 13 H20" /></svg>
+    </button>
+  </div>
+
+  <!-- phone menu: the same five links, opened by the button above -->
+  <nav class="menu" id="menu" aria-label="Main" hidden data-menu>
+    {NAV.map((item) => (
+      <a href={url(item.href)} aria-current={current === item.key ? 'page' : undefined}>{item.label}</a>
+    ))}
+    <a class="btn btn--gold" href={url('/sponsors/')}>Sponsor the team</a>
+  </nav>
+</header>

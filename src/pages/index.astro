@@ -1,0 +1,141 @@
+---
+// HOME — the whole pitch on its own. A sponsor who reads only this page
+// should still know what the team is, why it is credible, and how to act.
+import Base from '../layouts/Base.astro';
+import Slot from '../components/Slot.astro';
+import Specs from '../components/Specs.astro';
+import DataPlate from '../components/DataPlate.astro';
+import MoreLink from '../components/MoreLink.astro';
+import Close from '../components/Close.astro';
+import { url } from '../components/url';
+import site from '../data/site.json';
+import SponsorStrip from '../components/SponsorStrip.astro';
+import { current as season, latestVersion } from '../lib/seasons';
+import sponsors from '../data/sponsors.json';
+import outreach from '../data/outreach.json';
+
+const latest = latestVersion(season);
+const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20FTC%2033001`;
+---
+<Base current="home" description="Wilsonic Boom, FIRST Tech Challenge team 33001 at Wilson's School, Wallington. What the team does, how it is run, and how to sponsor it.">
+
+  <!-- ═══ OPENING ═══ -->
+  <section class="hero" id="top">
+    <div class="hero__grid">
+      <div class="plate plate--title" data-cut>
+        <p class="serial">
+          <span class="serial__k">TEAM</span><span class="serial__v">{site.teamNumber}</span>
+          <span class="serial__k">SCHOOL</span><span class="serial__v">{site.school.replace(' School', '')}, {site.town}</span>
+        </p>
+        <h1 class="etch" data-etch>Built to a<br>tolerance.</h1>
+        <p class="lede">
+          Wilsonic Boom is a FIRST Tech Challenge team at Wilson&rsquo;s School in Wallington.
+          Each season we design, build, program and campaign a competition robot — and we run
+          the programme around it: the documentation, the outreach, and the recruitment that
+          keeps the team alive after we have left.
+        </p>
+        <div class="actions">
+          <a class="btn btn--gold" href={mail}>Sponsor the team</a>
+          <a class="btn btn--ghost" href={site.sponsorshipPack} download>
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2 L8 11" /><path d="M4.5 7.5 L8 11 L11.5 7.5" /><path d="M3 13.5 L13 13.5" /></svg>
+            Sponsorship pack
+          </a>
+        </div>
+      </div>
+      <figure class="plate plate--media" data-cut>
+        <Slot name="Robot, three-quarter view" spec="4:3 · landscape · 2400 px wide · plain dark background" ratio="4 / 3" />
+      </figure>
+    </div>
+    <div class="rule rule--scale" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="wrap hero__sponsors">
+      <SponsorStrip />
+    </div>
+  </section>
+
+  <!-- ═══ THE CASE ═══ -->
+  <section class="band" id="why">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>What your money<br>actually does.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          An FTC season runs on parts that wear out and parts that did not exist until we made
+          them. Sponsorship is a small line in a marketing budget and a large line in ours: it
+          is the difference between rebuilding a subsystem that failed and living with it for
+          the rest of the season.
+        </p>
+        <p class="body">
+          In return you are not buying a logo on a t-shirt. You are attached to a team that
+          publishes what it does, competes in public, and is judged on its engineering record
+          as much as its results.
+        </p>
+        <Specs rows={sponsors.budget} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RECORD, AT A GLANCE ═══ -->
+  <section class="band band--alt" id="record">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>Record</h2>
+      <div class="record">
+        <DataPlate title="Competition record" serial={site.teamNumber} rows={season.record} foot={['FIRST® Tech Challenge', "Wilson's School · Wallington"]} />
+        <div class="record__side">
+          <p class="h4 record__lbl">{season.game} · {season.years}</p>
+          <p class="body">{season.summary}</p>
+          <MoreLink href="/season/">Every event and result</MoreLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE MACHINE — a teaser; the assembly lives on /robot ═══ -->
+  <section class="band" id="machine">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>The machine</h2>
+      <div class="teaser">
+        <figure class="teaser__stage" data-cut>
+          <Slot name="Robot, full assembly" spec="16:10 · 2800 px · plain dark background · all four subsystems visible" ratio="16 / 10" src={latest?.photo ?? null} alt="The competition robot" />
+        </figure>
+        <div class="teaser__side">
+          <p class="body">
+            {latest ? `Currently at ${latest.id}. ` : ''}Four subsystems, designed around each
+            other rather than bolted together afterwards — and a record of every version and
+            revision that got us here.
+          </p>
+          <ol class="teaser__list">
+            {(latest?.subsystems ?? []).map((s) => (
+              <li><span class="key__n num">{s.n}</span><span>{s.name}</span></li>
+            ))}
+          </ol>
+          <MoreLink href="/robot/">Take the robot apart</MoreLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REACH ═══ -->
+  <section class="band band--alt" id="reach">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>Where your<br>mark ends up.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          A sponsor of an FTC team is not buying impressions, and we will not pretend
+          otherwise. What you get is a named place on a machine that competes in public, in a
+          programme that documents itself and submits that documentation to be judged.
+        </p>
+        <ul class="reach">
+          {outreach.placements.map((p) => (
+            <li class="reach__i"><span class="reach__k">{p.k}</span><span class="reach__v">{p.v}</span></li>
+          ))}
+        </ul>
+        <Specs rows={outreach.numbers} />
+        <MoreLink href="/outreach/">What we do beyond the robot</MoreLink>
+      </div>
+    </div>
+  </section>
+
+  <Close />
+</Base>

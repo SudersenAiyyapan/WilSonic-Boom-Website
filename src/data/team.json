@@ -1,0 +1,83 @@
+{
+  "subteams": [
+    {
+      "key": "design",
+      "name": "[[SUB-TEAM NAME]]",
+      "job": "[[What this sub-team is responsible for, one sentence.]]"
+    },
+    {
+      "key": "programming",
+      "name": "[[SUB-TEAM NAME]]",
+      "job": "[[What this sub-team is responsible for, one sentence.]]"
+    },
+    {
+      "key": "outreach",
+      "name": "[[SUB-TEAM NAME]]",
+      "job": "[[What this sub-team is responsible for, one sentence.]]"
+    }
+  ],
+  "people": [
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "design",
+      "lead": true,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "programming",
+      "lead": true,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "outreach",
+      "lead": true,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "design",
+      "lead": false,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "design",
+      "lead": false,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "programming",
+      "lead": false,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "programming",
+      "lead": false,
+      "photo": null
+    },
+    {
+      "name": "[[NAME]]",
+      "role": "[[ROLE]]",
+      "subteam": "outreach",
+      "lead": false,
+      "photo": null
+    }
+  ],
+  "mentors": [
+    {
+      "name": "[[NAME]]",
+      "role": "[[Teacher / mentor role]]"
+    }
+  ]
+}

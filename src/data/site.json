@@ -1,0 +1,23 @@
+{
+  "name": "Wilsonic Boom",
+  "teamNumber": "33001",
+  "school": "Wilson's School",
+  "town": "Wallington",
+  "address": "Wilson's School, Mollison Drive, Wallington SM6 9JW",
+  "email": "[[TEAM EMAIL]]",
+  "sponsorshipPack": "[[SPONSORSHIP PACK.pdf]]",
+  "social": [
+    {
+      "label": "Instagram",
+      "url": "[[INSTAGRAM URL]]"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "[[LINKEDIN URL]]"
+    },
+    {
+      "label": "YouTube",
+      "url": "[[YOUTUBE URL]]"
+    }
+  ]
+}

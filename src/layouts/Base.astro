@@ -1,0 +1,66 @@
+---
+import '../styles/site.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { NavKey } from '../components/nav';
+import { url } from '../components/url';
+
+interface Props {
+  title?: string;        // page name; the site name is appended
+  description: string;
+  current: NavKey;
+}
+const { title, description, current } = Astro.props;
+const fullTitle = title ? `${title} — Wilsonic Boom · FTC 33001` : 'Wilsonic Boom — FTC 33001';
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#101012">
+  <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Chivo+Mono:wght@300;400;500&display=swap">
+  <!-- Runs before first paint so the page never flashes its un-scripted state.
+       If motion.js has not arrived within 4s, the class comes off again and the
+       page falls back to showing everything — content is never held hostage. -->
+  <script is:inline>
+    document.documentElement.classList.add('js');
+    setTimeout(function () {
+      if (!document.documentElement.classList.contains('motion-ready')) document.documentElement.classList.remove('js');
+    }, 4000);
+  </script>
+</head>
+<body>
+<!--
+DIRECTION CONTRACT — seed aba573d8
+THESIS: A sponsor's trust is earned by tolerance, not enthusiasm. The site is a machined
+  assembly — plates, chamfers, fasteners, etched marks — and refuses the dark-hero-plus-
+  neon-card page the robotics category always ships.
+OWN-WORLD: Brushed graphite under task light. Anodised gold as hardware, never highlighter.
+  Plates with 45-degree chamfers, hairline seams, one elevation step, no shadows. Archivo
+  expanded for etched lettering, Chivo Mono for every measured value.
+STORY: Home is the whole pitch on its own; five pages give depth. The visitor sees a team
+  that works to a specification and emails or opens /sponsors.
+FIRST VIEWPORT: (home) a chamfered title plate carrying the etched wordmark and both CTAs,
+  beside a reserved 4:3 robot plate. Sub-pages open on an etched page plate.
+SIGNATURE: the exploded assembly on /robot — a pinned 16:10 stage whose detail swaps as
+  the subsystem list is read. Home carries only a teaser of it.
+FORM: Machine shop / anodised hardware. Candidate 5 of 7, assigned by the roll.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+  <a class="skip" href="#main">Skip to content</a>
+  <Header current={current} />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+  <script>
+    import '../scripts/motion.js';
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+# Builds the site and publishes it to GitHub Pages on every push to main —
+# including every save made in /admin, which commits to main.
+#
+# One-time setup: repo Settings → Pages → Source: "GitHub Actions".
+# Hosting on Vercel or Netlify instead? Delete this file; they build from GitHub themselves.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          # "" with a custom domain, "/WilSonic-Boom-Website" on the default github.io address
+          PAGES_BASE: ${{ steps.pages.outputs.base_path }}
+          PAGES_SITE: ${{ steps.pages.outputs.origin }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

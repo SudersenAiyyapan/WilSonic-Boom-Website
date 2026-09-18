@@ -63,57 +63,208 @@
   ],
   "tiers": [
     {
-      "name": "[[TIER NAME]]",
-      "from": "[[£ FROM]]",
-      "lead": false,
-      "gets": [
-        "[[What they get]]",
-        "[[What they get]]",
-        "[[What they get]]"
-      ]
+      "key": "bronze",
+      "name": "Bronze",
+      "from": "£250",
+      "lead": false
     },
     {
-      "name": "[[TIER NAME]]",
-      "from": "[[£ FROM]]",
-      "lead": true,
-      "gets": [
-        "[[What they get]]",
-        "[[What they get]]",
-        "[[What they get]]",
-        "[[What they get]]"
-      ]
+      "key": "silver",
+      "name": "Silver",
+      "from": "£500",
+      "lead": false
     },
     {
-      "name": "[[TIER NAME]]",
-      "from": "[[£ FROM]]",
-      "lead": false,
-      "gets": [
-        "[[What they get]]",
-        "[[What they get]]",
-        "[[What they get]]"
-      ]
+      "key": "gold",
+      "name": "Gold",
+      "from": "£800",
+      "lead": false
+    },
+    {
+      "key": "platinum",
+      "name": "Platinum",
+      "from": "£1,000",
+      "lead": false
+    },
+    {
+      "key": "diamond",
+      "name": "Diamond",
+      "from": "£2,500+",
+      "lead": true
     }
   ],
-  "inKind": "[[One sentence: which parts, services or machining you would accept instead of money.]]",
-  "budget": [
+  "inKind": "Support can be money or store credit with a parts or materials supplier.",
+  "invoicing": "[[the school finance office]]",
+  "benefits": [
     {
-      "k": "Season cost",
-      "v": "[[£ FIGURE]]"
+      "label": "Update emails",
+      "bronze": "yes",
+      "silver": "yes",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
     },
     {
-      "k": "Currently raised",
-      "v": "[[£ FIGURE]]"
+      "label": "Website backlink",
+      "bronze": "yes",
+      "silver": "yes",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
     },
     {
-      "k": "Students on the programme",
-      "v": "[[NN]]"
+      "label": "Logo on team apparel",
+      "bronze": "Small",
+      "silver": "Medium",
+      "gold": "Large",
+      "platinum": "Prominent",
+      "diamond": "Largest"
     },
     {
-      "k": "Seasons competed",
-      "v": "[[N]]"
+      "label": "Logo on the robot",
+      "bronze": "",
+      "silver": "Medium",
+      "gold": "Large",
+      "platinum": "Prominent",
+      "diamond": "Largest"
+    },
+    {
+      "label": "Social media mention post",
+      "bronze": "",
+      "silver": "yes",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Dedicated spotlight post",
+      "bronze": "",
+      "silver": "",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Logo on competition banner",
+      "bronze": "",
+      "silver": "",
+      "gold": "Large",
+      "platinum": "Prominent",
+      "diamond": "Largest"
+    },
+    {
+      "label": "Branding on team equipment",
+      "bronze": "",
+      "silver": "",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Dedicated social media video",
+      "bronze": "",
+      "silver": "",
+      "gold": "",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Demonstration event at school",
+      "bronze": "",
+      "silver": "",
+      "gold": "",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Title partner recognition",
+      "bronze": "",
+      "silver": "",
+      "gold": "",
+      "platinum": "",
+      "diamond": "yes"
     }
   ],
-  "responseTime": "[[N working days]]",
-  "meeting": "[[a call or a visit to the workshop]]",
-  "invoicing": "[[the school finance office]]"
+  "funding": [
+    {
+      "group": "Robot",
+      "item": "Full official game field",
+      "cost": "£2,000",
+      "what": "Test in exact match conditions, and hold practice events with other teams."
+    },
+    {
+      "group": "Robot",
+      "item": "Control Hub",
+      "cost": "£300",
+      "what": "The robot's on-board computer: runs our code and turns commands into movement."
+    },
+    {
+      "group": "Robot",
+      "item": "Driver Hub",
+      "cost": "£250",
+      "what": "Carries driver inputs from the gamepad to the robot, and sends back telemetry."
+    },
+    {
+      "group": "Robot",
+      "item": "Laser-cut metal plates",
+      "cost": "£300",
+      "what": "Precision-cut parts for a light, rigid chassis and mechanisms."
+    },
+    {
+      "group": "Robot",
+      "item": "3D printer filament",
+      "cost": "£200",
+      "what": "Custom parts printed straight from our CAD models."
+    },
+    {
+      "group": "Robot",
+      "item": "Limelight 3A camera",
+      "cost": "£140",
+      "what": "An FTC-legal camera that lets the robot find its place by reading field markers."
+    },
+    {
+      "group": "Robot",
+      "item": "Motors",
+      "cost": "£41 each",
+      "what": "Power and movement for every mechanism."
+    },
+    {
+      "group": "Robot",
+      "item": "Servos",
+      "cost": "£30 each",
+      "what": "Motors that move to and hold a precise position."
+    },
+    {
+      "group": "Outreach",
+      "item": "Junior Robotics",
+      "cost": "£500",
+      "what": "FTC equipment and mentoring for the school's Junior Robotics club."
+    },
+    {
+      "group": "Outreach",
+      "item": "Banners",
+      "cost": "£100",
+      "what": "For competitions and outreach events, and where sponsors' logos are shown."
+    },
+    {
+      "group": "Outreach",
+      "item": "International competition",
+      "cost": "£5,000",
+      "what": "Transport and registration if a team qualifies to compete abroad."
+    }
+  ],
+  "impact": [
+    {
+      "k": "Students supported directly",
+      "v": "50+"
+    },
+    {
+      "k": "FTC teams at Wilson's",
+      "v": "2"
+    },
+    {
+      "k": "Teams a planned scrimmage would host",
+      "v": "15+"
+    }
+  ]
 }

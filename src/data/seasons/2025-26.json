@@ -1,58 +1,56 @@
 {
   "years": "2025–26",
-  "game": "[[GAME NAME]]",
+  "game": "DECODE",
   "draft": false,
-  "summary": "[[One or two sentences on how this season went, in plain words.]]",
+  "summary": "Our first season. The team was set up to widen Wilson's School's part in FTC; we reached the regional final as a finalist alliance, won the Reach Award at Regionals and the Sustain Award at Nationals.",
   "record": [
     {
       "k": "Awards won",
-      "v": "[[NN]]"
+      "v": "2"
     },
     {
-      "k": "Best regional finish",
-      "v": "[[Nth of NN]]"
+      "k": "Regionals",
+      "v": "Finalist alliance"
     },
     {
-      "k": "Matches played",
-      "v": "[[NN]]"
+      "k": "Regional award",
+      "v": "Reach Award"
     },
     {
-      "k": "Seasons competed",
-      "v": "[[N]]"
+      "k": "National award",
+      "v": "Sustain Award"
     },
     {
-      "k": "Highest award",
-      "v": "[[AWARD]]"
+      "k": "Team size",
+      "v": "17 students"
     }
   ],
   "awards": [
     {
-      "name": "[[AWARD NAME]]",
-      "event": "[[EVENT]]",
-      "note": "[[What it was awarded for, one sentence.]]"
+      "name": "Reach Award",
+      "event": "Regionals, 2025–26",
+      "note": "FIRST's award for outreach: inspiring and reaching people beyond the team."
+    },
+    {
+      "name": "Sustain Award",
+      "event": "Nationals, 2025–26",
+      "note": "FIRST's award for building a team that lasts: planning, funding and continuity."
     }
   ],
   "events": [
     {
       "date": "[[DATE]]",
-      "name": "[[EVENT NAME]]",
+      "name": "Regional Championship",
       "venue": "[[VENUE]]",
-      "result": "[[RESULT]]",
-      "note": "[[What happened, one sentence. Optional.]]"
+      "result": "Finalist alliance",
+      "note": "Won the Reach Award."
     },
     {
       "date": "[[DATE]]",
-      "name": "[[EVENT NAME]]",
+      "name": "National Championship",
       "venue": "[[VENUE]]",
-      "result": "[[RESULT]]",
-      "note": ""
-    },
-    {
-      "date": "[[DATE]]",
-      "name": "[[EVENT NAME]]",
-      "venue": "[[VENUE]]",
-      "result": "[[RESULT]]",
-      "note": ""
+      "result": "[[FINAL RANKING]]",
+      "note": "Won the Sustain Award."
     }
   ],
   "robot": {

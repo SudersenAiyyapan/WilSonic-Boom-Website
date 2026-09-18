@@ -202,11 +202,6 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
   display: flex; align-items: center; gap: 28px;
 }
 .mark { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); }
-.mark__glyph {
-  width: 25px; height: 25px; flex: none;
-  fill: none; stroke: var(--gold); stroke-width: 1.6;
-  stroke-linecap: square; stroke-linejoin: miter;
-}
 .mark__text {
   font-weight: 700; font-stretch: 112%; letter-spacing: -0.012em; font-size: 1rem;
 }
@@ -1447,4 +1442,95 @@ a.sstrip__k:hover { color: var(--ink); border-bottom-color: var(--gold-lo); }
 @media (max-width: 620px) {
   .sp { grid-template-columns: minmax(0, 1fr); }
   .sp__b { padding: 4px 8px 12px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SPONSOR THE TEAM — costs, five tiers, the comparison table
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── what a season costs: a priced parts list ──────────────────────────── */
+.costs {
+  margin-top: clamp(30px, 3.6vw, 48px);
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px); align-items: start;
+}
+.costs__h { padding-bottom: 12px; border-bottom: 1px solid var(--seam); }
+.cost {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 20px; row-gap: 3px;
+  padding: 14px 0; border-bottom: 1px solid var(--seam-soft);
+}
+.cost__item { font-weight: 700; font-stretch: 108%; }
+.cost__price { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--gold); white-space: nowrap; font-size: 1.02rem; }
+.cost__what { grid-column: 1; font-size: 0.88rem; color: var(--ink-2); }
+
+/* ── five tier cards ───────────────────────────────────────────────────── */
+.tiers--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.tiers--5 .tier { padding: clamp(18px, 1.8vw, 26px); }
+.tiers--5 .tier__list li { font-size: 0.84rem; }
+.tier__tag { color: var(--gold-txt); font-weight: 600; }
+
+/* ── the comparison table ──────────────────────────────────────────────── */
+.tt__h { margin-top: clamp(44px, 5vw, 68px); padding-bottom: 12px; }
+.tt-wrap { overflow-x: auto; border: 1px solid var(--seam); background: var(--graphite-2); }
+.tt { width: 100%; min-width: 720px; border-collapse: collapse; }
+.tt th, .tt td { padding: 13px 14px; border-bottom: 1px solid var(--seam-soft); text-align: center; }
+.tt tbody tr:last-child th, .tt tbody tr:last-child td { border-bottom: 0; }
+.tt thead th { border-bottom: 1px solid var(--seam); vertical-align: bottom; padding-block: 18px 14px; }
+.tt tbody th {
+  text-align: left; font-size: 0.86rem; font-weight: 600; color: var(--ink);
+  position: sticky; left: 0; background: var(--graphite-2);   /* labels stay put when the table scrolls on a phone */
+}
+.tt tbody tr:hover th, .tt tbody tr:hover td { background: var(--plate); }
+.tt__name {
+  display: block; font-size: 0.74rem; font-weight: 700; color: var(--ink-2);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.tt__amt { display: block; margin-top: 6px; font-size: 1.1rem; color: var(--gold); }
+.tt .is-lead { background: rgba(200,148,52,0.06); }
+.tt thead .is-lead .tt__name { color: var(--gold-hi); }
+.tt__tick { width: 16px; height: 16px; margin-inline: auto; fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: square; }
+.tt__val { font-size: 0.84rem; color: var(--ink); }
+.tt__no { display: block; width: 10px; height: 1px; margin-inline: auto; background: var(--seam); }
+.tt__more { margin-top: 8px; }
+
+/* ── season: the competition ladder ────────────────────────────────────── */
+.ladder { margin-top: clamp(24px, 3vw, 36px); border-top: 1px solid var(--seam); counter-reset: rung; }
+.ladder__i {
+  display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr); gap: 18px;
+  padding: 14px 0; border-bottom: 1px solid var(--seam-soft);
+}
+.ladder__k { font-weight: 700; color: var(--gold-hi); }
+.ladder__v { font-size: 0.92rem; color: var(--ink-2); }
+
+/* ── team ──────────────────────────────────────────────────────────────── */
+.team__sister { margin-top: 24px; }
+.team__subh { margin-top: clamp(30px, 3.6vw, 44px); padding-bottom: 4px; }
+
+@media (max-width: 1180px) {
+  .tiers--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .costs { grid-template-columns: minmax(0, 1fr); }
+  .tiers--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .tiers--5 { grid-template-columns: minmax(0, 1fr); }
+  .ladder__i { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+
+/* ── the team badge ────────────────────────────────────────────────────── */
+.mark__badge { width: 40px; height: 40px; flex: none; border-radius: 50%; }
+/* The badge is pinned to the plate's top-right like a stamped maker's mark;
+   the serial details wrap beside it instead of pushing it onto its own line. */
+.serial { padding-right: 108px; min-height: 84px; align-content: flex-start; }
+.serial__badge {
+  position: absolute; top: -10px; right: 0;
+  width: 88px; height: 88px; border-radius: 50%;
+}
+.foot__id { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: center; }
+.foot__badge { grid-row: span 2; width: 72px; height: 72px; border-radius: 50%; }
+@media (max-width: 620px) {
+  .serial { padding-right: 76px; min-height: 60px; }
+  .serial__badge { width: 60px; height: 60px; top: -6px; }
 }

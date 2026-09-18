@@ -71,6 +71,16 @@ describes only the world that ships.
 
 Engraved headline: `text-shadow` light on the lower lip, dark above. Not a gradient.
 
+### The team badge
+
+The team's own badge (the jet in a white ring over the wordmark, supplied by the team) is the
+brand mark. It is cut out along its ring onto transparency (`public/brand/`) and used as: the
+40px header mark beside the name, an 88px maker's stamp pinned to the top-right of the home
+title plate, the footer mark, the favicon and home-screen icon, and the link-preview image.
+Never recolour, redraw or crop into it; never place it on a light ground, since its inner
+field is black. The site's typography stays Archivo: the badge's wordmark is artwork, not
+a typeface to imitate.
+
 ### Signature: the exploded assembly
 
 `#machine` is the mechanism the rest of the page is scaffolding for.
@@ -124,6 +134,10 @@ it back into cards; the plate is skimmable and the cards were generic.
 2. `--gold-lo` is for rules and edges only. Small gold text uses `--gold-txt`.
 3. No shadows. Depth is hairline seam plus one elevation step.
 4. No eyebrow/kicker labels above headings.
+11. **Ticks are drawn, never typed.** The tier table stores `yes` and renders an SVG tick;
+    a ✓ character is a unicode glyph standing in for an icon.
+12. **Never merge the two teams' records.** The sponsorship package is joint. Wilsobotics'
+    results appear only where they are attributed to Wilsobotics.
 5. The key list in `#machine` is never collapsed behind interaction, and `#record` is never
    a big-number card row. Both were defects that were fixed; both are easy to reintroduce.
 6. Etched heading masks (`.etch .line`) keep their padding and matching negative margin.

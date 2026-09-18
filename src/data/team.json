@@ -79,5 +79,28 @@
       "name": "[[NAME]]",
       "role": "[[Teacher / mentor role]]"
     }
-  ]
+  ],
+  "facts": [
+    {
+      "k": "Students",
+      "v": "17"
+    },
+    {
+      "k": "Ages",
+      "v": "14–16"
+    },
+    {
+      "k": "First season",
+      "v": "2025–26"
+    },
+    {
+      "k": "Role",
+      "v": "Junior team"
+    }
+  ],
+  "sister": {
+    "name": "Wilsobotics",
+    "url": "https://wilsobotics.com",
+    "about": "The senior team: 13 students aged 16 to 18, competing in their third FTC season. Wilsobotics finished 5th at the European Premiers."
+  }
 }

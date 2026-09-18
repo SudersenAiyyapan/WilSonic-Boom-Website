@@ -5,6 +5,7 @@ import Slot from '../components/Slot.astro';
 import Close from '../components/Close.astro';
 import team from '../data/team.json';
 import site from '../data/site.json';
+import DataPlate from '../components/DataPlate.astro';
 
 const leads = team.people.filter((p) => p.lead);
 const bySub = team.subteams.map((st) => ({
@@ -17,9 +18,8 @@ const bySub = team.subteams.map((st) => ({
 
   <PageHead lines={['Who runs it.']}>
     <p class="lede">
-      The team is student-led and organised into sub-teams with named responsibilities.
-      Handover is deliberate: every role has a student learning it a year behind, which is why
-      the programme survives a leaving cohort.
+      Wilsonic Boom is the junior of Wilson&rsquo;s School&rsquo;s two FTC teams: 17 students aged
+      14 to 16. We were set up in 2025–26 to widen the school&rsquo;s part in FIRST Tech Challenge.
     </p>
   </PageHead>
 
@@ -28,6 +28,12 @@ const bySub = team.subteams.map((st) => ({
     <div class="wrap wrap--split">
       <div class="split__l"><h2 class="h2 etch" data-etch>How it is<br>organised.</h2></div>
       <div class="split__r">
+        <DataPlate title="Wilsonic Boom" serial="33001" rows={team.facts} />
+        <p class="body team__sister">
+          Our senior team is <a class="inline" href={team.sister.url}>{team.sister.name}</a>.
+          {' '}{team.sister.about}
+        </p>
+        <p class="h4 team__subh">Sub-teams</p>
         <ul class="reach">
           {bySub.map((st) => (
             <li class="reach__i reach__i--3">

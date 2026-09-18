@@ -7,7 +7,7 @@ import Specs from '../components/Specs.astro';
 import DataPlate from '../components/DataPlate.astro';
 import MoreLink from '../components/MoreLink.astro';
 import Close from '../components/Close.astro';
-import { url } from '../components/url';
+import { url, href } from '../components/url';
 import site from '../data/site.json';
 import SponsorStrip from '../components/SponsorStrip.astro';
 import { current as season, latestVersion } from '../lib/seasons';
@@ -26,17 +26,18 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
         <p class="serial">
           <span class="serial__k">TEAM</span><span class="serial__v">{site.teamNumber}</span>
           <span class="serial__k">SCHOOL</span><span class="serial__v">{site.school.replace(' School', '')}, {site.town}</span>
+          <img class="serial__badge" src={url('/brand/badge-256.webp')} alt="The Wilsonic Boom badge" width="88" height="88" decoding="async" />
         </p>
         <h1 class="etch" data-etch>Built to a<br>tolerance.</h1>
         <p class="lede">
-          Wilsonic Boom is a FIRST Tech Challenge team at Wilson&rsquo;s School in Wallington.
-          Each season we design, build, program and campaign a competition robot — and we run
-          the programme around it: the documentation, the outreach, and the recruitment that
-          keeps the team alive after we have left.
+          Wilsonic Boom is the junior FIRST Tech Challenge team at Wilson&rsquo;s School in
+          Wallington: 17 students aged 14 to 16. In our first season we reached the regional
+          final as a finalist alliance, won the Reach Award at Regionals and the Sustain Award
+          at Nationals.
         </p>
         <div class="actions">
           <a class="btn btn--gold" href={mail}>Sponsor the team</a>
-          <a class="btn btn--ghost" href={site.sponsorshipPack} download>
+          <a class="btn btn--ghost" href={href(site.sponsorshipPack)} download>
             <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2 L8 11" /><path d="M4.5 7.5 L8 11 L11.5 7.5" /><path d="M3 13.5 L13 13.5" /></svg>
             Sponsorship pack
           </a>
@@ -67,11 +68,12 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
           the rest of the season.
         </p>
         <p class="body">
-          In return you are not buying a logo on a t-shirt. You are attached to a team that
-          publishes what it does, competes in public, and is judged on its engineering record
-          as much as its results.
+          In return your name goes on our robot, kit and banners, in front of every team and judge
+          we compete against. Sponsorship is shared with our senior team, Wilsobotics, so it
+          supports more than fifty students.
         </p>
-        <Specs rows={sponsors.budget} />
+        <Specs rows={sponsors.funding.slice(0, 5).map((f) => ({ k: f.item, v: f.cost }))} />
+        <MoreLink href="/sponsor-the-team/">Everything it pays for, and the tiers</MoreLink>
       </div>
     </div>
   </section>

@@ -7,11 +7,7 @@ const { current } = Astro.props;
 <header class="topbar">
   <div class="topbar__in">
     <a class="mark" href={url('/')} aria-label="Wilsonic Boom, home" aria-current={current === 'home' ? 'page' : undefined}>
-      <svg class="mark__glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M2 17.5 L12 3.5 L22 17.5" />
-        <path d="M6.5 17.5 L12 9.2 L17.5 17.5" />
-        <path d="M1.5 21 L22.5 21" />
-      </svg>
+      <img class="mark__badge" src={url('/brand/badge-256.webp')} alt="" width="40" height="40" decoding="async" />
       <span class="mark__text">Wilsonic&nbsp;Boom</span>
     </a>
 

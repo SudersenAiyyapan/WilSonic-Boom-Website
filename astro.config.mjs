@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 // (.github/workflows/deploy.yml). Locally, and on hosts that serve from the
 // root, both fall back to the defaults below.
 export default defineConfig({
-  site: process.env.PAGES_SITE || 'https://example.com',
+  site: process.env.PAGES_SITE || 'https://wilsonicboom.com',
   base: process.env.PAGES_BASE || '/',
   trailingSlash: 'ignore',
   build: { format: 'directory' },

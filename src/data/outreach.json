@@ -1,61 +1,69 @@
 {
   "numbers": [
     {
-      "k": "Events attended per season",
-      "v": "[[N]]"
+      "k": "Students across both teams and Junior Robotics",
+      "v": "50+"
     },
     {
-      "k": "Teams and visitors at those events",
-      "v": "[[NNN]]"
-    },
-    {
-      "k": "Students reached through outreach",
-      "v": "[[NNN]]"
+      "k": "Teams a planned Wilson's scrimmage would host",
+      "v": "15+"
     },
     {
       "k": "Outreach sessions run",
       "v": "[[NN]]"
+    },
+    {
+      "k": "People reached through outreach",
+      "v": "[[NNN]]"
     }
   ],
   "placements": [
     {
+      "k": "Team apparel",
+      "v": "Every tier. The logo grows with the tier, from small to largest."
+    },
+    {
       "k": "On the robot",
-      "v": "[[Where and at what size]]"
+      "v": "Silver and above."
     },
     {
-      "k": "Pit banner and team kit",
-      "v": "[[Where and at what size]]"
+      "k": "Competition banner",
+      "v": "Gold and above."
     },
     {
-      "k": "Engineering portfolio",
-      "v": "[[Submitted to judges at every event]]"
+      "k": "Team equipment",
+      "v": "Gold and above."
     },
     {
-      "k": "This site and our socials",
-      "v": "[[Logo, link and an announcement post]]"
+      "k": "Social media",
+      "v": "A mention post from Silver, a spotlight post from Gold, a dedicated video from Platinum."
+    },
+    {
+      "k": "This website",
+      "v": "A logo and a backlink, for every sponsor."
     }
   ],
   "activities": [
+    {
+      "date": "Planned",
+      "title": "Wilson's scrimmage",
+      "where": "Wilson's School",
+      "who": "Up to 15 visiting teams",
+      "body": "If we raise enough, we will host our own scrimmage: a practice competition for other FTC teams."
+    },
+    {
+      "date": "Planned",
+      "title": "Junior Robotics",
+      "where": "Wilson's School",
+      "who": "The school's Junior Robotics club",
+      "body": "FTC equipment and mentoring for younger students, so the programme keeps growing."
+    },
     {
       "date": "[[DATE]]",
       "title": "[[ACTIVITY]]",
       "where": "[[WHERE]]",
       "who": "[[Who it reached, and how many]]",
       "body": "[[Two sentences: what you did and what came of it.]]"
-    },
-    {
-      "date": "[[DATE]]",
-      "title": "[[ACTIVITY]]",
-      "where": "[[WHERE]]",
-      "who": "[[Who it reached, and how many]]",
-      "body": "[[Two sentences.]]"
-    },
-    {
-      "date": "[[DATE]]",
-      "title": "[[ACTIVITY]]",
-      "where": "[[WHERE]]",
-      "who": "[[Who it reached, and how many]]",
-      "body": "[[Two sentences.]]"
     }
   ]
 }

@@ -182,6 +182,12 @@ collections:
             fields:
               - { name: label, label: Name, widget: string }
               - { name: url, label: Link, widget: string }
+          - name: sisterTeam
+            label: Sister team
+            widget: object
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: url, label: Website, widget: string }
 
       - name: sponsors
         label: Sponsors & tiers
@@ -208,22 +214,41 @@ collections:
             label: Tiers
             widget: list
             summary: "{{fields.name}} — {{fields.from}}"
+            hint: "In order, cheapest first. The short key links each tier to its column in the benefits table."
             fields:
+              - { name: key, label: Short key, widget: string, hint: "One lowercase word, e.g. gold. Must match a column in Benefits." }
               - { name: name, label: Tier name, widget: string }
-              - { name: from, label: From, widget: string, hint: "e.g. £500" }
-              - { name: lead, label: Highlight this tier, widget: boolean, default: false, required: false }
-              - { name: gets, label: What the sponsor receives, widget: list, field: { name: item, label: Item, widget: string },
-                  hint: "Only list what you will actually deliver." }
-          - { name: inKind, label: In-kind support, widget: string }
-          - name: budget
-            label: Season budget
+              - { name: from, label: Amount, widget: string, hint: "e.g. £800 or £2,500+" }
+              - { name: lead, label: Highlight as the top tier, widget: boolean, default: false, required: false }
+          - name: benefits
+            label: Benefits table
+            widget: list
+            summary: "{{fields.label}}"
+            hint: "One row per benefit. In each tier's box write yes (drawn as a tick), a word such as Large, or leave it empty if that tier does not get it."
+            fields:
+              - { name: label, label: Benefit, widget: string }
+              - { name: bronze, label: Bronze, widget: string, required: false }
+              - { name: silver, label: Silver, widget: string, required: false }
+              - { name: gold, label: Gold, widget: string, required: false }
+              - { name: platinum, label: Platinum, widget: string, required: false }
+              - { name: diamond, label: Diamond, widget: string, required: false }
+          - { name: inKind, label: Money or store credit, widget: string }
+          - name: funding
+            label: What sponsorship pays for
+            widget: list
+            summary: "{{fields.item}} — {{fields.cost}}"
+            fields:
+              - { name: group, label: Group, widget: select, options: [Robot, Outreach] }
+              - { name: item, label: Item, widget: string }
+              - { name: cost, label: Cost, widget: string, hint: "e.g. £300 or £41 each" }
+              - { name: what, label: What it is for, widget: string }
+          - name: impact
+            label: What a sponsorship reaches
             widget: list
             summary: "{{fields.k}}: {{fields.v}}"
             fields:
               - { name: k, label: Label, widget: string }
               - { name: v, label: Value, widget: string }
-          - { name: responseTime, label: We reply within, widget: string, hint: "e.g. 3 working days" }
-          - { name: meeting, label: What we offer after the first email, widget: string }
           - { name: invoicing, label: Invoicing runs through, widget: string }
 
       - name: team
@@ -249,6 +274,20 @@ collections:
               - { name: subteam, label: Sub-team key, widget: string, hint: "Must match a sub-team's short key." }
               - { name: lead, label: Lead, widget: boolean, default: false, required: false }
               - { name: photo, label: "Portrait (square)", widget: image, required: false }
+          - name: facts
+            label: Team facts (data plate)
+            widget: list
+            summary: "{{fields.k}}: {{fields.v}}"
+            fields:
+              - { name: k, label: Label, widget: string }
+              - { name: v, label: Value, widget: string }
+          - name: sister
+            label: Sister team
+            widget: object
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: url, label: Website, widget: string }
+              - { name: about, label: About, widget: text }
           - name: mentors
             label: Mentors
             widget: list

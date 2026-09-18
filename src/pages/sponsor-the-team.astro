@@ -1,61 +1,110 @@
 ---
-// /sponsor-the-team — the pitch to a NEW sponsor: why, tiers, how it works.
-// (Current sponsors have their own page, /sponsors.)
+// /sponsor-the-team — the pitch to a NEW sponsor: why, what it pays for, the
+// tiers, how it works. (Current sponsors have their own page, /sponsors.)
+// Every figure here comes from the team's sponsorship package.
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import Specs from '../components/Specs.astro';
+import DataPlate from '../components/DataPlate.astro';
+import TierTable from '../components/TierTable.astro';
 import Close from '../components/Close.astro';
 import MoreLink from '../components/MoreLink.astro';
 import sponsors from '../data/sponsors.json';
 import site from '../data/site.json';
+import team from '../data/team.json';
+import { href } from '../components/url';
+
 const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20FTC%2033001`;
+const groups = [...new Set(sponsors.funding.map((f) => f.group))];
+type Benefit = Record<string, string> & { label: string };
+// what each tier includes, read straight off the benefits table
+const gets = (key: string) =>
+  (sponsors.benefits as Benefit[])
+    .filter((b) => (b[key] ?? '').trim())
+    .map((b) => (b[key].toLowerCase() === 'yes' ? b.label : `${b.label}: ${b[key].toLowerCase()}`));
 ---
-<Base title="Sponsor the team" current="sponsor" description="Sponsor Wilsonic Boom, FTC team 33001: what your support does, the tiers, and what happens after you get in touch.">
+<Base title="Sponsor the team" current="sponsor" description="Sponsor Wilsonic Boom, FTC team 33001: what your support pays for, the five tiers, and what happens after you get in touch.">
 
   <PageHead lines={['Sponsor', 'the team.']}>
     <p class="lede">
-      Money, parts, machining or services — all of it goes into a robot that competes in public
-      and a programme that is judged on how it is run.
+      FIRST Tech Challenge runs on robot parts, electronics, a practice field, entry fees and
+      travel. Sponsorship pays for them, as money or as store credit.
     </p>
     <div class="actions actions--head">
       <a class="btn btn--gold" href={mail}>Email the team</a>
-      <a class="btn btn--ghost" href={site.sponsorshipPack} download>
+      <a class="btn btn--ghost" href={href(site.sponsorshipPack)} download>
         <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2 L8 11" /><path d="M4.5 7.5 L8 11 L11.5 7.5" /><path d="M3 13.5 L13 13.5" /></svg>
-        Sponsorship pack
+        Sponsorship package (PDF)
       </a>
     </div>
   </PageHead>
 
-  <!-- ═══ THE CASE ═══ -->
-  <section class="band band--tight" id="why">
+  <!-- ═══ TWO TEAMS, ONE PROGRAMME ═══ -->
+  <section class="band band--tight" id="both-teams">
     <div class="wrap wrap--split">
-      <div class="split__l"><h2 class="h2 etch" data-etch>What your money<br>actually does.</h2></div>
+      <div class="split__l"><h2 class="h2 etch" data-etch>Two teams,<br>one sponsorship.</h2></div>
       <div class="split__r">
         <p class="body">
-          An FTC season runs on parts that wear out and parts that did not exist until we made
-          them. Sponsorship is the difference between rebuilding a subsystem that failed and
-          living with it for the rest of the season.
+          Wilson&rsquo;s School runs two FTC teams, and a sponsorship supports both. Wilsonic Boom
+          is the junior team: {team.facts.find((f) => f.k === 'Students')?.v} students aged
+          {' '}{team.facts.find((f) => f.k === 'Ages')?.v}, in our second season. Our senior team,
+          {' '}<a class="inline" href={team.sister.url}>{team.sister.name}</a>, has 13 students aged
+          16 to 18 and finished 5th at the European Premiers.
         </p>
-        <Specs rows={sponsors.budget} />
-        <MoreLink href="/sponsors/">Who already supports us</MoreLink>
+        <p class="body">
+          Your support reaches more than fifty students across both teams and the school&rsquo;s
+          Junior Robotics club, and hundreds more through our outreach.
+        </p>
+        <DataPlate title="What a sponsorship reaches" serial="33001" rows={sponsors.impact} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT IT PAYS FOR — real parts, real prices ═══ -->
+  <section class="band band--alt" id="costs">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>What your money<br>actually buys.</h2>
+      <p class="body body--wide">
+        These are the things a season costs. A sponsor at any tier can see exactly what their
+        support could become.
+      </p>
+      <div class="costs">
+        {groups.map((g) => (
+          <div class="costs__group">
+            <h3 class="h4 costs__h">{g}</h3>
+            <ul class="costs__list">
+              {sponsors.funding.filter((f) => f.group === g).map((f) => (
+                <li class="cost">
+                  <span class="cost__item">{f.item}</span>
+                  <span class="cost__what">{f.what}</span>
+                  <span class="cost__price num">{f.cost}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- ═══ TIERS ═══ -->
-  <section class="band band--alt" id="tiers">
+  <section class="band" id="tiers">
     <div class="wrap">
-      <h2 class="h2 etch" data-etch>Tiers</h2>
-      <div class="tiers">
+      <h2 class="h2 etch" data-etch>Five tiers</h2>
+      <p class="body body--wide">{sponsors.inKind} Every sponsor gets update emails and a backlink from this site; each tier up adds more.</p>
+
+      <div class="tiers tiers--5">
         {sponsors.tiers.map((t) => (
           <div class:list={['tier', { 'tier--lead': t.lead }]} data-cut>
-            <p class="tier__name">{t.name}</p>
+            <p class="tier__name">{t.name}{t.lead && <span class="tier__tag"> · title partner</span>}</p>
             <p class="tier__amt num">{t.from}</p>
-            <ul class="tier__list">{t.gets.map((g) => <li>{g}</li>)}</ul>
+            <ul class="tier__list">{gets(t.key).map((g) => <li>{g}</li>)}</ul>
           </div>
         ))}
       </div>
-      <p class="body body--wide tiers__kind">{sponsors.inKind}</p>
+
+      <h3 class="h4 tt__h">Side by side</h3>
+      <TierTable />
+      <div class="tt__more"><MoreLink href="/sponsors/">Who already supports us</MoreLink></div>
     </div>
   </section>
 
@@ -67,17 +116,17 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
         <li class="step" data-cut>
           <span class="step__n num">01</span>
           <h3 class="h3">You email us</h3>
-          <p class="body">One line is enough. Tell us what you make or what you would like to fund, and we reply within {sponsors.responseTime}.</p>
+          <p class="body">Write to <a class="inline" href={`mailto:${site.email}`}>{site.email}</a> with the tier you are thinking of, or just a question. We will get back to you.</p>
         </li>
         <li class="step" data-cut>
           <span class="step__n num">02</span>
-          <h3 class="h3">We send the pack and talk</h3>
-          <p class="body">You get the full sponsorship pack and, if you want it, {sponsors.meeting}. We will tell you exactly where your support would go.</p>
+          <h3 class="h3">We answer and send detail</h3>
+          <p class="body">You get the full sponsorship package and anything else you want to know about the teams, the robot or where your support would go.</p>
         </li>
         <li class="step" data-cut>
           <span class="step__n num">03</span>
           <h3 class="h3">We agree it in writing</h3>
-          <p class="body">Placement, amount and what we owe you, confirmed by email before anything is printed. Invoicing and payment run through {sponsors.invoicing}.</p>
+          <p class="body">Tier, amount and what we owe you, confirmed by email before anything is printed. Invoicing and payment run through {sponsors.invoicing}.</p>
         </li>
       </ol>
     </div>

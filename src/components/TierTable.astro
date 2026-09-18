@@ -1,0 +1,46 @@
+---
+// The five tiers side by side, benefit by benefit — the table from the
+// sponsorship package. A tick is drawn, never typed: the craft floor bans
+// unicode glyphs standing in for icons.
+import sponsors from '../data/sponsors.json';
+type Benefit = Record<string, string> & { label: string };
+const tiers = sponsors.tiers;
+const benefits = sponsors.benefits as Benefit[];
+---
+<div class="tt-wrap">
+  <table class="tt">
+    <caption class="vh">Sponsorship tiers and what each includes</caption>
+    <thead>
+      <tr>
+        <th scope="col"><span class="vh">Benefit</span></th>
+        {tiers.map((t) => (
+          <th scope="col" class:list={{ 'is-lead': t.lead }}>
+            <span class="tt__name">{t.name}</span>
+            <span class="tt__amt num">{t.from}</span>
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {benefits.map((b) => (
+        <tr>
+          <th scope="row">{b.label}</th>
+          {tiers.map((t) => {
+            const v = (b[t.key] ?? '').trim();
+            return (
+              <td class:list={{ 'is-lead': t.lead }}>
+                {v.toLowerCase() === 'yes' ? (
+                  <svg class="tt__tick" viewBox="0 0 16 16" role="img" aria-label="Included"><path d="M3 8.5 L6.5 12 L13 4.5" /></svg>
+                ) : v ? (
+                  <span class="tt__val">{v}</span>
+                ) : (
+                  <span class="tt__no" aria-label="Not included"></span>
+                )}
+              </td>
+            );
+          })}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

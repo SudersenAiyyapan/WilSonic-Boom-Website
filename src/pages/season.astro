@@ -69,8 +69,26 @@ const cell = (s: (typeof seasons)[number], k: string) => s.record.find((r) => r.
     </div>
   </section>
 
+  <section class="band band--alt" id="ftc">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>How FTC<br>competition works.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          FIRST Tech Challenge runs in more than 80 countries, with over 6,400 teams and 100,000
+          students. Teams are judged on their robot, their outreach, their connection with the
+          STEM community, and their plans to keep the team going.
+        </p>
+        <ol class="ladder">
+          <li class="ladder__i"><span class="ladder__k">Regionals</span><span class="ladder__v">15 to 20 local teams compete to qualify.</span></li>
+          <li class="ladder__i"><span class="ladder__k">Nationals</span><span class="ladder__v">The best from each region, usually 50 or more teams.</span></li>
+          <li class="ladder__i"><span class="ladder__k">Premier events</span><span class="ladder__v">Top national teams from across the continent, representing their country.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
   {seasons.length > 1 && (
-    <section class="band band--alt" id="compare">
+    <section class="band" id="compare">
       <div class="wrap">
         <h2 class="h2 etch" data-etch>Season by season</h2>
         <div class="compare-wrap">

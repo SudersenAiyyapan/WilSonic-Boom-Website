@@ -102,27 +102,34 @@ Confirmed and binding:
 
 ## Evidence on Hand
 
-**None confirmed. This is the single most important constraint in this file.**
+**Source: the team's *Detailed Sponsorship Package* (joint Wilsobotics & Wilsonic Boom PDF),
+supplied by the user.** Shipped at `public/documents/sponsorship-package.pdf`.
 
-Nothing in this project currently evidences any of the following, and none of it may be
-invented, estimated, or written as plausible filler:
+The package covers **two** teams. Only Wilsonic Boom's own facts may appear as Wilsonic
+Boom's record; Wilsobotics' results may appear only attributed to Wilsobotics.
 
-- competition results, rankings, or match records
-- awards or judged recognition
-- robot specifications, subsystem names, or performance numbers
-- roster, member names, roles, or team size
-- sponsor names, logos, or the existence of any current sponsor
-- budget figures, costs, or funding targets
-- outreach numbers, hours, events, or people reached
-- quotes, endorsements, or testimonials from anyone
-- founding date, seasons competed, or history
+Confirmed for **Wilsonic Boom**:
+- The junior team at Wilson's School: 17 students aged 14–16. Set up in 2025–26 to widen the
+  school's participation in FTC. Now entering its second season.
+- 2025–26 "DECODE": Regionals — Reach Award, finalist alliance. Nationals — Sustain Award.
+- Contact: admin@wilsonicboom.com · Instagram wilsonicboom.ftc · LinkedIn "Wilson's Robotics"
+  (linkedin.com/company/wilsonsschool-robotics) · wilsonicboom.com.
 
-All of the above ship as visibly marked placeholder tokens for the user to fill in. A
-placeholder that reads as real content is a failure; a placeholder that breaks the layout
-when replaced is also a failure.
+Confirmed for the **joint programme** (shared sponsorship):
+- Sister team Wilsobotics: senior team, 13 students aged 16–18, third season; 5th at the
+  European Premiers.
+- Sponsorship reaches 50+ students across both teams and Junior Robotics, and hundreds more
+  through outreach. A Wilson's scrimmage for 15+ teams is *planned*, subject to funding.
+- Five tiers — Bronze £250, Silver £500, Gold £800, Platinum £1,000, Diamond £2,500+ — and a
+  benefits table (in `src/data/sponsors.json`). Money or store credit.
+  *The package's page 2 lists Diamond and Platinum the other way round; the table on page 6 is
+  authoritative. Fix page 2 in the PDF.*
+- Funding areas with prices (field £2,000, Control Hub £300, … international competition £5,000).
+- FTC context: 80+ countries, 6,400+ teams, 100k+ students; regionals → nationals → premiers.
 
-Media: no photography or video exists in this project. All media slots are reserved boxes
-with declared aspect ratios, listed per version as a shot list for the user.
+**Still unknown — must not be invented:** event dates, venues and final rankings; robot
+versions, subsystems and specs; the roster and sub-teams; current sponsors; outreach
+activities already run and their numbers; how invoicing works. These remain `[[placeholders]]`.
 
 ## Product Principles
 

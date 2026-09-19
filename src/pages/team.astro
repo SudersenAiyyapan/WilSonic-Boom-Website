@@ -16,7 +16,9 @@ const teamsOf = (p: { subteams?: string[]; subteam?: string }) =>
   (p.subteams ?? (p.subteam ? [p.subteam] : [])).map(norm);
 const bySub = team.subteams.map((st) => {
   const members = team.people.filter((p) => teamsOf(p).includes(norm(st.key)));
-  return { ...st, people: members.filter((p) => !p.lead), count: members.length };
+  // leads appear here too, first, as well as in Leads above
+  const people = [...members.filter((p) => p.lead), ...members.filter((p) => !p.lead)];
+  return { ...st, people, count: members.length };
 });
 ---
 <Base title="Team" current="team" description="Who runs Wilsonic Boom: the sub-teams, the people in them, and how the team hands over from one year to the next.">

@@ -1,0 +1,59 @@
+{
+  "subteams": [
+    {
+      "key": "leadership",
+      "name": "Leadership",
+      "job": "Leading the team"
+    },
+    {
+      "key": "cad",
+      "name": "CAD Team",
+      "job": "Making the 3D CAD models of our design."
+    },
+    {
+      "key": "programming",
+      "name": "Programming Team",
+      "job": "Writing and testing the software behind the robot."
+    },
+    {
+      "key": "non-technical",
+      "name": "Outreach, Finance and Admin Team",
+      "job": "Ensuring that we do non-technical stuff."
+    }
+  ],
+  "people": [
+    {
+      "name": "Sudersen",
+      "role": "Co-Team Lead and CAD Lead",
+      "subteam": "CAD",
+      "lead": true,
+      "photo": ""
+    },
+    {
+      "name": "Razi",
+      "role": "Co-Team Lead and Programming Lead",
+      "subteam": "programming",
+      "lead": true,
+      "photo": ""
+    },
+    {
+      "name": "Thajan",
+      "role": "Programmer",
+      "subteam": "programming",
+      "lead": false,
+      "photo": ""
+    }
+  ],
+  "facts": [
+    {
+      "k": "Team Members",
+      "v": "15"
+    }
+  ],
+  "sister": {
+    "name": "Wilsobotics",
+    "url": "https://wilsobotics.com/",
+    "about": "The senior school team"
+  },
+  "mentors": []
+}

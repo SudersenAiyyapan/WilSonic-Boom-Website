@@ -395,34 +395,6 @@
     update();
   })();
 
-  /* ── 6b. Robot podium depth ───────────────────────────────────────────────
-     The home robot sits on layers that shift a few pixels against each other
-     with the pointer (fine pointers only) and with scroll. Values are eased
-     by the CSS transition, so this only writes three numbers, once a frame. */
-  (function stage() {
-    var el = document.querySelector('[data-podium]');
-    if (!el || reduced) return;
-    var queued = false, px = 0, py = 0;
-    function write() {
-      queued = false;
-      el.style.setProperty('--px', px.toFixed(3));
-      el.style.setProperty('--py', py.toFixed(3));
-      el.style.setProperty('--sy', String(Math.min(window.scrollY, 900)));
-    }
-    function ask() { if (!queued) { queued = true; requestAnimationFrame(write); } }
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      var hero = el.closest('.hero') || el;
-      hero.addEventListener('pointermove', function (e) {
-        var r = el.getBoundingClientRect();
-        px = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2));
-        py = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - 0.5) * 2));
-        ask();
-      });
-      hero.addEventListener('pointerleave', function () { px = 0; py = 0; ask(); });
-    }
-    window.addEventListener('scroll', ask, { passive: true });
-  })();
-
   /* ── 7. Phone menu ───────────────────────────────────────────────────────
      The current page is marked in the markup (aria-current), so nothing here
      guesses where you are. This only opens and closes the menu, and closes it

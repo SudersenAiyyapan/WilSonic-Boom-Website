@@ -45,20 +45,17 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
         </div>
       </div>
       <!-- The robot on a layered stage: a machined back plate with a grid and
-           the team number, a turntable, then the cut-out robot, which stands
-           a little proud of the plate. Pointer and scroll shift the layers by
-           a few pixels each; with no script or reduced motion it is still. -->
+           the team number, a turntable, then the cut-out robot standing on it.
+           Still by design; the two hero boxes share one height. -->
       <div class="podium" data-podium>
         <div class="podium__plate" data-cut aria-hidden="true">
-          <div class="podium__layer" style="--d: -0.5">
-            <div class="podium__grid"></div>
-          </div>
+          <div class="podium__grid"></div>
           <span class="podium__num">{site.teamNumber}</span>
         </div>
         <!-- The turntable is drawn in the photo's own perspective: the camera
              looks down about 18°, so the floor ellipse is ~0.3 as deep as wide.
              The contact shade under the wheels is what makes it stand, not float. -->
-        <svg class="podium__table podium__layer" style="--d: 1" viewBox="0 0 600 200" aria-hidden="true" focusable="false">
+        <svg class="podium__table" viewBox="0 0 600 200" aria-hidden="true" focusable="false">
           <defs>
             <radialGradient id="podium-contact" cx="50%" cy="50%" r="50%">
               <stop offset="0" stop-color="#000" stop-opacity=".62" />
@@ -77,7 +74,7 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
           })}
           <ellipse cx="300" cy="112" rx="215" ry="52" fill="url(#podium-contact)" />
         </svg>
-        <figure class="podium__robot podium__layer" style="--d: 1">
+        <figure class="podium__robot">
           {site.homePhoto
             ? <img src={href(site.homePhoto)} alt="The Wilsonic Boom competition robot" decoding="async" fetchpriority="high" />
             : <div class="podium__empty"><p class="slot__name">Robot, cut-out</p><p class="slot__spec">Transparent PNG · three-quarter view · 2400 px wide</p></div>}

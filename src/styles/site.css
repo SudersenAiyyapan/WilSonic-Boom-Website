@@ -246,7 +246,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 .hero__grid {
   max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut);
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(20px, 2.4vw, 34px);
   align-items: stretch;
 }
@@ -262,26 +262,17 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 /* ── the robot stage: four layers, back to front ─────────────────────────
    plate (grid + team number) → turntable → robot cut-out → season tag.
    The box is fixed at 4:3, so any cut-out drops in with zero layout change.
-   --px / --py (pointer, −1…1) and --sy (scroll, px) are set by motion.js;
-   each layer moves by its own data-depth. No shadows: the turntable grounds it. */
+   Nothing on it moves: the robot simply stands on its pedestal. */
 .podium {
-  --px: 0; --py: 0; --sy: 0;
   position: relative; align-self: stretch;
   min-height: clamp(360px, 40vw, 600px);
 }
-.podium__layer {
-  transform: translate3d(
-    calc(var(--px) * var(--d, 0) * 9px),
-    calc(var(--py) * var(--d, 0) * 6px + var(--sy) * var(--d, 0) * -0.05px),
-    0);
-  transition: transform .9s var(--settle);
-}
 .podium__plate {
   --ch: 22px;
-  position: absolute; inset: 12% 0 0 0;
+  position: absolute; inset: 0;
   overflow: hidden;
 }
-.podium__plate > .podium__layer { position: absolute; inset: -12px; }
+.podium__plate > .podium__grid { position: absolute; inset: 0; }
 .podium__grid {
   position: absolute; inset: 0;
   background-image:
@@ -294,7 +285,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 }
 .podium__num {
   /* set like the site's headings: wide Archivo, engraved into the plate */
-  position: absolute; left: 50%; top: 22%; z-index: 1;
+  position: absolute; left: 50%; top: 19%; z-index: 1;
   transform: translate(-50%, -50%);
   font-weight: 700; font-stretch: 118%; letter-spacing: -0.032em;
   font-size: clamp(3.4rem, 7.6vw, 6.8rem); line-height: 0.94;
@@ -316,7 +307,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 
 /* the robot stands on the turntable and rises above the plate's top edge */
 .podium__robot {
-  position: absolute; inset: 0 12% 9% 12%;
+  position: absolute; inset: 30% 12% 9% 12%;
   margin: 0;
   display: grid; place-items: end center;
 }
@@ -331,7 +322,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
   padding: 16px;
 }
 .podium__tag {
-  position: absolute; left: 22px; top: calc(12% + 20px);
+  position: absolute; left: 22px; top: 22px;
   display: flex; gap: 12px;
   font-family: "Chivo Mono", monospace; font-size: 0.68rem;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -341,16 +332,6 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 }
 .podium__tag span:first-child { color: var(--gold); }
 
-/* entry: the robot rises onto the table once, one axis, hard stop */
-.motion-ready .podium__robot > * { animation: podium-rise 1.3s var(--settle) .35s both; }
-@keyframes podium-rise {
-  from { transform: translateY(6%); clip-path: inset(100% 0 0 0); }
-  to   { transform: none;           clip-path: inset(0 0 0 0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .podium__layer { transform: none !important; transition: none; }
-  .motion-ready .podium__robot > * { animation: none; }
-}
 
 .serial {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px;
@@ -1438,11 +1419,11 @@ a.inline:hover { border-bottom-color: var(--gold-hi); }
 }
 .sstrip__join:hover { border-bottom-color: var(--gold-hi); }
 
-.sstrip--compact .sstrip__i { width: 80px; }
-.sstrip--compact .sstrip__i--diamond { width: 136px; }
-.sstrip--compact .sstrip__i--platinum { width: 120px; }
-.sstrip--compact .sstrip__i--gold { width: 104px; }
-.sstrip--compact .sstrip__i--silver { width: 92px; }
+.sstrip--compact .sstrip__i { width: 130px; }
+.sstrip--compact .sstrip__i--diamond { width: 230px; }
+.sstrip--compact .sstrip__i--platinum { width: 200px; }
+.sstrip--compact .sstrip__i--gold { width: 175px; }
+.sstrip--compact .sstrip__i--silver { width: 150px; }
 .foot__sponsors {
   padding-bottom: 28px; margin-bottom: 28px;
   border-bottom: 1px solid var(--seam-soft);

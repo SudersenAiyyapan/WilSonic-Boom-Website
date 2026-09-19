@@ -1,4 +1,5 @@
 {
+  "homePhoto": "/images/Untitled design (1).png",
   "name": "Wilsonic Boom",
   "teamNumber": "33001",
   "school": "Wilson's School",
@@ -19,6 +20,5 @@
   "sisterTeam": {
     "name": "Wilsobotics",
     "url": "https://wilsobotics.com"
-  },
-  "homePhoto": null
+  }
 }

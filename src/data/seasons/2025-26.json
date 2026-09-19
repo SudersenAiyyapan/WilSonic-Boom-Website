@@ -41,16 +41,16 @@
     {
       "date": "[[DATE]]",
       "name": "Regional Championship",
-      "venue": "[[VENUE]]",
-      "result": "Finalist alliance",
-      "note": "Won the Reach Award."
+      "venue": "Langley Park School for Boys",
+      "result": "4th of 15",
+      "note": "Reach Award Winners and Finalist Alliance Member"
     },
     {
       "date": "[[DATE]]",
       "name": "National Championship",
-      "venue": "[[VENUE]]",
-      "result": "[[FINAL RANKING]]",
-      "note": "Won the Sustain Award."
+      "venue": "Copper Box Arena, Queen Elizabeth Olympic Park",
+      "result": "27th of 50",
+      "note": "Sustain Award Winners"
     }
   ],
   "robot": {
@@ -93,11 +93,11 @@
             "n": "1",
             "name": "[[SUBSYSTEM 1]]",
             "shot": "Drivetrain, close",
+            "photo": null,
             "marker": {
               "x": "26%",
               "y": "68%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -115,11 +115,11 @@
             "n": "2",
             "name": "[[SUBSYSTEM 2]]",
             "shot": "Intake, close",
+            "photo": null,
             "marker": {
               "x": "48%",
               "y": "40%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -137,11 +137,11 @@
             "n": "3",
             "name": "[[SUBSYSTEM 3]]",
             "shot": "Scoring mechanism, close",
+            "photo": null,
             "marker": {
               "x": "70%",
               "y": "30%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -159,11 +159,11 @@
             "n": "4",
             "name": "[[SUBSYSTEM 4]]",
             "shot": "Control & software",
+            "photo": null,
             "marker": {
               "x": "60%",
               "y": "76%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -240,11 +240,11 @@
             "n": "1",
             "name": "[[SUBSYSTEM 1]]",
             "shot": "Drivetrain, close",
+            "photo": null,
             "marker": {
               "x": "26%",
               "y": "68%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -262,11 +262,11 @@
             "n": "2",
             "name": "[[SUBSYSTEM 2]]",
             "shot": "Intake, close",
+            "photo": null,
             "marker": {
               "x": "48%",
               "y": "40%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -284,11 +284,11 @@
             "n": "3",
             "name": "[[SUBSYSTEM 3]]",
             "shot": "Scoring mechanism, close",
+            "photo": null,
             "marker": {
               "x": "70%",
               "y": "30%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [
@@ -306,11 +306,11 @@
             "n": "4",
             "name": "[[SUBSYSTEM 4]]",
             "shot": "Control & software",
+            "photo": null,
             "marker": {
               "x": "60%",
               "y": "76%"
             },
-            "photo": null,
             "body": "[[What it does, and the one decision you would defend in a judging session.]]",
             "detail": "[[Two or three sentences: how it works, what you tried first, why this version won.]]",
             "specs": [

@@ -1,106 +1,71 @@
 {
   "subteams": [
     {
-      "key": "design",
-      "name": "[[SUB-TEAM NAME]]",
-      "job": "[[What this sub-team is responsible for, one sentence.]]"
+      "key": "cad",
+      "name": "CAD Team",
+      "job": "Creating the 3D CAD models of our proposed design on Onshape"
     },
     {
       "key": "programming",
-      "name": "[[SUB-TEAM NAME]]",
-      "job": "[[What this sub-team is responsible for, one sentence.]]"
+      "name": "Programming",
+      "job": "Writing and testing the software controlling the robot"
     },
     {
       "key": "outreach",
-      "name": "[[SUB-TEAM NAME]]",
-      "job": "[[What this sub-team is responsible for, one sentence.]]"
+      "name": "Non-Technical",
+      "job": "Outreach and finance"
     }
   ],
   "people": [
     {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "design",
+      "name": "Sudersen",
+      "role": "Co-Team Lead and CAD Lead",
+      "subteams": [
+        "design",
+        "outreach"
+      ],
       "lead": true,
-      "photo": null
+      "photo": null,
+      "subteam": "outreach"
     },
     {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "programming",
+      "name": "Razi",
+      "role": "Co-Team Lead and Programming Lead",
+      "subteams": [
+        "programming",
+        "outreach"
+      ],
       "lead": true,
-      "photo": null
+      "photo": ""
     },
     {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "outreach",
-      "lead": true,
-      "photo": null
-    },
-    {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "design",
+      "name": "Thajan",
+      "role": "Programmer",
+      "subteams": [
+        "programming"
+      ],
       "lead": false,
-      "photo": null
-    },
-    {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "design",
-      "lead": false,
-      "photo": null
-    },
-    {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "programming",
-      "lead": false,
-      "photo": null
-    },
-    {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "programming",
-      "lead": false,
-      "photo": null
-    },
-    {
-      "name": "[[NAME]]",
-      "role": "[[ROLE]]",
-      "subteam": "outreach",
-      "lead": false,
-      "photo": null
-    }
-  ],
-  "mentors": [
-    {
-      "name": "[[NAME]]",
-      "role": "[[Teacher / mentor role]]"
+      "photo": ""
     }
   ],
   "facts": [
     {
       "k": "Students",
-      "v": "17"
+      "v": "15"
     },
     {
       "k": "Ages",
-      "v": "14–16"
+      "v": "14–17"
     },
     {
       "k": "First season",
-      "v": "2025–26"
-    },
-    {
-      "k": "Role",
-      "v": "Junior team"
+      "v": "2025–26 DECODE"
     }
   ],
   "sister": {
     "name": "Wilsobotics",
     "url": "https://wilsobotics.com",
-    "about": "The senior team: 13 students aged 16 to 18, competing in their third FTC season. Wilsobotics finished 5th at the European Premiers."
-  }
+    "about": "The senior team: 15 students aged 16 to 18, competing in their third FTC season."
+  },
+  "mentors": []
 }

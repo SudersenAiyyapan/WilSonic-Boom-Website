@@ -304,6 +304,11 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
   object-fit: cover;
 }
 .slot--logo { aspect-ratio: 16 / 7; }
+/* logos are never cropped: fit the whole mark inside the box */
+.slot--logo img { object-fit: contain; padding: 6%; }
+/* a real logo sits on a light plate: most arrive dark-on-white, and a white
+   rectangle floating in a graphite box looks like a mistake */
+.slot--logo:has(> img) { background: #f3f1ec; }
 .slot__empty {
   text-align: center;
   padding: 18px;

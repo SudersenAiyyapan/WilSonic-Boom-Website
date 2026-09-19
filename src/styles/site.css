@@ -305,7 +305,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 }
 .slot--logo { aspect-ratio: 1200 / 500; } /* every sponsor logo is 1200 × 500 */
 /* logos are never cropped: fit the whole mark inside the box */
-.slot--logo img { object-fit: contain; padding: 5%; }
+.slot--logo img { object-fit: contain; padding: 1%; }
 /* a real logo sits on a light plate: most arrive dark-on-white, and a white
    rectangle floating in a graphite box looks like a mistake */
 .slot--logo:has(> img) { background: #f3f1ec; }
@@ -1325,11 +1325,11 @@ a.inline:hover { border-bottom-color: var(--gold-hi); }
   display: flex; flex-wrap: wrap; align-items: center;
   gap: clamp(10px, 1.4vw, 18px);
 }
-.sstrip__i { width: 112px; }
-.sstrip__i--diamond { width: 200px; }
-.sstrip__i--platinum { width: 172px; }
-.sstrip__i--gold { width: 148px; }
-.sstrip__i--silver { width: 128px; }
+.sstrip__i { width: 180px; }
+.sstrip__i--diamond { width: 320px; }
+.sstrip__i--platinum { width: 280px; }
+.sstrip__i--gold { width: 240px; }
+.sstrip__i--silver { width: 208px; }
 .sstrip__a {
   display: block;
   border: 1px solid var(--seam-soft);

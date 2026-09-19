@@ -6,12 +6,8 @@ import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import Slot from '../components/Slot.astro';
 import Close from '../components/Close.astro';
-import sponsors from '../data/sponsors.json';
+import { byTier, isHeadline } from '../lib/sponsors';
 import { url } from '../components/url';
-
-const list = [...sponsors.sponsors].sort((a, b) => Number(a.level ?? 2) - Number(b.level ?? 2));
-const top = list.filter((s) => Number(s.level ?? 2) === 1);
-const rest = list.filter((s) => Number(s.level ?? 2) !== 1);
 ---
 <Base title="Sponsors" current="sponsors" description="The companies that support Wilsonic Boom, FTC team 33001 — who they are, what they gave, and what it went into.">
 
@@ -22,51 +18,39 @@ const rest = list.filter((s) => Number(s.level ?? 2) !== 1);
     </p>
   </PageHead>
 
-  {top.length > 0 && (
-    <section class="band band--tight" id="principal">
-      <div class="wrap">
-        <h2 class="h2 etch" data-etch>Principal sponsors</h2>
-        <ul class="sponsor-list">
-          {top.map((s) => (
-            <li class="sp sp--top" data-cut>
-              <div class="sp__logo"><Slot logo small spec="Logo · SVG or transparent PNG" src={s.logo} alt={s.name} /></div>
-              <div class="sp__b">
-                <h3 class="sp__name"><a class="inline" href={s.url}>{s.name}</a></h3>
-                {s.since && <p class="sp__since num">Sponsor since {s.since}</p>}
-                <p class="body">{s.about}</p>
-                <dl class="specs specs--tight">
-                  <div class="specs__row"><dt>Gave</dt><dd>{s.gave}</dd></div>
-                  {s.wentInto && <div class="specs__row"><dt>Went into</dt><dd>{s.wentInto}</dd></div>}
-                </dl>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
-
-  {rest.length > 0 && (
-    <section class:list={['band', { 'band--alt': top.length > 0, 'band--tight': top.length === 0 }]} id="supporters">
-      <div class="wrap">
-        <h2 class="h2 etch" data-etch>{top.length > 0 ? 'Supporters' : 'Supported by'}</h2>
-        <ul class="sponsor-list sponsor-list--grid">
-          {rest.map((s) => (
-            <li class="sp" data-cut>
-              <div class="sp__logo"><Slot logo small spec="Logo · SVG or transparent PNG" src={s.logo} alt={s.name} /></div>
-              <div class="sp__b">
-                <h3 class="sp__name"><a class="inline" href={s.url}>{s.name}</a></h3>
-                {s.since && <p class="sp__since num">Sponsor since {s.since}</p>}
-                <p class="body">{s.about}</p>
-                <p class="sp__gave"><span>Gave</span> {s.gave}</p>
-                {s.wentInto && <p class="sp__gave"><span>Went into</span> {s.wentInto}</p>}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
+  {byTier.map((g, i) => {
+    const big = isHeadline(g.sponsors[0]);
+    return (
+      <section class:list={['band', i === 0 ? 'band--tight' : i % 2 ? 'band--alt' : '']} id={g.key}>
+        <div class="wrap">
+          <h2 class="h2 etch" data-etch>{g.name} sponsors</h2>
+          <ul class:list={['sponsor-list', { 'sponsor-list--grid': !big }]}>
+            {g.sponsors.map((s) => (
+              <li class:list={['sp', { 'sp--top': big }]} data-cut>
+                <div class="sp__logo"><Slot logo small spec="Logo · SVG or transparent PNG" src={s.logo} alt={s.name} /></div>
+                <div class="sp__b">
+                  <h3 class="sp__name"><a class="inline" href={s.url}>{s.name}</a></h3>
+                  <p class="sp__since num">{g.name}{s.since && <> · since {s.since}</>}</p>
+                  <p class="body">{s.about}</p>
+                  {big ? (
+                    <dl class="specs specs--tight">
+                      <div class="specs__row"><dt>Gave</dt><dd>{s.gave}</dd></div>
+                      {s.wentInto && <div class="specs__row"><dt>Went into</dt><dd>{s.wentInto}</dd></div>}
+                    </dl>
+                  ) : (
+                    <>
+                      <p class="sp__gave"><span>Gave</span> {s.gave}</p>
+                      {s.wentInto && <p class="sp__gave"><span>Went into</span> {s.wentInto}</p>}
+                    </>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    );
+  })}
 
   <section class="band band--tight" id="join">
     <div class="wrap wrap--split">

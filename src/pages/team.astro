@@ -6,20 +6,24 @@ import Close from '../components/Close.astro';
 import team from '../data/team.json';
 import site from '../data/site.json';
 import DataPlate from '../components/DataPlate.astro';
+import { headcount } from '../lib/team';
 
 const leads = team.people.filter((p) => p.lead);
-const bySub = team.subteams.map((st) => ({
-  ...st,
-  people: team.people.filter((p) => p.subteam === st.key && !p.lead),
-  count: team.people.filter((p) => p.subteam === st.key).length,
-}));
+// A person can sit in several sub-teams. Older entries used a single `subteam`
+// string; both work. Keys typed in the admin may differ in case, so compare loosely.
+const norm = (k = '') => k.trim().toLowerCase();
+const teamsOf = (p: { subteams?: string[]; subteam?: string }) =>
+  (p.subteams ?? (p.subteam ? [p.subteam] : [])).map(norm);
+const bySub = team.subteams.map((st) => {
+  const members = team.people.filter((p) => teamsOf(p).includes(norm(st.key)));
+  return { ...st, people: members.filter((p) => !p.lead), count: members.length };
+});
 ---
 <Base title="Team" current="team" description="Who runs Wilsonic Boom: the sub-teams, the people in them, and how the team hands over from one year to the next.">
 
   <PageHead lines={['Who runs it.']}>
     <p class="lede">
-      Wilsonic Boom is the junior of Wilson&rsquo;s School&rsquo;s two FTC teams: 17 students aged
-      14 to 16. We were set up in 2025–26 to widen the school&rsquo;s part in FIRST Tech Challenge.
+      Wilsonic Boom is the junior of Wilson&rsquo;s School&rsquo;s two FTC teams{headcount && <>: {headcount}</>}. We were set up in 2025–26 to widen the school&rsquo;s part in FIRST Tech Challenge.
     </p>
   </PageHead>
 
@@ -80,26 +84,6 @@ const bySub = team.subteams.map((st) => ({
       </div>
     </section>
   ))}
-
-  <!-- ═══ MENTORS + JOINING ═══ -->
-  <section class="band" id="join">
-    <div class="wrap wrap--split">
-      <div class="split__l"><h2 class="h2 etch" data-etch>Joining<br>the team.</h2></div>
-      <div class="split__r">
-        <p class="body">
-          [[Who can join, when applications open, and what the first term looks like. Two or three sentences for a Year 9 or 10 student deciding whether to apply.]]
-        </p>
-        <p class="body">
-          Ask any of us, or email <a class="inline" href={`mailto:${site.email}`}>{site.email}</a>.
-        </p>
-        <dl class="specs">
-          {team.mentors.map((m) => (
-            <div class="specs__row"><dt>{m.role}</dt><dd>{m.name}</dd></div>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
 
   <Close />
 </Base>

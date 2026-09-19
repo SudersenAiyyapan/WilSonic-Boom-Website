@@ -12,7 +12,7 @@
 backend:
   name: github
   repo: SudersenAiyyapan/WilSonic-Boom-Website
-  branch: main            # the branch the live site is built from
+  branch: redesign        # the new site lives here until it is merged into main
 
 media_folder: public/images
 public_folder: /images
@@ -197,17 +197,19 @@ collections:
           - name: sponsors
             label: Current sponsors
             widget: list
-            summary: "{{fields.name}} (tier {{fields.level}})"
-            hint: "Top-tier sponsors are listed first, with larger logos, on every page."
+            summary: "{{fields.name}} ({{fields.tier}})"
+            hint: "Listed highest tier first. The logo gets bigger with each tier, on every page."
             fields:
               - { name: name, label: Name, widget: string }
               - { name: url, label: Website, widget: string }
               - { name: logo, label: Logo, widget: image, required: false, hint: "SVG, or PNG with a transparent background." }
-              - { name: level, label: Tier, widget: select, default: 2,
-                  options: [ { label: "Top tier — larger logo, listed first", value: 1 }, { label: "Standard", value: 2 } ] }
+              - { name: tier, label: Tier, widget: select, default: bronze,
+                  options: [ { label: "Diamond (£2,500+)", value: diamond }, { label: "Platinum (£1,000)", value: platinum },
+                             { label: "Gold (£800)", value: gold }, { label: "Silver (£500)", value: silver },
+                             { label: "Bronze (£250)", value: bronze } ] }
               - { name: since, label: Sponsor since, widget: string, required: false, hint: "e.g. 2025–26" }
               - { name: about, label: About the company, widget: string, hint: "One sentence: what they do." }
-              - { name: gave, label: What they gave, widget: string, hint: "Money, parts, machining, services…" }
+              - { name: gave, label: What they gave, widget: string, hint: "Cash, store credit, parts, machining… No amount needed; the tier shows the level." }
               - { name: wentInto, label: What it went into, widget: string, required: false,
                   hint: "Where their support actually ended up — sponsors like to see this." }
           - name: tiers
@@ -261,7 +263,7 @@ collections:
             widget: list
             summary: "{{fields.name}}"
             fields:
-              - { name: key, label: Short key, widget: string, hint: "One lowercase word, e.g. design. People are assigned by this." }
+              - { name: key, label: Short key, widget: string, hint: "One lowercase word, e.g. design. Save after adding a sub-team before assigning people to it." }
               - { name: name, label: Name, widget: string }
               - { name: job, label: What it is responsible for, widget: string }
           - name: people
@@ -271,7 +273,9 @@ collections:
             fields:
               - { name: name, label: Name, widget: string }
               - { name: role, label: Role, widget: string }
-              - { name: subteam, label: Sub-team key, widget: string, hint: "Must match a sub-team's short key." }
+              - { name: subteams, label: Sub-teams, widget: relation, multiple: true, required: false,
+                  collection: content, file: team, value_field: "subteams.*.key", search_fields: ["subteams.*.name"],
+                  display_fields: ["subteams.*.name"], hint: "Pick one or more. They appear in each one." }
               - { name: lead, label: Lead, widget: boolean, default: false, required: false }
               - { name: photo, label: "Portrait (square)", widget: image, required: false }
           - name: facts

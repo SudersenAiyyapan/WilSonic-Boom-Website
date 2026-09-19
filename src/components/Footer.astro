@@ -27,6 +27,6 @@ import SponsorStrip from './SponsorStrip.astro';
        that has write access to the repository. -->
   <div class="wrap foot__base">
     <p>© {new Date().getFullYear()} {site.name} · FIRST® Tech Challenge team {site.teamNumber}</p>
-    <a class="foot__admin" href={url('/admin/index.html')} rel="nofollow">Team login</a>
+    <a class="foot__admin" href={url('/admin/index.html')} target="_blank" rel="nofollow noopener">Team login<span class="sr-only"> (opens in a new tab)</span></a>
   </div>
 </footer>

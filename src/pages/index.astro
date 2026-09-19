@@ -10,6 +10,7 @@ import Close from '../components/Close.astro';
 import { url, href } from '../components/url';
 import site from '../data/site.json';
 import SponsorStrip from '../components/SponsorStrip.astro';
+import { headcount } from '../lib/team';
 import { current as season, latestVersion } from '../lib/seasons';
 import sponsors from '../data/sponsors.json';
 import outreach from '../data/outreach.json';
@@ -31,7 +32,7 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
         <h1 class="etch" data-etch>Built to a<br>tolerance.</h1>
         <p class="lede">
           Wilsonic Boom is the junior FIRST Tech Challenge team at Wilson&rsquo;s School in
-          Wallington: 17 students aged 14 to 16. In our first season we reached the regional
+          Wallington{headcount && <>: {headcount}</>}. In our first season we reached the regional
           final as a finalist alliance, won the Reach Award at Regionals and the Sustain Award
           at Nationals.
         </p>

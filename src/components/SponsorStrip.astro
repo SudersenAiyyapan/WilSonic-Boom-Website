@@ -1,18 +1,17 @@
 ---
-// Sponsor logos, top tier first and larger. Used under the home opening and in
+// Sponsor logos, highest tier first; logo size steps down with the tier. Used under the home opening and in
 // every page's footer, so sponsors are seen on every page, not only /sponsors.
-import sponsors from '../data/sponsors.json';
+import { sponsorList } from '../lib/sponsors';
 import Slot from './Slot.astro';
 import { url } from './url';
 interface Props { compact?: boolean; label?: string }
 const { compact = false, label = 'Supported by' } = Astro.props;
-const list = [...sponsors.sponsors].sort((a, b) => Number(a.level ?? 2) - Number(b.level ?? 2));
 ---
 <div class:list={['sstrip', { 'sstrip--compact': compact }]}>
   <a class="sstrip__k" href={url('/sponsors/')}>{label}</a>
   <ul class="sstrip__list">
-    {list.map((s) => (
-      <li class:list={['sstrip__i', { 'sstrip__i--top': Number(s.level ?? 2) === 1 }]}>
+    {sponsorList.map((s) => (
+      <li class:list={['sstrip__i', `sstrip__i--${s.tier}`]}>
         <a href={s.url} class="sstrip__a" aria-label={s.name}>
           <Slot logo small spec={compact ? 'Logo' : 'Logo · SVG or PNG'} src={s.logo} alt={s.name} />
         </a>

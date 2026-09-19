@@ -21,12 +21,11 @@
       "name": "Sudersen",
       "role": "Co-Team Lead and CAD Lead",
       "subteams": [
-        "design",
+        "cad",
         "outreach"
       ],
       "lead": true,
-      "photo": null,
-      "subteam": "outreach"
+      "photo": null
     },
     {
       "name": "Razi",

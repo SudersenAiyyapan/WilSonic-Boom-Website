@@ -1,10 +1,10 @@
-// `npm run dev`: the Astro dev server, plus a pull from GitHub every 30 seconds
+// `npm run dev`: the Astro dev server, plus a pull from GitHub every 15 seconds
 // so edits saved in the admin appear on localhost without running `git pull`.
 // Only fast-forwards: if you have local commits or edits that clash, it leaves
 // everything alone and says so once.
 import { spawn, execFile } from 'node:child_process';
 
-const EVERY = 30_000;
+const EVERY = 15_000;
 let warned = false;
 
 const git = (...args) =>

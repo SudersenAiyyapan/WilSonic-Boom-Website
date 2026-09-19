@@ -202,7 +202,7 @@ collections:
             fields:
               - { name: name, label: Name, widget: string }
               - { name: url, label: Website, widget: string }
-              - { name: logo, label: Logo, widget: image, required: false, hint: "SVG, or PNG with a transparent background." }
+              - { name: logo, label: Logo, widget: image, required: false, hint: "Must be exactly 1200 × 500 px: PNG (transparent background), JPG or WebP, or an SVG drawn at 1200 × 500. Any other size stops the site building." }
               - { name: tier, label: Tier, widget: select, default: bronze,
                   options: [ { label: "Diamond (£2,500+)", value: diamond }, { label: "Platinum (£1,000)", value: platinum },
                              { label: "Gold (£800)", value: gold }, { label: "Silver (£500)", value: silver },

@@ -13,7 +13,7 @@ const { compact = false, label = 'Supported by' } = Astro.props;
     {sponsorList.map((s) => (
       <li class:list={['sstrip__i', `sstrip__i--${s.tier}`]}>
         <a href={s.url} class="sstrip__a" aria-label={s.name}>
-          <Slot logo small spec={compact ? 'Logo' : 'Logo · SVG or PNG'} src={s.logo} alt={s.name} />
+          <Slot logo small spec={compact ? 'Logo' : 'Logo · 1200 × 500'} src={s.logo} alt={s.name} />
         </a>
       </li>
     ))}

@@ -1,6 +1,7 @@
 // Current sponsors, grouped by the five tiers in the sponsorship pack.
 // Order and names come from `tiers` in sponsors.json; the highest tier leads.
 import data from '../data/sponsors.json';
+import { checkLogo } from './logo-size';
 
 export type Sponsor = (typeof data.sponsors)[number];
 
@@ -14,6 +15,9 @@ const rank = (s: Sponsor) => {
 
 // the two top tiers get the large card and the largest logos
 export const isHeadline = (s: Sponsor) => rank(s) < 2;
+
+// every logo is checked once, when the site is built
+for (const s of data.sponsors) checkLogo(s.logo, s.name);
 
 export const sponsorList = [...data.sponsors].sort((a, b) => rank(a) - rank(b));
 

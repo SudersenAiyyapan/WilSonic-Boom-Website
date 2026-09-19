@@ -168,8 +168,8 @@ collections:
         file: src/data/site.json
         format: json
         fields:
-          - { name: homePhoto, label: "Home page robot photo (4:3)", widget: image, required: false,
-              hint: "The big photo at the top of the home page. Landscape 4:3, about 2400 × 1800 px, robot three-quarter view on a plain dark background." }
+          - { name: homePhoto, label: "Home page robot (transparent cut-out)", widget: image, required: false,
+              hint: "The robot at the top of the home page. A PNG or WebP with a transparent background, cropped close to the robot, three-quarter view, about 2400 px wide." }
           - { name: name, label: Team name, widget: string }
           - { name: teamNumber, label: Team number, widget: string }
           - { name: school, label: School, widget: string }

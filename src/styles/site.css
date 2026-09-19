@@ -259,6 +259,99 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
    became a hollow plate with dead metal under the photograph. */
 .plate--media { --ch: 22px; padding: 10px; align-self: center; }
 
+/* ── the robot stage: four layers, back to front ─────────────────────────
+   plate (grid + team number) → turntable → robot cut-out → season tag.
+   The box is fixed at 4:3, so any cut-out drops in with zero layout change.
+   --px / --py (pointer, −1…1) and --sy (scroll, px) are set by motion.js;
+   each layer moves by its own data-depth. No shadows: the turntable grounds it. */
+.podium {
+  --px: 0; --py: 0; --sy: 0;
+  position: relative; align-self: stretch;
+  min-height: clamp(360px, 40vw, 600px);
+}
+.podium__layer {
+  transform: translate3d(
+    calc(var(--px) * var(--d, 0) * 9px),
+    calc(var(--py) * var(--d, 0) * 6px + var(--sy) * var(--d, 0) * -0.05px),
+    0);
+  transition: transform .9s var(--settle);
+}
+.podium__plate {
+  --ch: 22px;
+  position: absolute; inset: 12% 0 0 0;
+  overflow: hidden;
+}
+.podium__plate > .podium__layer { position: absolute; inset: -12px; }
+.podium__grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--seam-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--seam-soft) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 58%, #000 30%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 65% at 50% 58%, #000 30%, transparent 100%);
+}
+.podium__num {
+  /* set like the site's headings: wide Archivo, engraved into the plate */
+  position: absolute; left: 50%; top: 22%; z-index: 1;
+  transform: translate(-50%, -50%);
+  font-weight: 700; font-stretch: 118%; letter-spacing: -0.032em;
+  font-size: clamp(3.4rem, 7.6vw, 6.8rem); line-height: 0.94;
+  color: var(--gold);
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.10),
+    0 -1px 0 rgba(0,0,0,0.55);
+  white-space: nowrap;
+}
+.podium__table {
+  position: absolute; left: 9%; bottom: 3%;
+  width: 82%; height: auto; overflow: visible;
+}
+.t-face { fill: var(--plate-hi); }
+.t-ring { fill: none; stroke: #3A3C41; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.t-ring--in { stroke: var(--seam-soft); }
+.t-tick { stroke: var(--seam); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.t-tick--long { stroke: var(--gold-lo); }
+
+/* the robot stands on the turntable and rises above the plate's top edge */
+.podium__robot {
+  position: absolute; inset: 0 12% 9% 12%;
+  margin: 0;
+  display: grid; place-items: end center;
+}
+.podium__robot img {
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: 50% 100%;
+}
+.podium__empty {
+  width: 72%; height: 78%;
+  display: grid; place-content: center; gap: 8px; text-align: center;
+  border: 1px dashed var(--seam);
+  padding: 16px;
+}
+.podium__tag {
+  position: absolute; left: 22px; top: calc(12% + 20px);
+  display: flex; gap: 12px;
+  font-family: "Chivo Mono", monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-3);
+  padding-left: 22px;
+  background: linear-gradient(var(--gold-lo), var(--gold-lo)) left center / 14px 1px no-repeat;
+}
+.podium__tag span:first-child { color: var(--gold); }
+
+/* entry: the robot rises onto the table once, one axis, hard stop */
+.motion-ready .podium__robot > * { animation: podium-rise 1.3s var(--settle) .35s both; }
+@keyframes podium-rise {
+  from { transform: translateY(6%); clip-path: inset(100% 0 0 0); }
+  to   { transform: none;           clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .podium__layer { transform: none !important; transition: none; }
+  .motion-ready .podium__robot > * { animation: none; }
+}
+
 .serial {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px;
   font-family: "Chivo Mono", monospace;
@@ -870,6 +963,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 @media (max-width: 900px) {
   .topnav { display: none; }
   .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  .podium { min-height: 0; aspect-ratio: 4 / 3; }
   .wrap--split { grid-template-columns: minmax(0, 1fr); }
   .split__l { position: static; }
   .tiers { grid-template-columns: minmax(0, 1fr); }
@@ -889,7 +983,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
   body { font-size: 16px; }
   :root { --ch: 10px; }
   .h2 { font-size: 1.85rem; }
-  .plate--title, .plate--media { --ch: 16px; }
+  .plate--title, .plate--media, .podium__plate { --ch: 16px; }
   .assembly__stage { --ch: 14px; }
   .roster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .logos { grid-template-columns: minmax(0, 1fr); }

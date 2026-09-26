@@ -17,16 +17,8 @@ import outreach from '../data/outreach.json';
   <!-- ═══ REACH ═══ -->
   <section class="band band--tight" id="reach">
     <div class="wrap">
-      <div class="record">
+      <div class="record record--solo">
         <DataPlate title="Reach" serial="33001" rows={outreach.numbers} />
-        <div class="record__side">
-          <p class="h4 record__lbl">Where a sponsor's mark appears</p>
-          <ul class="reach reach--flush">
-            {outreach.placements.map((p) => (
-              <li class="reach__i"><span class="reach__k">{p.k}</span><span class="reach__v">{p.v}</span></li>
-            ))}
-          </ul>
-        </div>
       </div>
     </div>
   </section>

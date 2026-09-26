@@ -14,10 +14,18 @@ const leads = team.people.filter((p) => p.lead);
 const norm = (k = '') => k.trim().toLowerCase();
 const teamsOf = (p: { subteams?: string[]; subteam?: string }) =>
   (p.subteams ?? (p.subteam ? [p.subteam] : [])).map(norm);
+// A person can hold a different role in each sub-team (a CAD member who runs
+// finance on the non-technical side); `roles` overrides the main role there.
+const roleIn = (p: any, key: string) =>
+  (p.roles ?? []).find((r: any) => norm(r.subteam) === norm(key))?.role || p.role;
 const bySub = team.subteams.map((st) => {
-  const members = team.people.filter((p) => teamsOf(p).includes(norm(st.key)));
+  const members = team.people
+    .filter((p) => teamsOf(p).includes(norm(st.key)))
+    .map((p) => ({ ...p, role: roleIn(p, st.key) }));
   // leads appear here too, first, as well as in Leads above
-  const people = [...members.filter((p) => p.lead), ...members.filter((p) => !p.lead)];
+  // that sub-team's own lead first, then everyone else alphabetically
+  const isLeadHere = (p: any) => /\blead\b/i.test(p.role || '');
+  const people = [...members.filter(isLeadHere), ...members.filter((p) => !isLeadHere(p))];
   return { ...st, people, count: members.length };
 });
 ---
@@ -49,6 +57,12 @@ const bySub = team.subteams.map((st) => {
             </li>
           ))}
         </ul>
+        {team.shared && (
+          <p class="body team__shared">
+            {team.shared.name}: {team.shared.job}. Every member takes part in this, alongside
+            their sub-team.
+          </p>
+        )}
       </div>
     </div>
   </section>

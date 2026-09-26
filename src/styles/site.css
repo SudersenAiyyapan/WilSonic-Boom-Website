@@ -423,6 +423,7 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 }
 
 /* ── record: an engraved data plate beside the log ─────────────────────── */
+.record--solo { grid-template-columns: minmax(0, 1fr); max-width: 640px; }
 .record {
   margin-top: clamp(36px, 4vw, 58px);
   display: grid;
@@ -1590,6 +1591,7 @@ a.sstrip__k:hover { color: var(--ink); border-bottom-color: var(--gold-lo); }
 
 /* ── team ──────────────────────────────────────────────────────────────── */
 .team__sister { margin-top: 24px; }
+.team__shared { margin-top: 16px; font-size: 0.92rem; }
 .team__subh { margin-top: clamp(30px, 3.6vw, 44px); padding-bottom: 4px; }
 
 @media (max-width: 1180px) {

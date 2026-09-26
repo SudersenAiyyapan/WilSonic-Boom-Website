@@ -268,6 +268,14 @@ collections:
               - { name: key, label: Short key, widget: string, hint: "One lowercase word, e.g. design. Save after adding a sub-team before assigning people to it." }
               - { name: name, label: Name, widget: string }
               - { name: job, label: What it is responsible for, widget: string }
+          - name: shared
+            label: Work everyone does
+            widget: object
+            required: false
+            hint: "Shown under the sub-teams as work the whole team shares."
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: job, label: What it covers, widget: string }
           - name: people
             label: People
             widget: list
@@ -278,6 +286,15 @@ collections:
               - { name: subteams, label: Sub-teams, widget: relation, multiple: true, required: false,
                   collection: content, file: team, value_field: "subteams.*.key", search_fields: ["subteams.*.name"],
                   display_fields: ["subteams.*.name"], hint: "Pick one or more. They appear in each one." }
+              - name: roles
+                label: Different role in a sub-team
+                widget: list
+                required: false
+                summary: "{{fields.subteam}}: {{fields.role}}"
+                hint: "Only if their job differs in one sub-team, e.g. finance on the non-technical side."
+                fields:
+                  - { name: subteam, label: Sub-team key, widget: string }
+                  - { name: role, label: Role there, widget: string }
               - { name: lead, label: Lead, widget: boolean, default: false, required: false }
               - { name: photo, label: "Portrait (square)", widget: image, required: false }
           - name: facts

@@ -11,31 +11,285 @@
       "job": "Writing and testing the software controlling the robot"
     },
     {
+      "key": "media",
+      "name": "Media",
+      "job": "Social media, articles and this website."
+    },
+    {
       "key": "outreach",
-      "name": "Non-Technical",
-      "job": "Outreach and finance"
+      "name": "Outreach",
+      "job": "Meetings and events with other teams and the wider community."
+    },
+    {
+      "key": "operations",
+      "name": "Operations",
+      "job": "Fundraising, and keeping track of the team’s parts and kit."
     }
   ],
   "people": [
     {
-      "name": "Sudersen",
-      "role": "Co-Team Lead and CAD Lead",
+      "name": "Akshat",
+      "role": "CAD",
       "subteams": [
         "cad",
+        "media",
         "outreach"
       ],
-      "lead": true,
-      "photo": null
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Social media"
+        },
+        {
+          "subteam": "outreach",
+          "role": "Outreach meetings"
+        }
+      ]
+    },
+    {
+      "name": "Ali",
+      "role": "CAD",
+      "subteams": [
+        "cad"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": []
+    },
+    {
+      "name": "Anay",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "outreach",
+        "operations"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "outreach",
+          "role": "Outreach meetings"
+        },
+        {
+          "subteam": "operations",
+          "role": "Fundraising"
+        }
+      ]
+    },
+    {
+      "name": "Anshul",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "media",
+        "operations"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Social media"
+        },
+        {
+          "subteam": "operations",
+          "role": "Fundraising"
+        }
+      ]
+    },
+    {
+      "name": "Avyukth",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "outreach",
+        "operations"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "outreach",
+          "role": "Outreach meetings"
+        },
+        {
+          "subteam": "operations",
+          "role": "Fundraising"
+        }
+      ]
+    },
+    {
+      "name": "Chigozie",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "operations"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "operations",
+          "role": "Fundraising"
+        }
+      ]
+    },
+    {
+      "name": "Dhir",
+      "role": "Programmer",
+      "subteams": [
+        "programming",
+        "media"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Articles"
+        }
+      ]
+    },
+    {
+      "name": "Jett",
+      "role": "Programmer",
+      "subteams": [
+        "programming",
+        "operations"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "operations",
+          "role": "Inventory"
+        }
+      ]
+    },
+    {
+      "name": "Joe",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "media"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Articles"
+        }
+      ]
     },
     {
       "name": "Razi",
-      "role": "Co-Team Lead and Programming Lead",
+      "role": "Programming Lead",
       "subteams": [
         "programming",
-        "outreach"
+        "media"
       ],
       "lead": true,
-      "photo": ""
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Social media and articles Lead"
+        }
+      ]
+    },
+    {
+      "name": "Rishit",
+      "role": "Programmer",
+      "subteams": [
+        "programming",
+        "media"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Website"
+        }
+      ]
+    },
+    {
+      "name": "Savith",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "media",
+        "outreach"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Articles"
+        },
+        {
+          "subteam": "outreach",
+          "role": "Outreach meetings"
+        }
+      ]
+    },
+    {
+      "name": "Shratul",
+      "role": "CAD",
+      "subteams": [
+        "cad",
+        "operations"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "operations",
+          "role": "Inventory"
+        }
+      ]
+    },
+    {
+      "name": "Sudersen",
+      "role": "CAD Lead",
+      "subteams": [
+        "cad",
+        "outreach",
+        "operations"
+      ],
+      "lead": true,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "outreach",
+          "role": "Outreach Lead"
+        },
+        {
+          "subteam": "operations",
+          "role": "Fundraising Lead"
+        }
+      ]
+    },
+    {
+      "name": "Sujal",
+      "role": "Programmer",
+      "subteams": [
+        "programming",
+        "media"
+      ],
+      "lead": false,
+      "photo": null,
+      "roles": [
+        {
+          "subteam": "media",
+          "role": "Website, social media"
+        }
+      ]
     },
     {
       "name": "Thajan",
@@ -44,13 +298,14 @@
         "programming"
       ],
       "lead": false,
-      "photo": ""
+      "photo": null,
+      "roles": []
     }
   ],
   "facts": [
     {
       "k": "Students",
-      "v": "15"
+      "v": "16"
     },
     {
       "k": "Ages",

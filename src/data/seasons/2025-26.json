@@ -10,7 +10,11 @@
     },
     {
       "k": "Regionals",
-      "v": "Finalist alliance"
+      "v": "4th, finalist alliance"
+    },
+    {
+      "k": "Nationals",
+      "v": "27th of 50"
     },
     {
       "k": "Regional award",
@@ -22,7 +26,7 @@
     },
     {
       "k": "Team size",
-      "v": "17 students"
+      "v": "17 students, Years 9–11"
     }
   ],
   "awards": [
@@ -39,14 +43,14 @@
   ],
   "events": [
     {
-      "date": "[[DATE]]",
+      "date": "24 March 2026",
       "name": "Regional Championship",
       "venue": "Langley Park School for Boys",
       "result": "4th of 15",
-      "note": "Reach Award Winners and Finalist Alliance Member"
+      "note": "Reach Award winners, and finalist alliance with our sister team Wilsobotics"
     },
     {
-      "date": "[[DATE]]",
+      "date": "21–22 April 2026",
       "name": "National Championship",
       "venue": "Copper Box Arena, Queen Elizabeth Olympic Park",
       "result": "27th of 50",
@@ -58,9 +62,9 @@
     "versions": [
       {
         "id": "V1",
-        "date": "[[DATE]]",
-        "title": "[[The first competition build]]",
-        "summary": "[[One or two sentences: what V1 set out to do.]]",
+        "date": "Scrimmages",
+        "title": "Scrimmage build",
+        "summary": "Our first robot, built to compete at scrimmages before the season's official events.",
         "photo": null,
         "specs": [
           {
@@ -179,35 +183,13 @@
           }
         ],
         "changes": [],
-        "subversions": [
-          {
-            "id": "V1.1",
-            "date": "[[DATE]]",
-            "title": "[[What V1.1 changed, in five words]]",
-            "summary": "[[One or two sentences: why this revision was needed.]]",
-            "photo": null,
-            "specs": [
-              {
-                "k": "Cycle time",
-                "v": "[[SECONDS]]"
-              }
-            ],
-            "changes": [
-              {
-                "before": "[[What the previous version did, and how it failed.]]",
-                "after": "[[What replaced it, and why that specific solution.]]",
-                "delta": "[[VALUE]]",
-                "deltaLabel": "[[what improved]]"
-              }
-            ]
-          }
-        ]
+        "subversions": []
       },
       {
         "id": "V2",
-        "date": "[[DATE]]",
-        "title": "[[The rebuild]]",
-        "summary": "[[One or two sentences: what V2 fixed, and why a rebuild rather than a patch.]]",
+        "date": "March 2026",
+        "title": "Regionals build",
+        "summary": "The robot we took to the Regional Championship on 24 March 2026, where we finished 4th and reached the final as an alliance with Wilsobotics.",
         "photo": null,
         "specs": [
           {
@@ -342,30 +324,9 @@
         "subversions": [
           {
             "id": "V2.1",
-            "date": "[[DATE]]",
-            "title": "[[What V2.1 changed, in five words]]",
-            "summary": "[[One or two sentences: why this revision was needed.]]",
-            "photo": null,
-            "specs": [
-              {
-                "k": "Cycle time",
-                "v": "[[SECONDS]]"
-              }
-            ],
-            "changes": [
-              {
-                "before": "[[What the previous version did, and how it failed.]]",
-                "after": "[[What replaced it, and why that specific solution.]]",
-                "delta": "[[VALUE]]",
-                "deltaLabel": "[[what improved]]"
-              }
-            ]
-          },
-          {
-            "id": "V2.2",
-            "date": "[[DATE]]",
-            "title": "[[What V2.2 changed, in five words]]",
-            "summary": "[[One or two sentences: why this revision was needed.]]",
+            "date": "April 2026",
+            "title": "Nationals update",
+            "summary": "An update of V2 for the National Championship on 21–22 April 2026.",
             "photo": null,
             "specs": [
               {

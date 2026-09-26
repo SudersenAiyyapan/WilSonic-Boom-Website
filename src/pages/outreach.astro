@@ -4,6 +4,66 @@ import PageHead from '../components/PageHead.astro';
 import DataPlate from '../components/DataPlate.astro';
 import Close from '../components/Close.astro';
 import outreach from '../data/outreach.json';
+import { current as season } from '../lib/seasons';
+
+// the outreach award this season, shown beside the reach numbers
+const reachAward = season.awards.find((a) => /reach/i.test(a.name));
+
+// The weekly session log. One square per session, grouped by month: a season of
+// them takes four lines, where a list would take three screens.
+type Session = { date: string; title: string; who?: string; reached?: string };
+const sessions = ([...(outreach.sessions ?? [])] as Session[])
+  .filter((x) => x.date)
+  .sort((a, b) => b.date.localeCompare(a.date));
+const fmt = (iso: string, o: Intl.DateTimeFormatOptions) =>
+  new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', o);
+// One small month calendar per month that has a session in it: weekday columns,
+// a gold cell on each day we ran something. Eight months of a season fit on a
+// couple of rows, and the shape of the term is readable at a glance.
+const monthKeys = [...new Set(sessions.map((x) => x.date.slice(0, 7)))].sort().reverse();
+const calendars = monthKeys.map((m) => {
+  const [y, mo] = m.split('-').map(Number);
+  const first = new Date(Date.UTC(y, mo - 1, 1));
+  const days = new Date(Date.UTC(y, mo, 0)).getUTCDate();
+  const lead = (first.getUTCDay() + 6) % 7;            // weeks start on Monday
+  const cells: ({ day: number; date: string } | null)[] = [
+    ...Array<null>(lead).fill(null),
+    ...Array.from({ length: days }, (_, i) => ({
+      day: i + 1,
+      date: `${m}-${String(i + 1).padStart(2, '0')}`,
+    })),
+  ];
+  return { key: m, label: fmt(m + '-01', { month: 'long', year: 'numeric' }), cells };
+});
+// Clicking a day reads out everything that happened on it, or that nothing did.
+const onDay = (date: string) => sessions.filter((x) => x.date === date);
+const noneLine = (date: string) =>
+  `${fmt(date, { day: 'numeric', month: 'short', year: 'numeric' })} · no sessions`;
+
+// Five fills for the kinds of session, stepping clearly apart in tone so
+// no two read as shades of each other. A day with more than one session takes
+// the white cell instead: splitting it into bands looked like a glitch.
+const SWATCH = [
+  { fill: 'var(--gold)', ink: '#0C0C0D' },
+  { fill: 'var(--gold-hi)', ink: '#0C0C0D' },
+  { fill: 'var(--alu)', ink: '#0C0C0D' },
+  { fill: '#5B5E63', ink: 'var(--ink)' },
+  { fill: '#2C2E33', ink: 'var(--ink)' },
+];
+const MULTI = { fill: 'var(--ink)', ink: '#0C0C0D' };
+const kinds = [...new Set(sessions.map((x) => x.title))];
+const swatch = (title: string) => SWATCH[kinds.indexOf(title) % SWATCH.length];
+const colour = (title: string) => swatch(title).fill;
+const cellFill = (day: Session[]) => (day.length === 1 ? swatch(day[0].title) : MULTI);
+
+const reachedTotal = sessions.reduce((n, x) => n + (parseInt(x.reached ?? '', 10) || 0), 0);
+// An empty log would read badly to a sponsor, so it is hidden on the live site
+// until there is something in it — but shown while running locally, so the team
+// can see where their entries will land.
+const showLog = sessions.length > 0 || import.meta.env.DEV;
+const line = (x: Session) =>
+  [fmt(x.date, { day: 'numeric', month: 'short', year: 'numeric' }), x.title, x.who, x.reached && `${x.reached} people`]
+    .filter(Boolean).join(' · ');
 ---
 <Base title="Outreach" current="outreach" description="What Wilsonic Boom does beyond the robot: outreach, events, and who it reaches.">
 
@@ -17,11 +77,110 @@ import outreach from '../data/outreach.json';
   <!-- ═══ REACH ═══ -->
   <section class="band band--tight" id="reach">
     <div class="wrap">
-      <div class="record record--solo">
+      <div class:list={['record', { 'record--solo': !reachAward }]}>
         <DataPlate title="Reach" serial="33001" rows={outreach.numbers} />
+        {reachAward && (
+          <div class="record__side">
+            <p class="h4 record__lbl">Judged on this</p>
+            <h2 class="award__name">{reachAward.name}</h2>
+            <p class="award__event">{reachAward.event}</p>
+            <p class="body">{reachAward.note}</p>
+            <p class="body">
+              Outreach is a third of what a team is judged on in FIRST Tech Challenge, next to
+              the robot and the team's plans to keep going. It is also where a sponsor is seen:
+              at every session we run, the logos on our apparel and banner are in the room.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   </section>
+
+  <!-- ═══ SESSION LOG — one square per session, grouped by month ═══ -->
+  {showLog && (
+    <section class="band band--tight" id="sessions">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Session log</h2>
+        <p class="body body--wide">
+          Every outreach session we have run this season, newest month first
+          {sessions.length > 0 && <> &mdash; {sessions.length} so far</>}.
+        </p>
+        <div class="slog" data-slog>
+          <div class="cals">
+            {calendars.map((c) => (
+              <div class="cal">
+                <p class="cal__m">{c.label}</p>
+                <ul class="cal__wd" aria-hidden="true">
+                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d) => <li>{d}</li>)}
+                </ul>
+                <ul class="cal__grid">
+                  {c.cells.map((cell) => {
+                    const day = cell ? onDay(cell.date) : [];
+                    if (!cell) return <li class="cal__c" />;
+                    const text = day.length > 0 ? day.map(line).join('\n') : noneLine(cell.date);
+                    return (
+                      <li class="cal__c">
+                        <button class:list={['cal__d', { 'cal__d--on': day.length > 0 }]} type="button"
+                                style={day.length > 0 ? `--fill: ${cellFill(day).fill}; --fill-ink: ${cellFill(day).ink}` : undefined}
+                                data-line={text} aria-label={text}
+                                data-default={c.key === calendars[0].key && cell.day === 1 ? '' : undefined}>
+                          {cell.day}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+          {kinds.length > 1 && (
+            <ul class="cal__key">
+              {kinds.map((k) => (
+                <li><span class="cal__sw" style={`--fill: ${colour(k)}`}></span>{k}</li>
+              ))}
+              {sessions.some((x, i, all) => all.findIndex((y) => y.date === x.date) !== i) && (
+                <li><span class="cal__sw" style={`--fill: ${MULTI.fill}`}></span>More than one</li>
+              )}
+            </ul>
+          )}
+          {sessions.length === 0 && (
+            <p class="slog__empty">
+              No sessions logged yet. Add them in the admin under Outreach → Outreach sessions;
+              this section stays hidden on the live site until the first one goes in.
+            </p>
+          )}
+          <p class="slog__read num" data-slog-read>{calendars[0] ? noneLine(`${calendars[0].key}-01`) : ''}</p>
+          <!-- without script every session still reads here, in full -->
+          <ul class="slog__list">
+            {sessions.map((x) => <li class="num">{line(x)}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ CLUBS — the standing programme, the bulk of the reach ═══ -->
+  {outreach.clubs?.length > 0 && (
+    <section class="band band--alt band--tight" id="clubs">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Clubs we run</h2>
+        <p class="body body--wide">
+          Most of our reach is not a one-off event: it is the clubs the team runs at Wilson&rsquo;s
+          week after week, for students younger than us.
+        </p>
+        <ul class="clubs">
+          {outreach.clubs.map((c) => (
+            <li class="club" data-cut>
+              <p class="club__n num">{c.students}</p>
+              <h3 class="club__h">{c.name}</h3>
+              <p class="club__who">{c.who}</p>
+              <p class="body">{c.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   <!-- ═══ ACTIVITIES — one per full-width row, newest first ═══ -->
   <section class="band band--alt" id="activities">

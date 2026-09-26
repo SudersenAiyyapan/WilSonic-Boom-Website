@@ -395,6 +395,29 @@
     update();
   })();
 
+  /* ── 6c. Session log ────────────────────────────────────────────────────
+     Click any day in the calendars and the line underneath reads out what
+     happened on it, or that nothing did. Hover only lifts the cell, so running the
+     mouse across a month does not flicker the text. Without this file every
+     session is listed in full instead, so nothing is hidden. */
+  (function sessionLog() {
+    var log = document.querySelector('[data-slog]');
+    if (!log) return;
+    var read = log.querySelector('[data-slog-read]');
+    var squares = [].slice.call(log.querySelectorAll('button.cal__d'));
+    var start = log.querySelector('button.cal__d[data-default]');
+    if (!read || !squares.length) return;
+
+    function show(btn) {
+      squares.forEach(function (s) { s.classList.toggle('is-on', s === btn); });
+      read.textContent = btn.getAttribute('data-line');
+    }
+    squares.forEach(function (btn) {
+      btn.addEventListener('click', function () { show(btn); });
+    });
+    if (start) show(start);   /* opens on the 1st of the newest month */
+  })();
+
   /* ── 7. Phone menu ───────────────────────────────────────────────────────
      The current page is marked in the markup (aria-current), so nothing here
      guesses where you are. This only opens and closes the menu, and closes it

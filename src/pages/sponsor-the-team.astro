@@ -16,11 +16,15 @@ import { href } from '../components/url';
 const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20FTC%2033001`;
 const groups = [...new Set(sponsors.funding.map((f) => f.group))];
 type Benefit = Record<string, string> & { label: string };
-// what each tier includes, read straight off the benefits table
-const gets = (key: string) =>
+// What a tier ADDS on the one below it, read straight off the benefits table.
+// The full grid is the table underneath; repeating it in the cards said the
+// same thing twice and made the reader compare five long lists by eye.
+const say = (b: Benefit, key: string) =>
+  b[key].toLowerCase() === 'yes' ? b.label : `${b.label}: ${b[key].toLowerCase()}`;
+const adds = (key: string, prev?: string) =>
   (sponsors.benefits as Benefit[])
-    .filter((b) => (b[key] ?? '').trim())
-    .map((b) => (b[key].toLowerCase() === 'yes' ? b.label : `${b.label}: ${b[key].toLowerCase()}`));
+    .filter((b) => (b[key] ?? '').trim() && (!prev || (b[key] ?? '').trim() !== (b[prev] ?? '').trim()))
+    .map((b) => say(b, key));
 ---
 <Base title="Sponsor the team" current="sponsor" description="Sponsor Wilsonic Boom, FTC team 33001: what your support pays for, the five tiers, and what happens after you get in touch.">
 
@@ -47,12 +51,12 @@ const gets = (key: string) =>
           Wilson&rsquo;s School runs two FTC teams, and a sponsorship supports both. Wilsonic Boom
           is the junior team: {team.facts.find((f) => f.k === 'Students')?.v} students aged
           {' '}{team.facts.find((f) => f.k === 'Ages')?.v}, in our second season. Our senior team,
-          {' '}<a class="inline" href={team.sister.url}>{team.sister.name}</a>, has 13 students aged
+          {' '}<a class="inline" href={team.sister.url}>{team.sister.name}</a>, has 18 students aged
           16 to 18 and finished 5th at the European Premiers.
         </p>
         <p class="body">
-          Your support reaches more than fifty students across both teams and the school&rsquo;s
-          Junior Robotics club, and hundreds more through our outreach.
+          Between the two FTC teams, Junior Robotics and the three other clubs we run, that is
+          149 students a week, and more again through the events we take the robot to.
         </p>
         <DataPlate title="What a sponsorship reaches" serial="33001" rows={sponsors.impact} />
       </div>
@@ -90,16 +94,20 @@ const gets = (key: string) =>
   <section class="band" id="tiers">
     <div class="wrap">
       <h2 class="h2 etch" data-etch>Five tiers</h2>
-      <p class="body body--wide">{sponsors.inKind} Every sponsor gets update emails and a backlink from this site; each tier up adds more.</p>
+      <p class="body body--wide">{sponsors.inKind} Every sponsor gets update emails and a backlink from this site. Each card shows what that tier adds on the one below it; the table underneath has every tier in full.</p>
 
       <div class="tiers tiers--5">
-        {sponsors.tiers.map((t) => (
-          <div class:list={['tier', { 'tier--lead': t.lead }]} data-cut>
-            <p class="tier__name">{t.name}{t.lead && <span class="tier__tag"> · title partner</span>}</p>
-            <p class="tier__amt num">{t.from}</p>
-            <ul class="tier__list">{gets(t.key).map((g) => <li>{g}</li>)}</ul>
-          </div>
-        ))}
+        {sponsors.tiers.map((t, i) => {
+          const below = sponsors.tiers[i - 1];
+          return (
+            <div class:list={['tier', { 'tier--lead': t.lead }]} data-cut>
+              <p class="tier__name">{t.name}{t.lead && <span class="tier__tag"> · title partner</span>}</p>
+              <p class="tier__amt num">{t.from}</p>
+              <p class="tier__from">{below ? `Everything in ${below.name}, plus` : 'Where a sponsorship starts'}</p>
+              <ul class="tier__list">{adds(t.key, below?.key).map((g) => <li>{g}</li>)}</ul>
+            </div>
+          );
+        })}
       </div>
 
       <h3 class="h4 tt__h">Side by side</h3>

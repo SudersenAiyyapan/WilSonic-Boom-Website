@@ -1,20 +1,20 @@
 {
   "numbers": [
     {
-      "k": "Students across both teams and Junior Robotics",
-      "v": "50+"
+      "k": "Students across both FTC teams",
+      "v": "34"
     },
     {
-      "k": "Teams a planned Wilson's scrimmage would host",
-      "v": "15+"
+      "k": "Junior Robotics, Years 8–10",
+      "v": "40"
     },
     {
-      "k": "Outreach sessions run",
-      "v": "[[NN]]"
+      "k": "Students in the other clubs we run",
+      "v": "75"
     },
     {
-      "k": "People reached through outreach",
-      "v": "[[NNN]]"
+      "k": "Students reached every week",
+      "v": "149"
     }
   ],
   "placements": [
@@ -52,18 +52,75 @@
       "body": "If we raise enough, we will host our own scrimmage: a practice competition for other FTC teams."
     },
     {
-      "date": "Planned",
-      "title": "Junior Robotics",
-      "where": "Wilson's School",
-      "who": "The school's Junior Robotics club",
-      "body": "FTC equipment and mentoring for younger students, so the programme keeps growing."
-    },
-    {
       "date": "[[DATE]]",
       "title": "[[ACTIVITY]]",
       "where": "[[WHERE]]",
       "who": "[[Who it reached, and how many]]",
       "body": "[[Two sentences: what you did and what came of it.]]"
+    }
+  ],
+  "clubs": [
+    {
+      "name": "Junior Robotics",
+      "who": "Years 8–10",
+      "students": "40",
+      "body": "The school’s junior robotics club. We give it FTC equipment and mentoring, so the programme keeps growing."
+    },
+    {
+      "name": "KS4 Coding Club",
+      "who": "Years 10–11",
+      "students": "30",
+      "body": "Programming for GCSE-age students."
+    },
+    {
+      "name": "Computing Society",
+      "who": "Open to the school",
+      "students": "30",
+      "body": "Talks and projects in computing beyond the syllabus."
+    },
+    {
+      "name": "Robotics Industry Club",
+      "who": "Open to the school",
+      "students": "15",
+      "body": "How robotics is used in industry, and the careers behind it."
+    },
+    {
+      "name": "CAD Club",
+      "who": "Planned",
+      "students": "30",
+      "body": "Design and 3D modelling, planned to run next."
+    }
+  ],
+  "sessions": [
+    {
+      "date": "2026-09-25",
+      "title": "Junior Robotics session",
+      "who": "Years 8–10",
+      "reached": "40"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "Robotics Industry Club",
+      "who": "Open to the school",
+      "reached": "15"
+    },
+    {
+      "date": "2026-09-21",
+      "title": "Computing Society",
+      "who": "Open to the school",
+      "reached": "30"
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Junior Robotics session",
+      "who": "Years 8–10",
+      "reached": "40"
+    },
+    {
+      "date": "2026-09-16",
+      "title": "KS4 Coding Club",
+      "who": "Years 10–11",
+      "reached": "30"
     }
   ]
 }

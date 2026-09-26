@@ -340,6 +340,26 @@ collections:
             fields:
               - { name: k, label: Placement, widget: string }
               - { name: v, label: Detail, widget: string }
+          - name: sessions
+            label: Outreach sessions (the weekly log)
+            widget: list
+            required: false
+            summary: "{{fields.date}} — {{fields.title}}"
+            hint: "One entry per session. They group themselves by month on the page."
+            fields:
+              - { name: date, label: Date, widget: date, format: "YYYY-MM-DD" }
+              - { name: title, label: What it was, widget: string }
+              - { name: who, label: Who it reached, widget: string, required: false }
+              - { name: reached, label: How many people, widget: string, required: false }
+          - name: clubs
+            label: Clubs we run
+            widget: list
+            summary: "{{fields.name}} — {{fields.students}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: who, label: Who it is for, widget: string, hint: "e.g. Years 8–10, or Planned." }
+              - { name: students, label: Students, widget: string }
+              - { name: body, label: What it is, widget: text }
           - name: activities
             label: Activities (newest first)
             widget: list

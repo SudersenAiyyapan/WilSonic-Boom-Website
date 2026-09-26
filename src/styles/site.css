@@ -423,7 +423,6 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
 }
 
 /* ── record: an engraved data plate beside the log ─────────────────────── */
-.record--solo { grid-template-columns: minmax(0, 1fr); max-width: 640px; }
 .record {
   margin-top: clamp(36px, 4vw, 58px);
   display: grid;
@@ -754,8 +753,53 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
   gap: clamp(12px, 1.4vw, 20px);
   align-items: stretch;
 }
-.tier { padding: clamp(24px, 2.6vw, 36px); }
+.tiers { grid-template-rows: auto auto auto 1fr; }
+.tier {
+  padding: clamp(24px, 2.6vw, 36px);
+  grid-row: span 4;
+  /* name · price · "everything in X, plus" · list — one row each, so the rule
+     above the list lands on the same line across all five cards */
+  display: grid; grid-template-rows: subgrid; align-content: start;
+}
+/* Diamond's name runs to two lines; without subgrid, hold the row open so every
+   card's price, "everything in …" line and rule still share a line. */
+@supports not (grid-template-rows: subgrid) {
+  .tier { grid-template-rows: auto auto auto 1fr; }
+  .tier__name { min-height: 2.8em; }
+}
 .tier--lead { --plate: var(--plate-hi); --seam-soft: var(--gold-lo); }
+
+/* Hover: the plate steps up one level, its hairline edge anodises, and a gold
+   rule travels the top edge left to right — one axis, hard stop, no shadow. */
+.tier {
+  transition: transform .42s var(--settle), background-color .42s var(--ease);
+}
+.tier::after {
+  content: "";
+  position: absolute; left: var(--ch); right: 0; top: 0; height: 1px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .5s var(--settle);
+  z-index: 2;
+}
+.tier:hover, .tier:focus-within {
+  --plate: var(--plate-hi);
+  --seam-soft: var(--gold-lo);
+  transform: translateY(-3px);
+}
+.tier--lead:hover, .tier--lead:focus-within { --plate: #212227; --seam-soft: var(--gold); }
+.tier:hover::after, .tier:focus-within::after { transform: scaleX(1); }
+/* the scroll-reveal rule (.js [data-rise].is-in) also sets transform and comes
+   later in this file, so the hover lift has to out-specify it */
+.js .tier[data-rise].is-in:hover, .js .tier[data-rise].is-in:focus-within { transform: translateY(-3px); }
+.tier__amt, .tier__name { transition: color .42s var(--ease); }
+.tier:hover .tier__amt { color: var(--gold-hi); }
+.tier:hover .tier__name { color: var(--ink-2); }
+.tier--lead:hover .tier__name { color: var(--gold-hi); }
+@media (prefers-reduced-motion: reduce) {
+  .tier, .tier::after { transition: none; }
+  .tier:hover, .tier:focus-within { transform: none; }
+}
 .tier__name {
   font-size: 0.76rem; font-weight: 700; color: var(--ink-3);
   text-transform: uppercase; letter-spacing: 0.13em;
@@ -765,6 +809,11 @@ h1.etch { font-size: clamp(2.6rem, 6.4vw, 5.6rem); }
   display: block; margin-top: 14px;
   font-size: clamp(1.5rem, 2.4vw, 2rem); color: var(--ink);
   line-height: 1;
+}
+.tier__from {
+  margin-top: 16px; min-height: 2.4em;
+  font-size: 0.7rem; font-weight: 600; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.1em;
 }
 .tier__list {
   margin-top: 24px; padding-top: 20px;
@@ -1081,6 +1130,7 @@ a.inline {
 a.inline:hover { border-bottom-color: var(--gold-hi); }
 
 /* ── home: record summary + robot teaser ───────────────────────────────── */
+.record--solo { grid-template-columns: minmax(0, 1fr); }
 .record__side { padding-top: 4px; }
 .record__side .body { max-width: 52ch; }
 
@@ -1554,6 +1604,7 @@ a.sstrip__k:hover { color: var(--ink); border-bottom-color: var(--gold-lo); }
 .tiers--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .tiers--5 .tier { padding: clamp(18px, 1.8vw, 26px); }
 .tiers--5 .tier__list li { font-size: 0.84rem; }
+.tiers--5 .tier__from { min-height: 3.2em; }
 .tier__tag { color: var(--gold-txt); font-weight: 600; }
 
 /* ── the comparison table ──────────────────────────────────────────────── */
@@ -1626,4 +1677,153 @@ a.sstrip__k:hover { color: var(--ink); border-bottom-color: var(--gold-lo); }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ── /outreach: the clubs the team runs ────────────────────────────────── */
+.clubs {
+  margin-top: clamp(30px, 3.6vw, 48px);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 18px);
+}
+.club { padding: clamp(20px, 2.2vw, 28px); }
+.club__n { font-size: clamp(1.6rem, 2.6vw, 2.2rem); color: var(--gold); line-height: 1; }
+.club__h { margin-top: 12px; font-size: 1.1rem; font-weight: 700; font-stretch: 112%; }
+.club__who {
+  margin-top: 4px;
+  font-size: 0.7rem; font-weight: 600; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.11em;
+}
+.club .body { margin-top: 12px; font-size: 0.92rem; }
+@media (max-width: 900px) { .clubs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .clubs { grid-template-columns: minmax(0, 1fr); } }
+
+/* ── /outreach: the weekly session log, as small month calendars ───────── */
+.slog { margin-top: clamp(26px, 3vw, 40px); }
+.cals {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: clamp(14px, 1.8vw, 24px);
+}
+.cal { padding: 14px 16px 16px; background: var(--plate); border: 1px solid var(--seam-soft); }
+.cal__m {
+  font-size: 0.68rem; font-weight: 600; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  padding-bottom: 10px; margin-bottom: 8px; border-bottom: 1px solid var(--seam-soft);
+}
+.cal__wd, .cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cal__wd li {
+  font-family: "Chivo Mono", monospace; font-size: 0.56rem; color: var(--ink-3);
+  text-align: center; padding-bottom: 4px;
+}
+.cal__c { aspect-ratio: 1; }
+.cal__d {
+  width: 100%; height: 100%; padding: 0;
+  display: grid; place-items: center;
+  font-family: "Chivo Mono", monospace; font-size: 0.62rem; line-height: 1;
+  color: var(--ink-3); background: none; border: 0;
+}
+button.cal__d {
+  color: var(--ink-3); background: none; border: 1px solid transparent;
+  cursor: pointer; font-weight: 700;
+  transition: background-color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--settle);
+}
+button.cal__d--on { color: var(--fill-ink, #0C0C0D); background: var(--fill); font-weight: 700; }
+/* hover and focus only raise the cell; the line below changes on click */
+button.cal__d:hover, button.cal__d:focus-visible {
+  transform: scale(1.14); border-color: var(--seam); color: var(--ink);
+}
+button.cal__d--on:hover, button.cal__d--on:focus-visible { border-color: var(--ink); color: var(--fill-ink, #0C0C0D); }
+button.cal__d.is-on { border-color: var(--ink); transform: scale(1.14); color: var(--ink); }
+button.cal__d--on.is-on { color: var(--fill-ink, #0C0C0D); }
+button.cal__d.is-on::after {
+  content: ""; position: absolute; inset: -4px;
+  border: 1px solid var(--seam);
+}
+.cal__c { position: relative; }
+.cal__key {
+  margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 20px;
+  font-size: 0.74rem; color: var(--ink-2);
+}
+.cal__key li { display: flex; align-items: center; gap: 8px; }
+.cal__sw { width: 12px; height: 12px; background: var(--fill); }
+.slog__read {
+  white-space: pre-line;
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--seam-soft);
+  font-size: 0.82rem; color: var(--ink-2); min-height: 2.4em;
+}
+.slog__list { margin-top: 14px; display: grid; gap: 8px; font-size: 0.82rem; color: var(--ink-2); }
+.js .slog__list { display: none; }          /* the squares replace it */
+.js .slog__read { display: block; }
+@media (max-width: 620px) {
+  .slog__m { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HOVER — one grammar, used everywhere
+   A card steps up one elevation, its hairline anodises, and a gold rule
+   travels its top edge. A row lights its plate and turns its marker gold.
+   No shadows, no scaling of type, nothing that moves the reading line.
+   ══════════════════════════════════════════════════════════════════════════ */
+.club, .sp, .award, .roster__p, .logos__i {
+  transition: transform .42s var(--settle), background-color .42s var(--ease);
+}
+.club::after, .sp::after, .award::after, .roster__p::after {
+  content: "";
+  position: absolute; left: var(--ch); right: 0; top: 0; height: 1px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .5s var(--settle);
+  z-index: 2;
+}
+.club:hover, .sp:hover, .award:hover, .roster__p:hover, .logos__i:hover,
+.club:focus-within, .sp:focus-within, .award:focus-within, .roster__p:focus-within {
+  --plate: var(--plate-hi);
+  --seam-soft: var(--gold-lo);
+}
+.js [data-rise].is-in.club:hover, .js [data-rise].is-in.sp:hover,
+.js [data-rise].is-in.award:hover, .js [data-rise].is-in.roster__p:hover,
+.club:hover, .sp:hover, .award:hover, .roster__p:hover { transform: translateY(-3px); }
+.club:hover::after, .sp:hover::after, .award:hover::after, .roster__p:hover::after,
+.club:focus-within::after, .sp:focus-within::after, .award:focus-within::after { transform: scaleX(1); }
+
+/* the numbers and names that the eye lands on take the gold */
+.club__n, .club__h, .award__name, .roster__name, .sp__name a { transition: color .42s var(--ease); }
+.club:hover .club__n, .award:hover .award__name { color: var(--gold-hi); }
+.roster__p:hover .roster__name, .club:hover .club__h { color: var(--gold-hi); }
+
+/* photographs and logos behind their plate: a small, slow push in */
+.roster__media, .sp__logo { overflow: hidden; }
+.roster__media .slot > img, .sp__logo .slot > img, .logos__i img {
+  transition: transform .6s var(--settle);
+}
+.roster__p:hover .roster__media .slot > img,
+.sp:hover .sp__logo .slot > img,
+.logos__i:hover img { transform: scale(1.04); }
+
+/* rows: the season event log and the outreach activity list */
+.act { transition: background-color .34s var(--ease); }
+.act:hover { background: var(--plate); }
+.act__date, .log__date { transition: color .34s var(--ease); }
+.act:hover .act__date, .log__row:hover .log__date { color: var(--gold-hi); }
+
+/* the cost list: the price is the thing a sponsor is reading */
+.cost { transition: background-color .34s var(--ease); }
+.cost:hover { background: var(--plate); }
+.cost__price { transition: color .34s var(--ease); }
+.cost:hover .cost__price { color: var(--gold-hi); }
+
+/* the footer and home sponsor strip lifts with its border */
+.sstrip__a { transition: border-color .3s var(--ease), transform .42s var(--settle); }
+.sstrip__i:hover .sstrip__a { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .club, .sp, .award, .roster__p, .logos__i, .act, .cost,
+  .club::after, .sp::after, .award::after, .roster__p::after,
+  .roster__media .slot > img, .sp__logo .slot > img, .logos__i img, .sstrip__a { transition: none; }
+  .club:hover, .sp:hover, .award:hover, .roster__p:hover,
+  .js [data-rise].is-in.club:hover, .js [data-rise].is-in.sp:hover,
+  .js [data-rise].is-in.award:hover, .js [data-rise].is-in.roster__p:hover,
+  .sstrip__i:hover .sstrip__a { transform: none; }
+  .roster__p:hover .roster__media .slot > img,
+  .sp:hover .sp__logo .slot > img, .logos__i:hover img { transform: none; }
 }

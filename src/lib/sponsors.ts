@@ -19,7 +19,17 @@ export const isHeadline = (s: Sponsor) => rank(s) < 2;
 // every logo is checked once, when the site is built
 for (const s of data.sponsors) checkLogo(s.logo, s.name);
 
-export const sponsorList = [...data.sponsors].sort((a, b) => rank(a) - rank(b));
+// A sponsor with an `until` season has stopped; they keep their place on
+// /sponsors under "Previously", and drop out of the strip on every page.
+export const isPast = (s: Sponsor) => Boolean((s.until ?? '').trim());
+
+export const sponsorList = [...data.sponsors]
+  .filter((s) => !isPast(s))
+  .sort((a, b) => rank(a) - rank(b));
+
+export const pastSponsors = [...data.sponsors]
+  .filter(isPast)
+  .sort((a, b) => (b.until ?? '').localeCompare(a.until ?? '') || rank(a) - rank(b));
 
 export const byTier = tierOrder
   .map((key) => ({ key, name: tierName(key), sponsors: sponsorList.filter((s) => s.tier === key) }))

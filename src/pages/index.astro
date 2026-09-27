@@ -32,9 +32,9 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
         <h1 class="etch" data-etch>Built to a<br>tolerance.</h1>
         <p class="lede">
           Wilsonic Boom is the junior FIRST Tech Challenge team at Wilson&rsquo;s School in
-          Wallington{headcount && <>: {headcount}</>}. In our first season we reached the regional
-          final as a finalist alliance, won the Reach Award at Regionals and the Sustain Award
-          at Nationals.
+          Wallington{headcount && <>: {headcount}</>}. Our first season brought three awards:
+          Finalist Alliance and the Reach Award at Regionals, and the Sustain Award at
+          Nationals.
         </p>
         <div class="actions">
           <a class="btn btn--gold" href={mail}>Sponsor the team</a>
@@ -158,18 +158,12 @@ const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20F
   <!-- ═══ REACH ═══ -->
   <section class="band band--alt" id="reach">
     <div class="wrap wrap--split">
-      <div class="split__l"><h2 class="h2 etch" data-etch>Where your<br>mark ends up.</h2></div>
+      <div class="split__l"><h2 class="h2 etch" data-etch>Beyond<br>the robot.</h2></div>
       <div class="split__r">
         <p class="body">
-          A sponsor of an FTC team is not buying impressions, and we will not pretend
-          otherwise. What you get is a named place on a machine that competes in public, in a
-          programme that documents itself and submits that documentation to be judged.
+          The team runs clubs across the school every week, from Junior Robotics to the KS4
+          Coding Club, and won the Reach Award for it at Regionals.
         </p>
-        <ul class="reach">
-          {outreach.placements.map((p) => (
-            <li class="reach__i"><span class="reach__k">{p.k}</span><span class="reach__v">{p.v}</span></li>
-          ))}
-        </ul>
         <Specs rows={outreach.numbers} />
         <MoreLink href="/outreach/">What we do beyond the robot</MoreLink>
       </div>

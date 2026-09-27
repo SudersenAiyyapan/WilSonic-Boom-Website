@@ -210,6 +210,8 @@ collections:
                              { label: "Gold (£800)", value: gold }, { label: "Silver (£500)", value: silver },
                              { label: "Bronze (£250)", value: bronze } ] }
               - { name: since, label: Sponsor since, widget: string, required: false, hint: "e.g. 2025–26" }
+              - { name: until, label: Last season they supported, widget: string, required: false,
+                  hint: "Leave empty while they are a current sponsor. Fill it in and they move to 'Previously'." }
               - { name: about, label: About the company, widget: string, hint: "One sentence: what they do." }
               - { name: gave, label: What they gave, widget: string, hint: "Cash, store credit, parts, machining… No amount needed; the tier shows the level." }
               - { name: wentInto, label: What it went into, widget: string, required: false,
@@ -332,14 +334,6 @@ collections:
             fields:
               - { name: k, label: Label, widget: string }
               - { name: v, label: Value, widget: string }
-          - name: placements
-            label: Where a sponsor's logo appears
-            widget: list
-            summary: "{{fields.k}}"
-            hint: "Only what you will actually deliver — sponsors check."
-            fields:
-              - { name: k, label: Placement, widget: string }
-              - { name: v, label: Detail, widget: string }
           - name: sessions
             label: Outreach sessions (the weekly log)
             widget: list

@@ -2,34 +2,31 @@
   "years": "2025–26",
   "game": "DECODE",
   "draft": false,
-  "summary": "Our first season. The team was set up to widen Wilson's School's part in FTC; we reached the regional final as a finalist alliance, won the Reach Award at Regionals and the Sustain Award at Nationals.",
+  "summary": "Our first season, and three awards: Finalist Alliance and the Reach Award at Regionals, and the Sustain Award at Nationals.",
   "record": [
     {
       "k": "Awards won",
-      "v": "2"
+      "v": "3"
     },
     {
       "k": "Regionals",
-      "v": "4th, finalist alliance"
+      "v": "4th of 15"
     },
     {
       "k": "Nationals",
       "v": "27th of 50"
     },
     {
-      "k": "Regional award",
-      "v": "Reach Award"
-    },
-    {
-      "k": "National award",
-      "v": "Sustain Award"
-    },
-    {
       "k": "Team size",
-      "v": "17 students, Years 9–11"
+      "v": "17 students"
     }
   ],
   "awards": [
+    {
+      "name": "Finalist Alliance",
+      "event": "Regionals, 2025–26",
+      "note": "Reached the final of the Regional Championship, in an alliance with our sister team Wilsobotics."
+    },
     {
       "name": "Reach Award",
       "event": "Regionals, 2025–26",
@@ -47,14 +44,14 @@
       "name": "Regional Championship",
       "venue": "Langley Park School for Boys",
       "result": "4th of 15",
-      "note": "Reach Award winners, and finalist alliance with our sister team Wilsobotics"
+      "note": "Finalist Alliance, with our sister team Wilsobotics, and the Reach Award"
     },
     {
       "date": "21–22 April 2026",
       "name": "National Championship",
       "venue": "Copper Box Arena, Queen Elizabeth Olympic Park",
       "result": "27th of 50",
-      "note": "Sustain Award Winners"
+      "note": "Sustain Award"
     }
   ],
   "robot": {

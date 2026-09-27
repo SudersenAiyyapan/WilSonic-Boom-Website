@@ -6,7 +6,7 @@ import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import Slot from '../components/Slot.astro';
 import Close from '../components/Close.astro';
-import { byTier, isHeadline } from '../lib/sponsors';
+import { byTier, isHeadline, pastSponsors } from '../lib/sponsors';
 import { url } from '../components/url';
 ---
 <Base title="Sponsors" current="sponsors" description="The companies that support Wilsonic Boom, FTC team 33001 — who they are, what they gave, and what it went into.">
@@ -51,6 +51,29 @@ import { url } from '../components/url';
       </section>
     );
   })}
+
+  {pastSponsors.length > 0 && (
+    <section class="band band--alt band--tight" id="previously">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Previously</h2>
+        <p class="body body--wide">
+          Companies that backed the team in earlier seasons. Their support paid for parts we
+          still run today.
+        </p>
+        <ul class="past">
+          {pastSponsors.map((s) => (
+            <li class="past__i" data-cut>
+              <div class="past__logo"><Slot logo small spec="Logo · 1200 × 500 px" src={s.logo} alt={s.name} /></div>
+              <div>
+                <h3 class="sp__name"><a class="inline" href={s.url}>{s.name}</a></h3>
+                <p class="sp__since num">{s.since === s.until ? s.since : `${s.since}–${s.until}`}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   <section class="band band--tight" id="join">
     <div class="wrap wrap--split">

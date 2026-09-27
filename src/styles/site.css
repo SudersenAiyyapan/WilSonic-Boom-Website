@@ -1827,3 +1827,15 @@ button.cal__d.is-on::after {
   .roster__p:hover .roster__media .slot > img,
   .sp:hover .sp__logo .slot > img, .logos__i:hover img { transform: none; }
 }
+
+/* previous seasons' sponsors: named and kept, at a smaller size */
+.past {
+  margin-top: clamp(26px, 3vw, 40px);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 18px);
+}
+.past__i { padding: 10px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 16px; align-items: center; }
+.past__i .sp__name { font-size: 1rem; }
+.past__i .sp__since { margin-top: 4px; }
+@media (max-width: 900px) { .past { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .past { grid-template-columns: minmax(0, 1fr); } }

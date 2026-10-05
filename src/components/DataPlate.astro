@@ -1,0 +1,23 @@
+---
+// A riveted machine data plate: label / fixed-width value rows.
+interface Props {
+  title: string;
+  serial?: string;
+  rows: { label?: string; value?: string; k?: string; v?: string }[];
+  foot?: [string, string];
+}
+const { title, serial, rows, foot } = Astro.props;
+---
+<div class="dplate" data-cut data-stamp>
+  <span class="rivet rivet--tl" aria-hidden="true"></span>
+  <span class="rivet rivet--tr" aria-hidden="true"></span>
+  <span class="rivet rivet--bl" aria-hidden="true"></span>
+  <span class="rivet rivet--br" aria-hidden="true"></span>
+  <p class="dplate__hd"><span>{title}</span>{serial && <span class="num">{serial}</span>}</p>
+  <dl class="dplate__rows">
+    {rows.map((r) => (
+      <div class="dplate__r"><dt>{r.label ?? r.k}</dt><dd class="num">{r.value ?? r.v}</dd></div>
+    ))}
+  </dl>
+  {foot && <p class="dplate__ft"><span>{foot[0]}</span><span>{foot[1]}</span></p>}
+</div>

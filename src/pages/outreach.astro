@@ -1,0 +1,217 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import DataPlate from '../components/DataPlate.astro';
+import Close from '../components/Close.astro';
+import outreach from '../data/outreach.json';
+import { lastCompleted as season } from '../lib/seasons';
+
+// the outreach award this season, shown beside the reach numbers
+const reachAward = season.awards.find((a) => /reach/i.test(a.name));
+
+// The weekly session log. One square per session, grouped by month: a season of
+// them takes four lines, where a list would take three screens.
+type Session = { date: string; title: string; who?: string; reached?: string };
+const sessions = ([...(outreach.sessions ?? [])] as Session[])
+  .filter((x) => x.date)
+  .sort((a, b) => b.date.localeCompare(a.date));
+const fmt = (iso: string, o: Intl.DateTimeFormatOptions) =>
+  new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', o);
+// One month on show at a time, with arrows to step back and forward. Every
+// month from the first session to the latest is there, including a month with
+// nothing in it, so stepping never skips. It opens on the latest.
+const sessionMonths = [...new Set(sessions.map((x) => x.date.slice(0, 7)))].sort();
+const monthKeys: string[] = [];
+if (sessionMonths.length) {
+  let [y, mo] = sessionMonths[0].split('-').map(Number);
+  const last = sessionMonths[sessionMonths.length - 1];
+  for (;;) {
+    const k = `${y}-${String(mo).padStart(2, '0')}`;
+    monthKeys.push(k);
+    if (k === last) break;
+    mo += 1; if (mo > 12) { mo = 1; y += 1; }
+  }
+}
+const openMonth = monthKeys[monthKeys.length - 1];
+const calendars = monthKeys.map((m) => {
+  const [y, mo] = m.split('-').map(Number);
+  const first = new Date(Date.UTC(y, mo - 1, 1));
+  const days = new Date(Date.UTC(y, mo, 0)).getUTCDate();
+  const lead = (first.getUTCDay() + 6) % 7;            // weeks start on Monday
+  const cells: ({ day: number; date: string } | null)[] = [
+    ...Array<null>(lead).fill(null),
+    ...Array.from({ length: days }, (_, i) => ({
+      day: i + 1,
+      date: `${m}-${String(i + 1).padStart(2, '0')}`,
+    })),
+  ];
+  return { key: m, label: fmt(m + '-01', { month: 'long', year: 'numeric' }), cells };
+});
+// Clicking a day reads out everything that happened on it, or that nothing did.
+const onDay = (date: string) => sessions.filter((x) => x.date === date);
+const noneLine = (date: string) =>
+  `${fmt(date, { day: 'numeric', month: 'short', year: 'numeric' })} · no sessions`;
+
+// Five fills for the kinds of session, stepping clearly apart in tone so
+// no two read as shades of each other. A day with more than one session takes
+// the white cell instead: splitting it into bands looked like a glitch.
+const SWATCH = [
+  { fill: 'var(--gold)', ink: '#0C0C0D' },
+  { fill: 'var(--gold-hi)', ink: '#0C0C0D' },
+  { fill: 'var(--alu)', ink: '#0C0C0D' },
+  { fill: '#5B5E63', ink: 'var(--ink)' },
+  { fill: '#2C2E33', ink: 'var(--ink)' },
+];
+const MULTI = { fill: 'var(--ink)', ink: '#0C0C0D' };
+const kinds = [...new Set(sessions.map((x) => x.title))];
+const swatch = (title: string) => SWATCH[kinds.indexOf(title) % SWATCH.length];
+const colour = (title: string) => swatch(title).fill;
+const cellFill = (day: Session[]) => (day.length === 1 ? swatch(day[0].title) : MULTI);
+
+const reachedTotal = sessions.reduce((n, x) => n + (parseInt(x.reached ?? '', 10) || 0), 0);
+// An empty log would read badly to a sponsor, so it is hidden on the live site
+// until there is something in it — but shown while running locally, so the team
+// can see where their entries will land.
+const showLog = sessions.length > 0 || import.meta.env.DEV;
+const line = (x: Session) =>
+  [fmt(x.date, { day: 'numeric', month: 'short', year: 'numeric' }), x.title, x.who, x.reached && `${x.reached} people`]
+    .filter(Boolean).join(' · ');
+---
+<Base title="Outreach" current="outreach" description="What Wilsonic Boom does beyond the robot: outreach, events, and who it reaches.">
+
+  <PageHead lines={['Beyond', 'the robot.']}>
+    <p class="lede">
+      FIRST judges a team on what it does for other people as much as on its machine.
+    </p>
+  </PageHead>
+
+  <!-- ═══ REACH — the numbers and the award on one side, the season's
+       sessions on the other, so the page starts full rather than with a plate
+       and a gap ═══ -->
+  <section class="band band--tight" id="reach">
+    <div class="wrap">
+      <div class:list={['reachgrid', { 'reachgrid--solo': !showLog }]}>
+        <div class="reachgrid__side">
+          <DataPlate title="Reach" serial="33001" rows={outreach.numbers} />
+          {reachAward && (
+            <div class="award" data-cut>
+              <p class="award__name">{reachAward.name}</p>
+              <p class="award__event">{reachAward.event}</p>
+              <p class="body">{reachAward.note}</p>
+            </div>
+          )}
+        </div>
+
+        {showLog && (
+          <div class="reachgrid__log" id="sessions">
+            <h2 class="h4 record__lbl">Session log</h2>
+            <div class="slog" data-slog>
+              <div class="cals">
+                {calendars.map((c, i) => (
+                  <div class:list={['cal', { 'is-on': c.key === openMonth }]} data-month={c.key}>
+                    <div class="cal__hd">
+                      <button class="cal__nav" type="button" data-cal-prev aria-label="Previous month" disabled={i === 0}>
+                        <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M8 1.5 L3.5 6 L8 10.5" /></svg>
+                      </button>
+                      <p class="cal__m" aria-live="polite">{c.label}</p>
+                      <button class="cal__nav" type="button" data-cal-next aria-label="Next month" disabled={i === calendars.length - 1}>
+                        <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4 1.5 L8.5 6 L4 10.5" /></svg>
+                      </button>
+                    </div>
+                    <ul class="cal__wd" aria-hidden="true">
+                      {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d) => <li>{d}</li>)}
+                    </ul>
+                    <ul class="cal__grid">
+                      {c.cells.map((cell) => {
+                        const day = cell ? onDay(cell.date) : [];
+                        if (!cell) return <li class="cal__c" />;
+                        const text = day.length > 0 ? day.map(line).join('\n') : noneLine(cell.date);
+                        return (
+                          <li class="cal__c">
+                            <button class:list={['cal__d', { 'cal__d--on': day.length > 0 }]} type="button"
+                                    style={day.length > 0 ? `--fill: ${cellFill(day).fill}; --fill-ink: ${cellFill(day).ink}` : undefined}
+                                    data-line={text} aria-label={text}
+                                    data-default={c.key === openMonth && cell.day === 1 ? '' : undefined}>
+                              {cell.day}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div class="slog__info">
+              {kinds.length > 1 && (
+                <ul class="cal__key">
+                  {kinds.map((k) => (
+                    <li><span class="cal__sw" style={`--fill: ${colour(k)}`}></span>{k}</li>
+                  ))}
+                  {sessions.some((x, i, all) => all.findIndex((y) => y.date === x.date) !== i) && (
+                    <li><span class="cal__sw" style={`--fill: ${MULTI.fill}`}></span>More than one</li>
+                  )}
+                </ul>
+              )}
+              {sessions.length === 0 && (
+                <p class="slog__empty">
+                  No sessions logged yet. Add them in the admin under Outreach → Outreach sessions;
+                  this section stays hidden on the live site until the first one goes in.
+                </p>
+              )}
+              <p class="slog__read num" data-slog-read>{openMonth ? (onDay(`${openMonth}-01`).map(line).join('\n') || noneLine(`${openMonth}-01`)) : ''}</p>
+              </div>
+              <!-- without script every session still reads here, in full -->
+              <ul class="slog__list">
+                {sessions.map((x) => <li class="num">{line(x)}</li>)}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CLUBS — the standing programme, the bulk of the reach ═══ -->
+  {outreach.clubs?.length > 0 && (
+    <section class="band band--alt band--tight" id="clubs">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Clubs we run</h2>
+        <ul class="clubs">
+          {outreach.clubs.map((c) => (
+            <li class="club" data-cut>
+              <p class="club__n num">{c.students}</p>
+              <h3 class="club__h">{c.name}</h3>
+              <p class="club__who">{c.who}</p>
+              <p class="body">{c.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ ACTIVITIES — one per full-width row, newest first ═══ -->
+  <section class="band band--alt" id="activities">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>Events</h2>
+    </div>
+    <ol class="acts">
+      {outreach.activities.map((a) => (
+        <li class="act">
+          <span class="act__date num">{a.date}</span>
+          <div class="act__main">
+            <h3 class="h3">{a.title}</h3>
+            <p class="act__where">{a.where}</p>
+          </div>
+          <p class="body act__body">{a.body}</p>
+          <p class="act__who">{a.who}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <Close heading={['Help us', 'reach further.']}>
+    Outreach costs transport, kit and time. If you would rather fund that than the robot,
+    tell us. It is a sponsorship like any other.
+  </Close>
+</Base>

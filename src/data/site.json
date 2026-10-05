@@ -1,0 +1,24 @@
+{
+  "homePhoto": "/images/home-robot.webp",
+  "name": "Wilsonic Boom",
+  "teamNumber": "33001",
+  "school": "Wilson's School",
+  "town": "Wallington",
+  "address": "Wilson's School, Mollison Drive, Wallington SM6 9JW",
+  "email": "admin@wilsonicboom.com",
+  "sponsorshipPack": "/documents/sponsorship-package.pdf",
+  "social": [
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/wilsonicboom.ftc/"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/company/wilsonsschool-robotics"
+    }
+  ],
+  "sisterTeam": {
+    "name": "Wilsobotics",
+    "url": "https://wilsobotics.com"
+  }
+}

@@ -1,0 +1,82 @@
+---
+// THE ASSEMBLY — the Robot page's main interaction.
+// Left: one 16:10 stage with a numbered marker on each part. Right: one pane.
+// It opens on the overview (the version's summary and its numbers). Click a
+// number, on the photograph or in the row of tabs, and both sides change
+// together: the stage wipes to that part's close-up and the pane shows that
+// part. Click it again, or Overview, to go back.
+// Without script every pane is listed in full, one after another.
+import Slot from './Slot.astro';
+import Specs from './Specs.astro';
+interface Sub {
+  n: string; name: string; shot: string; marker: { x: string; y: string };
+  body: string; detail?: string; specs: { k: string; v: string }[];
+  photo?: string | null;
+}
+interface Props {
+  subsystems: Sub[];
+  assemblyPhoto?: string | null;
+  summary?: string;                        // the version's own summary
+  specs?: { k: string; v: string }[];      // the version's numbers
+  points?: { k: string; v: string }[];     // the overview, one short labelled line each
+}
+const { subsystems, assemblyPhoto = null, summary = '', specs = [], points = [] } = Astro.props;
+---
+<div class="assembly" data-assembly>
+  <figure class="assembly__stage" data-cut>
+    <div class="stage" style="--ratio: 16 / 10">
+      <div class="stage__view is-on" data-view="0">
+        <Slot name="Robot, full assembly" spec="16:10 · 2800 px · plain dark background · all four subsystems visible" ratio="16 / 10" src={assemblyPhoto} alt="The competition robot, full assembly" />
+      </div>
+      {/* A close-up wipes over the assembly only if it exists. With a real
+          assembly photo and no close-up yet, the stage stays on the robot and
+          the marker shows where the part is; an empty box must never cover a
+          real photograph. With no photographs at all, the empty close-ups still
+          show, so the page says which shots are needed. */}
+      {subsystems.filter((s) => s.photo || !assemblyPhoto).map((s) => (
+        <div class="stage__view" data-view={s.n} aria-hidden="true">
+          <Slot name={s.shot} spec="16:10 · 2000 px" ratio="16 / 10" src={s.photo} alt={s.shot} />
+        </div>
+      ))}
+      {subsystems.map((s) => (
+        <button class="mk" type="button" data-mk={s.n} style={`--x: ${s.marker.x}; --y: ${s.marker.y}`} aria-pressed="false">
+          <span class="mk__n">{s.n}</span>
+          <span class="vh">Show {s.shot.toLowerCase()}</span>
+        </button>
+      ))}
+      <p class="stage__tag num" data-stage-tag>Full assembly</p>
+    </div>
+  </figure>
+
+  <div class="apanes">
+    <div class:list={['atabs', { 'atabs--none': subsystems.length === 0 }]} role="group" aria-label="Parts of the robot">
+      <button class="atab is-on" type="button" data-pane-btn="0" aria-pressed="true">Overview</button>
+      {subsystems.map((s) => (
+        <button class="atab" type="button" data-pane-btn={s.n} aria-pressed="false">
+          <span class="atab__n num">{s.n}</span>{s.name}
+        </button>
+      ))}
+    </div>
+
+    <div class="apane is-on" data-pane="0">
+      {summary && <p class="apane__lead">{summary}</p>}
+      {points.length > 0 && (
+        <dl class="apoints">
+          {points.map((pt) => (
+            <div class="apoints__r"><dt>{pt.k}</dt><dd>{pt.v}</dd></div>
+          ))}
+        </dl>
+      )}
+      {specs.length > 0 && <Specs rows={specs} tight />}
+    </div>
+
+    {subsystems.map((s) => (
+      <div class="apane" data-pane={s.n}>
+        <h3 class="h3 apane__h"><span class="key__n num">{s.n}</span>{s.name}</h3>
+        <p class="body apane__lede">{s.body}</p>
+        {s.detail && <p class="body apane__detail">{s.detail}</p>}
+        <Specs rows={s.specs} tight />
+      </div>
+    ))}
+  </div>
+</div>

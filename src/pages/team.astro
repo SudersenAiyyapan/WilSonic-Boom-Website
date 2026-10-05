@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Slot from '../components/Slot.astro';
+import Close from '../components/Close.astro';
+import team from '../data/team.json';
+import site from '../data/site.json';
+import DataPlate from '../components/DataPlate.astro';
+import { headcount } from '../lib/team';
+
+const leads = team.people.filter((p) => p.lead);
+// A person can sit in several sub-teams. Older entries used a single `subteam`
+// string; both work. Keys typed in the admin may differ in case, so compare loosely.
+const norm = (k = '') => k.trim().toLowerCase();
+const teamsOf = (p: { subteams?: string[]; subteam?: string }) =>
+  (p.subteams ?? (p.subteam ? [p.subteam] : [])).map(norm);
+// A person can hold a different role in each sub-team (a CAD member who runs
+// finance on the non-technical side); `roles` overrides the main role there.
+const roleIn = (p: any, key: string) =>
+  (p.roles ?? []).find((r: any) => norm(r.subteam) === norm(key))?.role || p.role;
+const bySub = team.subteams.map((st) => {
+  const members = team.people
+    .filter((p) => teamsOf(p).includes(norm(st.key)))
+    .map((p) => ({ ...p, role: roleIn(p, st.key) }));
+  // leads appear here too, first, as well as in Leads above
+  // that sub-team's own lead first, then everyone else alphabetically
+  const isLeadHere = (p: any) => /\blead\b/i.test(p.role || '');
+  const people = [...members.filter(isLeadHere), ...members.filter((p) => !isLeadHere(p))];
+  return { ...st, people, count: members.length };
+});
+---
+<Base title="Team" current="team" description="Who runs Wilsonic Boom: the sub-teams and the people in them.">
+
+  <PageHead lines={['Who runs it.']}>
+    <p class="lede">
+      Wilsonic Boom is the junior of Wilson&rsquo;s School&rsquo;s two FTC teams{headcount && <>: {headcount}</>}. We were set up in 2025–26 to widen the school&rsquo;s part in FIRST Tech Challenge.
+    </p>
+  </PageHead>
+
+  <!-- ═══ STRUCTURE ═══ -->
+  <section class="band band--tight" id="structure">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>How it is<br>organised.</h2></div>
+      <div class="split__r">
+        <DataPlate title="Wilsonic Boom" serial="33001" rows={team.facts} />
+        <p class="body team__sister">
+          Our senior team is <a class="inline" href={team.sister.url}>{team.sister.name}</a>.
+          {' '}{team.sister.about}
+        </p>
+        <p class="h4 team__subh">Sub-teams</p>
+        <ul class="reach">
+          {bySub.map((st) => (
+            <li class="reach__i reach__i--3">
+              <span class="reach__k">{st.name}</span>
+              <span class="reach__v">{st.job}</span>
+              <span class="reach__n num">{st.count}</span>
+            </li>
+          ))}
+        </ul>
+        {team.shared && (
+          <p class="body team__shared">
+            {team.shared.name}: {team.shared.job}. Every member takes part in this, alongside
+            their sub-team.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LEADS ═══ -->
+  <section class="band band--alt" id="leads">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>Leads</h2>
+      <ul class="roster roster--leads">
+        {leads.map((p) => (
+          <li class="roster__p" data-cut>
+            <figure class="roster__media"><Slot small spec="1:1 · 800 px" ratio="1 / 1" src={p.photo} alt={p.name} /></figure>
+            <p class="roster__name">{p.name}</p>
+            <p class="roster__role">{p.role}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ SUB-TEAMS ═══ -->
+  {bySub.filter((st) => st.people.length).map((st, i) => (
+    <section class:list={['band', 'band--tight', { 'band--alt': i % 2 === 1 }]}>
+      <div class="wrap">
+        <h2 class="h3 subteam__h">{st.name}</h2>
+        <ul class="roster">
+          {st.people.map((p) => (
+            <li class="roster__p" data-cut>
+              <figure class="roster__media"><Slot small spec="1:1 · 800 px" ratio="1 / 1" src={p.photo} alt={p.name} /></figure>
+              <p class="roster__name">{p.name}</p>
+              <p class="roster__role">{p.role}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <Close />
+</Base>

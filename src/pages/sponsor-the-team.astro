@@ -1,0 +1,169 @@
+---
+// /sponsor-the-team — the pitch to a NEW sponsor: why, what it pays for, the
+// tiers, how it works. (Current sponsors have their own page, /sponsors.)
+// Every figure here comes from the team's sponsorship package.
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import DataPlate from '../components/DataPlate.astro';
+import TierTable from '../components/TierTable.astro';
+import Close from '../components/Close.astro';
+import MoreLink from '../components/MoreLink.astro';
+import sponsors from '../data/sponsors.json';
+import site from '../data/site.json';
+import team from '../data/team.json';
+import { href } from '../components/url';
+
+const mail = `mailto:${site.email}?subject=Sponsorship%20enquiry%20%E2%80%94%20FTC%2033001`;
+const groups = [...new Set(sponsors.funding.map((f) => f.group))];
+type Benefit = Record<string, string> & { label: string };
+// The season's budget as a two-stage target: the first figure runs the season,
+// the second adds the stretch item. Hidden on the live site until a raised
+// figure is entered, so it never shows a guess; visible locally either way.
+const b = sponsors.budget as { season: string; core: number; stretch: number; stretchLabel: string; raised: number | null } | undefined;
+const hasRaised = b != null && b.raised != null && String(b.raised) !== '';
+const showBudget = b != null && (hasRaised || import.meta.env.DEV);
+const raised = hasRaised ? Number(b!.raised) : 0;   // negative when the season starts in deficit
+const behind = raised < 0 ? -raised : 0;
+const gbp = (n: number) => `£${Math.round(n).toLocaleString('en-GB')}`;
+const pct = (n: number) => (b ? Math.max(0, Math.min(100, (n / b.stretch) * 100)) : 0);
+const toCore = b ? Math.max(0, b.core - raised) : 0;
+const toStretch = b ? Math.max(0, b.stretch - raised) : 0;
+---
+<Base title="Sponsor the team" current="sponsor" description="Sponsor Wilsonic Boom, FTC team 33001: what your support pays for, the five tiers, and what happens after you get in touch.">
+
+  <PageHead lines={['Sponsor', 'the team.']}>
+    <p class="lede">
+      FIRST Tech Challenge runs on robot parts, electronics, a practice field, entry fees and
+      travel. Sponsorship pays for them, as money or as store credit.
+    </p>
+    <div class="actions actions--head">
+      <a class="btn btn--gold" href={mail}>Email the team</a>
+      <a class="btn btn--ghost" href={href(site.sponsorshipPack)} download>
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2 L8 11" /><path d="M4.5 7.5 L8 11 L11.5 7.5" /><path d="M3 13.5 L13 13.5" /></svg>
+        Sponsorship package (PDF)
+      </a>
+    </div>
+  </PageHead>
+
+  <!-- ═══ BUDGET — what the season costs, and how far along we are ═══ -->
+  {showBudget && b && (
+    <section class="band band--tight" id="budget">
+      <div class="wrap wrap--split">
+        <div class="split__l"><h2 class="h2 etch" data-etch>This season&rsquo;s<br>budget.</h2></div>
+        <div class="split__r">
+          <p class="budget__now">
+            <span class="budget__amt num">{gbp(toCore)}</span>
+            <span class="budget__of">to raise for {b.season}</span>
+          </p>
+          <div class="budget__bar" role="img"
+               aria-label={`${gbp(Math.max(0, raised))} raised. ${gbp(b.core)} runs the season; ${gbp(b.stretch)} adds ${b.stretchLabel}.`}>
+            <span class="budget__fill" style={`width: ${pct(raised)}%`}></span>
+            <span class="budget__mark" style={`left: ${pct(b.core)}%`}></span>
+          </div>
+          <ul class="budget__key">
+            <li class="budget__k--mark"><span class="num">{gbp(b.core)}</span>runs the season</li>
+            <li class="budget__k--end"><span class="num">{gbp(b.stretch)}</span>adds {b.stretchLabel}</li>
+          </ul>
+          <p class="body">
+            {toCore > 0
+              ? <>{behind > 0
+                    ? <>That is {gbp(b.core)} for the season, and {gbp(behind)} carried over from last year. </>
+                    : <>{gbp(raised)} of the {gbp(b.core)} is in. </>}
+                  It pays for parts, electronics, entry fees and travel. A further {gbp(b.stretch - b.core)} buys {b.stretchLabel}, which both teams and the clubs would practise on.</>
+              : toStretch > 0
+                ? <>The season is funded. {gbp(toStretch)} more buys {b.stretchLabel}, which both teams and the clubs would practise on.</>
+                : <>The season and {b.stretchLabel} are funded. Further support goes into next season.</>}
+          </p>
+          {!hasRaised && (
+            <p class="slog__empty">
+              No raised figure entered yet, so this section is hidden on the live site. Add it in
+              the admin under Sponsors → Season budget.
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ TWO TEAMS, ONE PROGRAMME ═══ -->
+  <section class="band band--alt" id="both-teams">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>Two teams,<br>one sponsorship.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          Wilson&rsquo;s School runs two FTC teams, and a sponsorship supports both. Wilsonic Boom
+          is the junior team: {team.facts.find((f) => f.k === 'Students')?.v} students aged
+          {' '}{team.facts.find((f) => f.k === 'Ages')?.v}, in our second season. Our senior team,
+          {' '}<a class="inline" href={team.sister.url}>{team.sister.name}</a>, has 18 students aged
+          16 to 18 and finished 5th at the European Premiers.
+        </p>
+        <p class="body">
+          Between the two FTC teams, Junior Robotics and the three other clubs we run, that is
+          148 students a week, and more again through the events we take the robot to.
+        </p>
+        <DataPlate title="What a sponsorship reaches" serial="33001" rows={sponsors.impact} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT IT PAYS FOR — real parts, real prices ═══ -->
+  <section class="band" id="costs">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>What your money<br>actually buys.</h2>
+      <div class="costs">
+        {groups.map((g) => (
+          <div class="costs__group">
+            <h3 class="h4 costs__h">{g}</h3>
+            <ul class="costs__list">
+              {sponsors.funding.filter((f) => f.group === g).map((f) => (
+                <li class="cost">
+                  <span class="cost__item">{f.item}</span>
+                  <span class="cost__what">{f.what}</span>
+                  <span class="cost__price num">{f.cost}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TIERS ═══ -->
+
+  <section class="band band--alt" id="tiers">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>Five tiers</h2>
+      <p class="body body--wide">{sponsors.inKind} Every sponsor gets update emails and a backlink from this site; each tier up adds more.</p>
+
+      <TierTable />
+      <div class="tt__more"><MoreLink href="/sponsors/">Who already supports us</MoreLink></div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT HAPPENS NEXT ═══ -->
+  <section class="band" id="next">
+    <div class="wrap">
+      <h2 class="h2 etch" data-etch>What happens next</h2>
+      <ol class="steps">
+        <li class="step" data-cut>
+          <span class="step__n num">01</span>
+          <h3 class="h3">You email us</h3>
+          <p class="body">Write to <a class="inline" href={`mailto:${site.email}`}>{site.email}</a> with the tier you are thinking of, or just a question. We will get back to you.</p>
+        </li>
+        <li class="step" data-cut>
+          <span class="step__n num">02</span>
+          <h3 class="h3">We answer and send detail</h3>
+          <p class="body">You get the full sponsorship package and anything else you want to know about the teams, the robot or where your support would go.</p>
+        </li>
+        <li class="step" data-cut>
+          <span class="step__n num">03</span>
+          <h3 class="h3">We agree it in writing</h3>
+          <p class="body">Tier, amount and what we owe you, confirmed by email before anything is printed. Invoicing and payment run through {sponsors.invoicing}.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <Close showSponsorsLink={false} />
+</Base>

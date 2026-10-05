@@ -1,0 +1,18 @@
+---
+// The opening plate of every sub-page: an etched title and one paragraph.
+// Title line breaks are authored with <br> via the `lines` array.
+interface Props { lines: string[]; }
+const { lines } = Astro.props;
+---
+<section class="pagehead">
+  <div class="wrap">
+    <div class="plate plate--head" data-cut>
+      <h1 class="etch etch--page" data-etch set:html={lines.join('<br>')} />
+      <div class="pagehead__lede"><slot /></div>
+    </div>
+  </div>
+  <div class="rule rule--scale" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</section>

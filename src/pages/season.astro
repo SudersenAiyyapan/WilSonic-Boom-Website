@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import SeasonSwitch from '../components/SeasonSwitch.astro';
+import DataPlate from '../components/DataPlate.astro';
+import Close from '../components/Close.astro';
+import { seasons } from '../lib/seasons';
+
+// Season-by-season comparison: every record label that appears in any season,
+// one column per season. A season missing a figure shows a dash, not a guess.
+const played = seasons.filter((s) => s.record.length > 0);   // a new season shows dashes until it has results
+const labels = [...new Set(played.flatMap((s) => s.record.map((r) => r.k)))];
+const cell = (s: (typeof seasons)[number], k: string) => s.record.find((r) => r.k === k)?.v ?? '—';
+---
+<Base title="Season" current="season" description="Wilsonic Boom's competition record: every event, result and award, season by season.">
+
+  <PageHead lines={['Record.']}>
+    <p class="lede">
+      Our results, season by season.
+    </p>
+  </PageHead>
+
+  <section class="band band--tight" id="seasons">
+    <div class="wrap">
+      <SeasonSwitch seasons={seasons} />
+
+      {seasons.map((s, i) => (
+        <div class="season-panel" data-season-panel={s.slug} data-season-default={i === 0 ? '' : undefined}>
+          <div class="season-panel__hd">
+            <h2 class="h2 etch" data-etch>{s.game}</h2>
+            <p class="h4">{s.years}</p>
+          </div>
+          <p class="body body--wide">{s.summary}</p>
+
+          {/* Every season has the same four blocks, in the same order, whether it
+              is finished or has only just begun: aims, record, events, awards. */}
+          {s.aims && s.aims.length > 0 && (
+            <div class="aims">
+              <p class="h4 record__lbl">Aims for the season</p>
+              <ul class="aims__list">
+                {s.aims.map((a) => (
+                  <li class:list={['aims__i', { 'aims__i--done': a.done }]}>
+                    {a.done
+                      ? <svg class="aims__tick" viewBox="0 0 16 16" role="img" aria-label="Achieved"><path d="M3 8.5 L6.5 12 L13 4.5" /></svg>
+                      : <span class="aims__box" role="img" aria-label="Not yet achieved"></span>}
+                    <span>{a.aim}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div class="record">
+            <DataPlate title="Season record" serial="33001" rows={s.record} foot={['FIRST® Tech Challenge', s.years]} />
+            <div class="record__log">
+              <p class="h4 record__lbl">Event log</p>
+              {s.events.length > 0 ? (
+                <ol class="log">
+                  {s.events.map((e) => (
+                    <li class="log__row">
+                      <span class="log__date num">{e.date}</span>
+                      <div class="log__main">
+                        <span class="log__event">{e.name}</span>
+                        {e.venue && <span class="log__venue">{e.venue}</span>}
+                        {e.note && <span class="log__note">{e.note}</span>}
+                      </div>
+                      <span class="log__result num">{e.result}</span>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p class="log__none">No events yet.</p>
+              )}
+            </div>
+          </div>
+
+          <div class="season-awards">
+            <p class="h4 record__lbl">Awards</p>
+            {s.awards.length > 0 ? (
+              <ul class="awards awards--row">
+                {s.awards.map((a) => (
+                  <li class="award" data-cut>
+                    <p class="award__name">{a.name}</p>
+                    <p class="award__event">{a.event}</p>
+                    <p class="body">{a.note}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="log__none">No awards yet.</p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="band band--alt" id="ftc">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>How FTC<br>competition works.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          FIRST Tech Challenge runs in more than 80 countries, with over 6,400 teams and 100,000
+          students. Teams are judged on their robot, their outreach, their connection with the
+          STEM community, and their plans to keep the team going.
+        </p>
+        <ol class="ladder">
+          <li class="ladder__i"><span class="ladder__k">Regionals</span><span class="ladder__v">15 to 20 local teams compete to qualify.</span></li>
+          <li class="ladder__i"><span class="ladder__k">Nationals</span><span class="ladder__v">The best from each region, usually 50 or more teams.</span></li>
+          <li class="ladder__i"><span class="ladder__k">Premier events</span><span class="ladder__v">Top national teams from across the continent, representing their country.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  {played.length > 1 && (
+    <section class="band" id="compare">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Season by season</h2>
+        <div class="compare-wrap">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th scope="col"><span class="vh">Measure</span></th>
+                {played.map((s) => <th scope="col" class="num">{s.years}{s.draft && ' (draft)'}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {labels.map((k) => (
+                <tr>
+                  <th scope="row">{k}</th>
+                  {played.map((s) => <td class="num">{cell(s, k)}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Close />
+</Base>

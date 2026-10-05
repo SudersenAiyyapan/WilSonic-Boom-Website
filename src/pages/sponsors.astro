@@ -1,0 +1,92 @@
+---
+// /sponsors — the companies and people who already support the team, in
+// proper detail. A thank-you, and proof to the next sponsor that support is
+// visible and accounted for. The pitch to new sponsors is /sponsor-the-team.
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Slot from '../components/Slot.astro';
+import Close from '../components/Close.astro';
+import { byTier, isHeadline, pastSponsors } from '../lib/sponsors';
+import { url } from '../components/url';
+---
+<Base title="Sponsors" current="sponsors" description="The companies that support Wilsonic Boom, FTC team 33001: who they are, what they gave, and what it went into.">
+
+  <PageHead lines={['Our sponsors.']}>
+    <p class="lede">
+      Every part of this robot and every event we reach was paid for by someone.
+    </p>
+  </PageHead>
+
+  {byTier.map((g, i) => {
+    const big = isHeadline(g.sponsors[0]);
+    return (
+      <section class:list={['band', i === 0 ? 'band--tight' : i % 2 ? 'band--alt' : '']} id={g.key}>
+        <div class="wrap">
+          <h2 class="h2 etch" data-etch>{g.name} sponsors</h2>
+          <ul class:list={['sponsor-list', { 'sponsor-list--grid': !big }]}>
+            {g.sponsors.map((s) => (
+              <li class:list={['sp', { 'sp--top': big }]} data-cut>
+                <div class="sp__logo"><Slot logo small spec="Logo · 1200 × 500 px" src={s.logo} alt={s.name} /></div>
+                <div class="sp__b">
+                  <h3 class="sp__name"><a class="inline" href={s.url}>{s.name}</a></h3>
+                  <p class="sp__since num">{g.name}{s.since && <> · since {s.since}</>}</p>
+                  <p class="body">{s.about}</p>
+                  {big ? (
+                    <dl class="specs specs--tight">
+                      <div class="specs__row"><dt>Gave</dt><dd>{s.gave}</dd></div>
+                      {s.wentInto && <div class="specs__row"><dt>Went into</dt><dd>{s.wentInto}</dd></div>}
+                    </dl>
+                  ) : (
+                    <>
+                      <p class="sp__gave"><span>Gave</span> {s.gave}</p>
+                      {s.wentInto && <p class="sp__gave"><span>Went into</span> {s.wentInto}</p>}
+                    </>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    );
+  })}
+
+  {pastSponsors.length > 0 && (
+    <section class="band band--alt band--tight" id="previously">
+      <div class="wrap">
+        <h2 class="h2 etch" data-etch>Previously</h2>
+        <p class="body body--wide">
+          Companies that backed the team in earlier seasons.
+        </p>
+        <ul class="past">
+          {pastSponsors.map((s) => (
+            <li class="past__i" data-cut>
+              <div class="past__logo"><Slot logo small spec="Logo · 1200 × 500 px" src={s.logo} alt={s.name} /></div>
+              <div>
+                <h3 class="sp__name"><a class="inline" href={s.url}>{s.name}</a></h3>
+                <p class="sp__since num">{s.since === s.until ? s.since : `${s.since}–${s.until}`}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="band band--tight" id="join">
+    <div class="wrap wrap--split">
+      <div class="split__l"><h2 class="h2 etch" data-etch>Join them.</h2></div>
+      <div class="split__r">
+        <p class="body">
+          Sponsorship can be money, parts, machining or services, at whatever level suits you.
+        </p>
+        <a class="btn btn--gold join__btn" href={url('/sponsor-the-team/')}>Sponsor the team</a>
+      </div>
+    </div>
+  </section>
+
+  <Close heading={['Thank you.']} showSponsorsLink={false}>
+    If you sponsor us and something here is out of date, like a logo, a line about your
+    company or where your support went, tell us and we will fix it.
+  </Close>
+</Base>

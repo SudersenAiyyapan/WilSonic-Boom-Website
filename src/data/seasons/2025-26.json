@@ -1,0 +1,383 @@
+{
+  "years": "2025–26",
+  "game": "DECODE",
+  "draft": false,
+  "summary": "Our first season, and three awards: Finalist Alliance and the Reach Award at Regionals, and the Sustain Award at Nationals.",
+  "aims": [
+    {
+      "aim": "Qualify for the UK Championship.",
+      "done": true
+    },
+    {
+      "aim": "Win at least one award.",
+      "done": true
+    }
+  ],
+  "record": [
+    {
+      "k": "Awards won",
+      "v": "3"
+    },
+    {
+      "k": "Regionals",
+      "v": "4th of 15"
+    },
+    {
+      "k": "Nationals",
+      "v": "27th of 50"
+    },
+    {
+      "k": "Team size",
+      "v": "17 students"
+    }
+  ],
+  "awards": [
+    {
+      "name": "Finalist Alliance",
+      "event": "Regionals, 2025–26",
+      "note": "Reached the final of the Regional Championship, in an alliance with our sister team Wilsobotics."
+    },
+    {
+      "name": "Reach Award",
+      "event": "Regionals, 2025–26",
+      "note": "FIRST's award for outreach: inspiring and reaching people beyond the team."
+    },
+    {
+      "name": "Sustain Award",
+      "event": "Nationals, 2025–26",
+      "note": "FIRST's award for building a team that lasts: planning, funding and continuity."
+    }
+  ],
+  "events": [
+    {
+      "date": "5 December 2025",
+      "name": "Scrimmage",
+      "venue": "Langley Park School for Boys",
+      "result": "15 teams",
+      "note": ""
+    },
+    {
+      "date": "24 March 2026",
+      "name": "Regional Championship",
+      "venue": "Langley Park School for Boys",
+      "result": "4th of 15",
+      "note": "Finalist Alliance, with our sister team Wilsobotics, and the Reach Award"
+    },
+    {
+      "date": "21–22 April 2026",
+      "name": "National Championship",
+      "venue": "Copper Box Arena, Queen Elizabeth Olympic Park",
+      "result": "27th of 50",
+      "note": "Sustain Award"
+    }
+  ],
+  "robot": {
+    "software": "",
+    "versions": [
+      {
+        "id": "V1",
+        "date": "December 2025",
+        "title": "Scrimmage build",
+        "summary": "The first robot we built as a team.",
+        "points": [
+          {
+            "k": "Drivetrain",
+            "v": "A mecanum strafer, chosen because it is simple, reliable and sturdy."
+          },
+          {
+            "k": "Intake",
+            "v": "Flap wheels and a curved ramp, to pick artifacts up quickly."
+          },
+          {
+            "k": "Sorter",
+            "v": "Sorting turned out not to help our scoring, and the flap that fed the shooter was unreliable, which made our cycles slow."
+          },
+          {
+            "k": "Shooter",
+            "v": "It worked, but we had no control over the angle of its hood."
+          }
+        ],
+        "photo": "/images/robot-v1-scrimmage.webp",
+        "specs": [
+          {
+            "k": "Motors",
+            "v": "6"
+          },
+          {
+            "k": "Servos",
+            "v": "2"
+          }
+        ],
+        "subsystems": [
+          {
+            "n": "1",
+            "name": "Drivetrain",
+            "shot": "Drivetrain, close",
+            "photo": null,
+            "marker": {
+              "x": "30%",
+              "y": "69%"
+            },
+            "body": "A mecanum strafer drivetrain, chosen because it is simple, reliable and sturdy.",
+            "detail": "Four motors, one per wheel, on a frame of U-channel that keeps it stiff.",
+            "specs": [
+              {
+                "k": "Motors",
+                "v": "4"
+              },
+              {
+                "k": "Servos",
+                "v": "0"
+              }
+            ]
+          },
+          {
+            "n": "2",
+            "name": "Intake",
+            "shot": "Intake, close",
+            "photo": null,
+            "marker": {
+              "x": "78%",
+              "y": "58%"
+            },
+            "body": "A flap-wheel intake with a curved ramp, for quick pick-up of artifacts.",
+            "detail": "One motor drives the flap wheels. The ramp is 3D printed.",
+            "specs": [
+              {
+                "k": "Motors",
+                "v": "1"
+              },
+              {
+                "k": "Servos",
+                "v": "0"
+              }
+            ]
+          },
+          {
+            "n": "3",
+            "name": "Sorter",
+            "shot": "Sorter, close",
+            "photo": null,
+            "marker": {
+              "x": "49%",
+              "y": "53%"
+            },
+            "body": "A spindexer: a drum that rotates to sort the artifacts by colour.",
+            "detail": "Two servos turn it. Sorting turned out not to help our scoring, and the flap that pushed each artifact on into the shooter was unreliable, which slowed every cycle.",
+            "specs": [
+              {
+                "k": "Motors",
+                "v": "0"
+              },
+              {
+                "k": "Servos",
+                "v": "2"
+              }
+            ]
+          },
+          {
+            "n": "4",
+            "name": "Shooter",
+            "shot": "Shooter, close",
+            "photo": null,
+            "marker": {
+              "x": "50%",
+              "y": "19%"
+            },
+            "body": "A hooded flywheel shooter that fires the artifacts into the goals.",
+            "detail": "One motor spins the flywheel. It worked, but the hood was fixed, so we could not control its angle.",
+            "specs": [
+              {
+                "k": "Motors",
+                "v": "1"
+              },
+              {
+                "k": "Servos",
+                "v": "0"
+              }
+            ]
+          }
+        ],
+        "changes": [],
+        "subversions": []
+      },
+      {
+        "id": "V2",
+        "date": "March 2026",
+        "title": "Regionals build",
+        "summary": "Rebuilt for Regionals around a custom parallel-plate drivetrain on mecanum wheels.",
+        "points": [
+          {
+            "k": "Frame",
+            "v": "Polycarbonate plates, chosen for strength and for how they look. Designing our own frame gave us far more freedom over where each mechanism sits."
+          },
+          {
+            "k": "Sorter removed",
+            "v": "Our analysis showed that sorting was not worth the slower cycle times."
+          },
+          {
+            "k": "Transfer",
+            "v": "Flap wheels now carry each artifact from the intake to the shooter."
+          },
+          {
+            "k": "Shooter",
+            "v": "Gained an adjustable hood."
+          },
+          {
+            "k": "To fix",
+            "v": "The drivetrain's sprockets and chains gave us problems."
+          }
+        ],
+        "photo": "/images/robot-v2-regionals.webp",
+        "specs": [
+          {
+            "k": "Motors",
+            "v": "7"
+          },
+          {
+            "k": "Servos",
+            "v": "2"
+          }
+        ],
+        "subsystems": [
+          {
+            "n": "1",
+            "name": "Drivetrain",
+            "shot": "Drivetrain, close",
+            "photo": null,
+            "marker": {
+              "x": "42%",
+              "y": "73%"
+            },
+            "body": "A custom parallel-plate drivetrain on mecanum wheels, built in polycarbonate.",
+            "detail": "Designing our own frame gave us far more freedom over where each mechanism sits. The wheels were driven by sprockets and chains, which gave us problems.",
+            "specs": []
+          },
+          {
+            "n": "2",
+            "name": "Intake",
+            "shot": "Intake, close",
+            "photo": null,
+            "marker": {
+              "x": "63%",
+              "y": "44%"
+            },
+            "body": "An intake that feeds artifacts up a flat ramp.",
+            "detail": "",
+            "specs": []
+          },
+          {
+            "n": "3",
+            "name": "Transfer",
+            "shot": "Transfer, close",
+            "photo": null,
+            "marker": {
+              "x": "49%",
+              "y": "40%"
+            },
+            "body": "Flap wheels that carry each artifact from the intake to the shooter.",
+            "detail": "It replaced V1.0's spindexer. Our analysis showed that sorting was not worth the slower cycle times.",
+            "specs": []
+          },
+          {
+            "n": "4",
+            "name": "Shooter",
+            "shot": "Shooter, close",
+            "photo": null,
+            "marker": {
+              "x": "37%",
+              "y": "19%"
+            },
+            "body": "A hooded flywheel shooter with an adjustable hood.",
+            "detail": "V1.0's hood was fixed. This one lets us set its angle.",
+            "specs": []
+          }
+        ],
+        "changes": [],
+        "subversions": [
+          {
+            "id": "V2.1",
+            "date": "April 2026",
+            "title": "Nationals update",
+            "summary": "The V2.0 design, with its weak points worked through for Nationals.",
+            "points": [
+              {
+                "k": "Drivetrain",
+                "v": "Timing belts and pulleys replaced the sprockets and chains."
+              },
+              {
+                "k": "Intake",
+                "v": "A curved ramp replaced the flat one, with gecko wheels for compliance, to improve pick-up."
+              },
+              {
+                "k": "Transfer",
+                "v": "Surgical tubing replaced the flap wheels, after more testing."
+              },
+              {
+                "k": "Kept",
+                "v": "The polycarbonate plates and the adjustable hood."
+              }
+            ],
+            "photo": "/images/robot-v2-1-nationals.webp",
+            "specs": [],
+            "changes": [],
+            "subsystems": [
+              {
+                "n": "1",
+                "name": "Drivetrain",
+                "shot": "Drivetrain, close",
+                "photo": null,
+                "marker": {
+                  "x": "37%",
+                  "y": "71%"
+                },
+                "body": "The same custom parallel-plate drivetrain on mecanum wheels, now driven by timing belts and pulleys.",
+                "detail": "They replaced the sprockets and chains that gave us problems on V2.0.",
+                "specs": []
+              },
+              {
+                "n": "2",
+                "name": "Intake",
+                "shot": "Intake, close",
+                "photo": null,
+                "marker": {
+                  "x": "68%",
+                  "y": "58%"
+                },
+                "body": "Gecko wheels over a curved ramp.",
+                "detail": "The curved ramp replaced V2.0's flat one to improve pick-up. The gecko wheels are compliant, so they give as an artifact comes in.",
+                "specs": []
+              },
+              {
+                "n": "3",
+                "name": "Transfer",
+                "shot": "Transfer, close",
+                "photo": null,
+                "marker": {
+                  "x": "55%",
+                  "y": "41%"
+                },
+                "body": "Surgical tubing that carries each artifact from the intake to the shooter.",
+                "detail": "It replaced V2.0's flap wheels after further testing.",
+                "specs": []
+              },
+              {
+                "n": "4",
+                "name": "Shooter",
+                "shot": "Shooter, close",
+                "photo": null,
+                "marker": {
+                  "x": "37%",
+                  "y": "19%"
+                },
+                "body": "A hooded flywheel shooter with an adjustable hood.",
+                "detail": "Carried over from V2.0.",
+                "specs": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import SeasonSwitch from '../components/SeasonSwitch.astro';
+import VersionRail from '../components/VersionRail.astro';
+import Close from '../components/Close.astro';
+import { seasons, seasonsWithRobot } from '../lib/seasons';
+
+// Open on the newest season that has a robot to show; a season that has only
+// just started is still one click away.
+const open = (seasonsWithRobot[0] ?? seasons[0]).slug;
+---
+<Base title="Robot" current="robot" description="The Wilsonic Boom competition robot, version by version: every build, every revision, and what each one changed.">
+
+  <PageHead lines={['The machine.']}>
+    <p class="lede">
+      Every version we have built, and every revision in between.
+    </p>
+  </PageHead>
+
+  <section class="band band--tight" id="versions">
+    <div class="wrap">
+      <SeasonSwitch seasons={seasons} open={open} />
+      {seasons.map((s, i) => (
+        <div class="season-panel" data-season-panel={s.slug} data-season-default={s.slug === open ? '' : undefined}>
+          <div class="season-panel__hd">
+            <h2 class="h2 etch" data-etch>{s.game}</h2>
+            <p class="h4">{s.years}</p>
+          </div>
+          {s.steps.length > 0
+            ? <VersionRail season={s} />
+            : <p class="body body--wide">This season&rsquo;s robot is in design.</p>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {seasons.some((s) => s.robot.software) && (
+    <section class="band band--alt" id="software">
+      <div class="wrap wrap--split">
+        <div class="split__l"><h2 class="h2 etch" data-etch>Software</h2></div>
+        <div class="split__r">
+          {seasons.map((s) => (
+            <p class="body" data-season-panel={s.slug} data-season-default={s.slug === open ? '' : undefined}>
+              {s.robot.software}
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Close heading={['Put a part', 'on this robot.']}>
+    If you make components, fasteners, materials or tools, tell us what they are. We will tell
+    you exactly which subsystem they would go into, and show you when they do.
+  </Close>
+</Base>

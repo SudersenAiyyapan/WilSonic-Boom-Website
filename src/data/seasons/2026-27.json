@@ -1,0 +1,48 @@
+{
+  "years": "2026–27",
+  "game": "BIOBUZZ",
+  "draft": false,
+  "summary": "Our second season. The robot is in design; the first events are still ahead.",
+  "aims": [
+    {
+      "aim": "Both Wilson's teams in the finals of the UK Championship.",
+      "done": false
+    },
+    {
+      "aim": "Both teams qualified for the European Premier Event.",
+      "done": false
+    },
+    {
+      "aim": "An outreach initiative for every year group in the school.",
+      "done": false
+    },
+    {
+      "aim": "At least 200 students reached.",
+      "done": false
+    }
+  ],
+  "record": [
+    {
+      "k": "Awards won",
+      "v": "—"
+    },
+    {
+      "k": "Regionals",
+      "v": "—"
+    },
+    {
+      "k": "Nationals",
+      "v": "—"
+    },
+    {
+      "k": "Team size",
+      "v": "15 students"
+    }
+  ],
+  "awards": [],
+  "events": [],
+  "robot": {
+    "software": "",
+    "versions": []
+  }
+}

@@ -1,0 +1,7 @@
+---
+interface Props { rows: { k: string; v: string }[]; tight?: boolean; }
+const { rows, tight = false } = Astro.props;
+---
+<dl class:list={['specs', { 'specs--tight': tight }]}>
+  {rows.map((r) => <div class="specs__row"><dt>{r.k}</dt><dd class="num">{r.v}</dd></div>)}
+</dl>

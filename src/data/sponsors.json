@@ -1,0 +1,232 @@
+{
+  "sponsors": [
+    {
+      "name": "Blue Education",
+      "url": "https://blueeducation.org",
+      "logo": "/images/Untitled design.png",
+      "tier": "gold",
+      "since": "2026",
+      "until": "",
+      "about": "A global premier admissions consultancy and tutoring platform staffed by Oxbridge and Ivy League graduates to guide international students into elite universities.",
+      "gave": "Cash",
+      "wentInto": "Funded the Wilson's Robotics European Premier Event campaign"
+    }
+  ],
+  "tiers": [
+    {
+      "key": "bronze",
+      "name": "Bronze",
+      "from": "£250",
+      "lead": false
+    },
+    {
+      "key": "silver",
+      "name": "Silver",
+      "from": "£500",
+      "lead": false
+    },
+    {
+      "key": "gold",
+      "name": "Gold",
+      "from": "£800",
+      "lead": false
+    },
+    {
+      "key": "platinum",
+      "name": "Platinum",
+      "from": "£1,000",
+      "lead": false
+    },
+    {
+      "key": "diamond",
+      "name": "Diamond",
+      "from": "£2,500+",
+      "lead": true
+    }
+  ],
+  "benefits": [
+    {
+      "label": "Update emails",
+      "bronze": "yes",
+      "silver": "yes",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Website backlink",
+      "bronze": "yes",
+      "silver": "yes",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Logo on team apparel",
+      "bronze": "Small",
+      "silver": "Medium",
+      "gold": "Large",
+      "platinum": "Prominent",
+      "diamond": "Largest"
+    },
+    {
+      "label": "Logo on the robot",
+      "bronze": "",
+      "silver": "Medium",
+      "gold": "Large",
+      "platinum": "Prominent",
+      "diamond": "Largest"
+    },
+    {
+      "label": "Social media mention post",
+      "bronze": "",
+      "silver": "yes",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Dedicated spotlight post",
+      "bronze": "",
+      "silver": "",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Logo on competition banner",
+      "bronze": "",
+      "silver": "",
+      "gold": "Large",
+      "platinum": "Prominent",
+      "diamond": "Largest"
+    },
+    {
+      "label": "Branding on team equipment",
+      "bronze": "",
+      "silver": "",
+      "gold": "yes",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Dedicated social media video",
+      "bronze": "",
+      "silver": "",
+      "gold": "",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Demonstration event at school",
+      "bronze": "",
+      "silver": "",
+      "gold": "",
+      "platinum": "yes",
+      "diamond": "yes"
+    },
+    {
+      "label": "Title partner recognition",
+      "bronze": "",
+      "silver": "",
+      "gold": "",
+      "platinum": "",
+      "diamond": "yes"
+    }
+  ],
+  "inKind": "Support can be money or store credit with a parts or materials supplier.",
+  "funding": [
+    {
+      "group": "Robot",
+      "item": "Full official game field",
+      "cost": "£1,500",
+      "what": "Test in exact match conditions, and hold practice events with other teams."
+    },
+    {
+      "group": "Robot",
+      "item": "Control Hub",
+      "cost": "£300",
+      "what": "The robot's on-board computer: runs our code and turns commands into movement."
+    },
+    {
+      "group": "Robot",
+      "item": "Driver Hub",
+      "cost": "£250",
+      "what": "Carries driver inputs from the gamepad to the robot, and sends back telemetry."
+    },
+    {
+      "group": "Robot",
+      "item": "Laser-cut metal plates",
+      "cost": "£300",
+      "what": "Precision-cut parts for a light, rigid chassis and mechanisms."
+    },
+    {
+      "group": "Robot",
+      "item": "3D printer filament",
+      "cost": "£200",
+      "what": "Custom parts printed straight from our CAD models."
+    },
+    {
+      "group": "Robot",
+      "item": "Limelight 3A camera",
+      "cost": "£150",
+      "what": "An FTC-legal camera that lets the robot find its place by reading field markers."
+    },
+    {
+      "group": "Robot",
+      "item": "Motors",
+      "cost": "£50 each",
+      "what": "Power and movement for every mechanism."
+    },
+    {
+      "group": "Robot",
+      "item": "Servos",
+      "cost": "£30 each",
+      "what": "Motors that move to and hold a precise position."
+    },
+    {
+      "group": "Outreach",
+      "item": "Junior Robotics",
+      "cost": "£500",
+      "what": "FTC equipment and mentoring for the school's Junior Robotics club."
+    },
+    {
+      "group": "Outreach",
+      "item": "Banners",
+      "cost": "£100",
+      "what": "For competitions and outreach events, and where sponsors' logos are shown."
+    },
+    {
+      "group": "Outreach",
+      "item": "International competition",
+      "cost": "£5,000",
+      "what": "Transport and registration if a team qualifies to compete abroad."
+    }
+  ],
+  "impact": [
+    {
+      "k": "Students reached every week",
+      "v": "148"
+    },
+    {
+      "k": "Clubs and teams at Wilson’s",
+      "v": "6"
+    },
+    {
+      "k": "FTC teams at Wilson’s",
+      "v": "2"
+    },
+    {
+      "k": "Teams a planned scrimmage would host",
+      "v": "15+"
+    }
+  ],
+  "invoicing": "the school finance office",
+  "budget": {
+    "season": "2026–27",
+    "core": 3000,
+    "stretch": 4500,
+    "stretchLabel": "a full competition field",
+    "raised": -400
+  }
+}
